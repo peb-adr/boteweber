@@ -26,6 +26,8 @@
 }
 
 .news-card > p {
-    margin: 10px 0px;
+    /* margin: 10px 0px; */
+    margin-top: 0px;
+    margin-bottom: 10px;
     text-align: center;
 }
