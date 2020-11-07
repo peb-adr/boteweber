@@ -9,12 +9,23 @@
     background-image: url('../../../assets/crumpled-paper.png');
 }
 
-.news-card > p {
-    margin: 16px 0px;
-    text-align: center;
+.headline {
+    display: flex;
+}
+
+.headline > p {
+    margin: 10px;
+    flex: 1;
+
+    font-size: 1.2em;
 }
 
 .timestamp {
-    position: absolute;
+    /* position: absolute; */
     font-size: 10px;
+}
+
+.news-card > p {
+    margin: 10px 0px;
+    text-align: center;
 }
