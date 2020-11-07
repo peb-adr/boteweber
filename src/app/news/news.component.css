@@ -1,0 +1,25 @@
+.news-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.news-card {
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 2px;
+    min-height: 50px;
+    color: #222222;
+    background-color: #999999;
+    background-image: url('../../assets/crumpled-paper.png');
+}
+
+.news-card > p {
+    margin: 16px 0px;
+    text-align: center;
+}
+
+.timestamp {
+    position: absolute;
+    font-size: 10px;
+}

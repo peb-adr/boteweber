@@ -1,0 +1,36 @@
+.info-container {
+    position: relative;
+    /* text-align: center; */
+}
+
+.address-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    padding: 10px;
+    position: absolute;
+    right: 20px;
+    border-radius: 10px 20px;
+    background-color: #444444dd;
+}
+
+.address-box > p {
+    margin-left: 20px;
+}
+
+#ny-address {
+    top: 10px;
+}
+
+#no-address {
+    bottom: 100px;
+}
+
+/* #he {
+    top: 10px;
+}
+
+#moin {
+    bottom: 10px;
+} */

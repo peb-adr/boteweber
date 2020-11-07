@@ -1,0 +1,19 @@
+
+
+/* #site-container {
+    display: flex;
+    flex-direction: column;
+} */
+
+#content-container {
+
+    margin-top: 100px;
+    
+    display: flex;
+    flex-direction: row;
+}
+
+#news {
+    margin-left: 20px;
+    flex: 1;
+}
