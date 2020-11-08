@@ -7,16 +7,7 @@
         </div>
     </div>
 
-    <app-news-card>
-        
+    <app-news-card *ngFor="let n of news" [title]="n.title" [message]="n.message" [date]="n.date">
     </app-news-card>
-
-    <app-news-card>
-        
-    </app-news-card>
-
-    <app-news-card>
-        
-    </app-news-card>
-
+    
 </div>
