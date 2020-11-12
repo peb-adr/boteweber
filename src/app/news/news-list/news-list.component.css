@@ -8,12 +8,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 5px 0px;
+    /* margin: 5px 0px; */
     border: 1px solid #555555;
 }
 
 .headline > p {
     margin: 10px;
+}
+
+#spacer {
+    flex-basis: 10px;
 }
 
 #sub-button {

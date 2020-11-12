@@ -31,10 +31,12 @@
 }
 
 .logo {
-    margin: 0.5em;
+    /* margin: 0.5em; */
+    /* margin: 8px; */
     /* margin-top: 0.5em;
     margin-left: 1em;
     margin-right: 0.5em; */
+    margin-left: 30px;
 }
 
 .logohead {

@@ -3,4 +3,15 @@
 :root {
     color: white;
     background-color: #222222;
+
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+hr {
+    color: white;
+    background-color: white;
+}
+
+body {
+    margin: 8px 30px;
 }
