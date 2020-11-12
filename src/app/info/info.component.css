@@ -3,27 +3,39 @@
     /* text-align: center; */
 }
 
-.address-box {
+.greet-box {
     display: flex;
     align-items: center;
     justify-content: space-between;
     
     padding: 10px;
     position: absolute;
-    right: 20px;
+    /* right: 20px; */
+    left: 150px;
     border-radius: 10px 20px;
     background-color: #444444dd;
 }
 
-.address-box > p {
-    margin-left: 20px;
+.address-box {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 10px;
 }
 
-#ny-address {
+.address-box p {
+    margin: 10px 0px;
+}
+
+.address-box hr {
+    margin: 0px 8px;
+}
+
+#ny-greet {
     top: 10px;
 }
 
-#no-address {
+#no-greet {
     bottom: 100px;
 }
 
