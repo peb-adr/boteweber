@@ -1,19 +1,49 @@
 .info-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 500px;
+
+    /* border: 1px solid yellow; */
+    border-radius: 5px;
+    background-color: #333333;
+}
+
+#contact-info {
+    /* width: 200px; */
+    
+    /* margin: 10 px; */
+    padding: 10px;
+
+    /* background-color: #444444dd; */
+}
+
+#contact-info p {
+    margin-top: 0px;
+    /* width: inherit; */
+}
+
+a {
+    color: #9fbbff;
+    text-decoration: none;
+}
+
+#location-info {
     position: relative;
-    /* text-align: center; */
 }
 
 .greet-box {
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: space-between;
     
     padding: 10px;
-    position: absolute;
-    /* right: 20px; */
-    left: 150px;
-    border-radius: 10px 20px;
-    background-color: #444444dd;
+    right: 10px;
+    /* left: 150px; */
+    border: 1px solid #555555;
+    border-radius: 10px 40px;
+    background-color: #333333dd;
 }
 
 .address-box {
@@ -24,11 +54,13 @@
 }
 
 .address-box p {
-    margin: 10px 0px;
+    margin: 0px;
 }
 
 .address-box hr {
-    margin: 0px 8px;
+    margin: 8px 0px;
+    border: none;
+    height: 1px;
 }
 
 #ny-greet {
@@ -36,7 +68,7 @@
 }
 
 #no-greet {
-    bottom: 100px;
+    bottom: 50px;
 }
 
 /* #he {
