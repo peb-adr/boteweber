@@ -4,8 +4,8 @@
     padding: 5px;
     border-radius: 2px;
     min-height: 50px;
-    color: #222222;
-    background-color: #d9d9d9;
+    color: var(--text-news-color, red);
+    background-color: var(--bg-news-color, red);
     background-image: url('../../../assets/crumpled-paper-seamless.png');
 }
 

@@ -8,7 +8,8 @@
     /* padding-bottom: 0.5em; */
     height: 100px;
     
-    background-color: #111111;
+    background-color: var(--bg-topbar-color, red);
+    
     /* background-image: url('../../assets/auto-cropped.jpg'), linear-gradient(to right, black, white);
     background-size: auto 100%; */
     /* background: linear-gradient(to right, #111111, #111111, transparent), url("../../assets/auto-cropped.jpg") no-repeat center;  */
@@ -34,7 +35,7 @@
     padding: 0.25em;
     font-size: 24px;
     /* border: 0.1em solid #555555; */
-    background-color: #555555;
+    background-color: var(--bg-button-color, red);
 }
 
 .logo {

@@ -23,5 +23,5 @@
 #sub-button {
     margin: 5px;
     padding: 5px;
-    background-color: #555555;
+    background-color: var(--bg-button-color, red);
 }
