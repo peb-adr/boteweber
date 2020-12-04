@@ -1,0 +1,8 @@
+#content-container {
+
+    margin-top: 100px;
+    padding-top: 8px;
+    
+    display: flex;
+    flex-direction: row;
+}

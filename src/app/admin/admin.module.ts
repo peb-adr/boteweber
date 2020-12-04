@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TopbarComponent } from "./topbar/topbar.component";
+import { TopbarAdminComponent } from "./topbar/topbar.component";
+import { AdminComponent } from './admin.component';
 
 
 @NgModule({
-  declarations: [TopbarComponent],
+  declarations: [
+    AdminComponent,
+    TopbarAdminComponent
+  ],
   imports: [
     CommonModule
   ]

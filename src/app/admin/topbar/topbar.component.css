@@ -10,18 +10,20 @@
     
     background-color: var(--bg-topbar-color, red);
     
-    /* background-image: url('../../assets/auto-cropped.jpg'), linear-gradient(to right, black, white);
-    background-size: auto 100%; */
-    /* background: linear-gradient(to right, #111111, #111111, transparent), url("../../assets/auto-cropped.jpg") no-repeat center;  */
-    background-image: url("../../../assets/car-cropped-faded.png");
-    background-size: contain; 
-    background-repeat: no-repeat;
-    background-position: right;
-
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 #nav {
     display: flex;
+}
+
+
+.navbutton {
+    margin: .75em;
+    padding: 0.25em;
+    font-size: 24px;
+    /* border: 0.1em solid #555555; */
+    background-color: var(--bg-button-color, red);
 }
