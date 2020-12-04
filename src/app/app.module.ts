@@ -3,21 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule, routingComponents } from "./app-routing.module";
 import { AppComponent } from './app.component';
-import { TopbarComponent } from './user/topbar/topbar.component';
-import { InfoComponent } from './info/info.component';
 import { NewsModule } from './news/news.module';
+import { UserModule } from './user/user.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopbarComponent,
-    InfoComponent,
-    routingComponents
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
-    NewsModule
+    NewsModule,
+    UserModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,7 +9,10 @@ import { NewsService } from './news.service';
 
 
 @NgModule({
-  declarations: [NewsListComponent, NewsCardComponent],
+  declarations: [
+    NewsListComponent,
+    NewsCardComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule
