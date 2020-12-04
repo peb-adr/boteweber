@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InfoData, InfoService } from './info.service';
 
 @Component({
   selector: 'app-info',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoComponent implements OnInit {
 
-  constructor() { }
+  info: InfoData;
+  
+  constructor(private infoService: InfoService) { }
 
   ngOnInit(): void {
+    this.infoService.getInfo()
+    .subscribe((data: InfoData) => {this.info = data});
   }
 
 }

@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
-export interface News{
+import { backendUrl } from "src/app/globals";
+
+export interface NewsData{
   id: number;
   timestamp: Date;
   title: string;
@@ -14,12 +16,10 @@ export interface News{
 })
 export class NewsService {
 
-  backendUrl: string = "http://localhost:26548";
-
   constructor(private http: HttpClient) { }
 
   getNews() {
-    return this.http.get<News[]>(this.backendUrl + "/news")
+    return this.http.get<NewsData[]>(backendUrl + "/news")
       .pipe(
         map( res => {
           for (const n of res) {
@@ -50,7 +50,7 @@ export class NewsService {
   }
 
     
-  private convertTimestamp(res: News) {
+  private convertTimestamp(res: NewsData) {
     // timestamp is stored as string in json response, so convert to Date before returning
     res.timestamp = new Date(res.timestamp);
   }

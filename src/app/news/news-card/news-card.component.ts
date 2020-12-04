@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { News } from "../news.service";
+import { NewsData } from "../news.service";
 
 @Component({
   selector: 'app-news-card',
@@ -9,7 +9,7 @@ import { News } from "../news.service";
 export class NewsCardComponent implements OnInit {
 
   @Input()
-  data: News;
+  data: NewsData;
   
   constructor() { }
 
