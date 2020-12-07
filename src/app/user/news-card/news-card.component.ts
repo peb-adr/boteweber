@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NewsData } from "../news.service";
+import { NewsData } from 'src/app/news/news.service';
 
 @Component({
-  selector: 'app-news-card',
+  selector: 'app-user-news-card',
   templateUrl: './news-card.component.html',
   styleUrls: ['./news-card.component.css']
 })
-export class NewsCardComponent implements OnInit {
+export class UserNewsCardComponent implements OnInit {
 
   @Input()
   data: NewsData;

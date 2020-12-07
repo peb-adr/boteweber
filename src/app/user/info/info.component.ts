@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { InfoData, InfoService } from './info.service';
+import { InfoService, InfoData } from 'src/app/info/info.service';
 
 @Component({
-  selector: 'app-info',
+  selector: 'app-user-info',
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.css']
 })
-export class InfoComponent implements OnInit {
+export class UserInfoComponent implements OnInit {
 
   info: InfoData;
   

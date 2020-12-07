@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-topbar-admin',
+  selector: 'app-admin-topbar',
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.css']
 })
-export class TopbarAdminComponent implements OnInit {
+export class AdminTopbarComponent implements OnInit {
 
   constructor() { }
 

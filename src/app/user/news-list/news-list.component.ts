@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsData, NewsService } from '../news.service';
+import { NewsData, NewsService } from 'src/app/news/news.service';
 
 @Component({
-  selector: 'app-news-list',
+  selector: 'app-user-news-list',
   templateUrl: './news-list.component.html',
   styleUrls: ['./news-list.component.css']
 })
-export class NewsListComponent implements OnInit {
+export class UserNewsListComponent implements OnInit {
 
   news: NewsData[];
 

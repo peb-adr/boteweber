@@ -1,19 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InfoComponent } from './info.component';
+import { HttpClientModule } from "@angular/common/http";
+
 import { InfoService } from './info.service';
 
-
-
 @NgModule({
-  declarations: [
-    InfoComponent
-  ],
   imports: [
-    CommonModule
-  ],
-  exports: [
-    InfoComponent
+    CommonModule,
+    HttpClientModule
   ],
   providers: [
     InfoService

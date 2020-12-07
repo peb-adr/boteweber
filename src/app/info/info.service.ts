@@ -27,4 +27,9 @@ export class InfoService {
   getInfo() {
     return this.http.get<InfoData>(backendUrl + "/news");
   }
+
+  putInfo() {
+    
+  }
+  
 }

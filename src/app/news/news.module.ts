@@ -2,23 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from "@angular/common/http";
 
-import { NewsListComponent } from './news-list/news-list.component';
-import { NewsCardComponent } from './news-card/news-card.component';
 import { NewsService } from './news.service';
 
-
-
 @NgModule({
-  declarations: [
-    NewsListComponent,
-    NewsCardComponent
-  ],
   imports: [
     CommonModule,
     HttpClientModule
-  ],
-  exports: [
-    NewsListComponent
   ],
   providers: [
     NewsService
