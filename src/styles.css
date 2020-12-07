@@ -22,3 +22,7 @@ hr {
 body {
     margin: 8px 30px;
 }
+
+ckeditor {
+    color: black;
+}

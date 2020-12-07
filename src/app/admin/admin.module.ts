@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CommonModule } from '@angular/common';
 
 import { TopbarAdminComponent } from "./topbar/topbar.component";
@@ -13,6 +14,7 @@ import { AdminRoutingModule, routingComponents } from './admin-routing.module';
   ],
   imports: [
     AdminRoutingModule,
+    CKEditorModule,
     CommonModule
   ]
 })
