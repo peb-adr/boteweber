@@ -25,7 +25,7 @@ export class InfoService {
   constructor(private http: HttpClient) { }
 
   getInfo() {
-    return this.http.get<InfoData>(backendUrl + "/news");
+    return this.http.get<InfoData>(backendUrl + "/info");
   }
 
   putInfo() {
