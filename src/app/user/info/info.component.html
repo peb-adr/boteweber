@@ -1,46 +1,38 @@
 
 <div class="info-container">
 
-    <div id="contact-info">
-        <p>
-            Haben Sie eine Lieferung von oder nach Norderney?
-            <br>
-            Oder etwa eine F&uuml;hrerschein- oder KFZ-Angelegenheit  und wollen nicht selber nach Aurich fahren?
-        </p>
-        <p>
-            Melden Sie sich!
-        </p>
-        <p>
-            tel.: 04932 927939 (Mo - Fr 16:30 - 18:30 Uhr) <br>
-            mail: <a href="mailto:info@boteweber.de">info@boteweber.de</a>
-        </p>
-    </div>
-    
-    <div id="location-info">
-        <img id="map" src="assets/map.svg" alt="">
-        
-        <div id="ny-greet" class="greet-box">
-            <img id="he" width="100px" src="assets/he.svg" alt="">
-            <div class="address-box">
-                <p>Am Hafen 14 <br> 26548 Norderney</p>
-                <hr>
-                <p>Annahme &amp; B&uuml;ro: <br> Mo - Do 16:30 - 18:30 Uhr <br> So 18:00 - 19:00 Uhr</p>
-            </div>
+    <ng-container *ngIf="info">
+
+        <div id="contact-info" [innerHTML]="info.text">
         </div>
         
-        <div id="no-greet" class="greet-box">
-            <img id="moin" width="100px" src="assets/moin.svg" alt="">
-            <div class="address-box">
-                <p>Gl&uuml;ckauf 15 <br> 26506 Norden</p>
-                <hr>
-                <p>
-                    Annahme (bei C.E. Popken im Laden): <br> Mo - Fr 8:30 - 18:00 Uhr <br> Sa 8:00 - 13:00 Uhr
-                    <br> <br>
-                    Annahme (pers&ouml;nlich vor Ort): <br> Mo - Fr 9:30 - 10:30 Uhr
-                </p>
+        <div id="location-info">
+            <img id="map" src="assets/map.svg" alt="">
+            
+            <div id="ny-greet" class="greet-box">
+                <img id="he" width="100px" src="assets/he.svg" alt="">
+                <div class="address-box">
+                    <div [innerHTML]="info.greets.he.top">
+                    </div>
+                    <hr>
+                    <div [innerHTML]="info.greets.he.bot">
+                    </div>
+                </div>
+            </div>
+            
+            <div id="no-greet" class="greet-box">
+                <img id="moin" width="100px" src="assets/moin.svg" alt="">
+                <div class="address-box">
+                    <div [innerHTML]="info.greets.moin.top">
+                    </div>
+                    <hr>
+                    <div [innerHTML]="info.greets.moin.bot">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    
+
+    </ng-container>
+
 </div>
     
