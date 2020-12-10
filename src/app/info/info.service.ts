@@ -28,8 +28,8 @@ export class InfoService {
     return this.http.get<InfoData>(backendUrl + "/info");
   }
 
-  putInfo() {
-    
+  putInfo(info: InfoData) {
+    return this.http.put<InfoData>(backendUrl + "/info", info);
   }
   
 }
