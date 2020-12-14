@@ -40,8 +40,8 @@ export class NewsService {
   }
 
 
-  putNewsId(id) {
-
+  putNewsId(id, news: NewsData) {
+    return this.http.put<NewsData>(backendUrl + "/news/" + id, news);
   }
 
 

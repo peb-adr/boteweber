@@ -22,7 +22,7 @@ export class AdminNewsComponent implements OnInit {
       this.news = data
     })
     .then(() => {
-      return this.createEditors()
+      return this.createEditors();
     })
     .then(() => {
       this.loadNews();
@@ -33,6 +33,13 @@ export class AdminNewsComponent implements OnInit {
     for (let i = 0; i < this.news.length; i++) {
       this.editors_title[i].setData(this.news[i].title);
       this.editors_message[i].setData(this.news[i].message);
+    }
+  }
+
+  storeNews() {
+    for (let i = 0; i < this.news.length; i++) {
+      this.news[i].title = this.editors_title[i].getData();
+      this.news[i].message = this.editors_message[i].getData();
     }
   }
 
@@ -59,7 +66,7 @@ export class AdminNewsComponent implements OnInit {
         // .catch(error => {
         //   // console.error(error);
         // });
-      )
+      );
 
       promises.push(ClassicEditor
         .create("<p>empty message</p>", config)
@@ -71,7 +78,7 @@ export class AdminNewsComponent implements OnInit {
         // .catch(error => {
         //   // console.error(error);
         // });
-      )
+      );
     }
 
     return Promise.all(promises);
@@ -80,6 +87,11 @@ export class AdminNewsComponent implements OnInit {
   onClickStore() {
     // console.log(this.info.text);
     // this.storeInfo();
+    this.storeNews();
+    for (const n of this.news) {
+      this.newsService.putNewsId(n.id, n)
+        .subscribe((data: NewsData) => { });
+    }
   }
 
   onClickReset() {
