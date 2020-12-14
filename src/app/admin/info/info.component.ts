@@ -21,18 +21,16 @@ export class AdminInfoComponent implements OnInit {
   constructor(private infoService: InfoService) { }
 
   ngOnInit(): void {
-    this.createEditors();   
-    this.loadInfo();
-  }
-  
-  onClickStore() {
-    console.log(this.info.text);
-    this.storeInfo();
-  }
-
-  onClickReset() {
-    console.log(this.info.text);
-    this.resetInfo();
+    this.infoService.getInfo().toPromise()
+    .then((data: InfoData) => {
+      this.info = data
+    })
+    .then(() => {
+      return this.createEditors();
+    })
+    .then(() => {
+      this.loadInfo();
+    });
   }
 
   createEditors() {
@@ -45,7 +43,9 @@ export class AdminInfoComponent implements OnInit {
       ]
     }
       
-    ClassicEditor
+    let promises = [];
+    
+    promises.push(ClassicEditor
       .create(document.querySelector('#editor_text'), config)
       .then(editor => {
         this.editor_text = editor
@@ -53,9 +53,10 @@ export class AdminInfoComponent implements OnInit {
       })
       .catch(error => {
         // console.error(error);
-      });
+      })
+    );
 
-    ClassicEditor
+    promises.push(ClassicEditor
       .create(document.querySelector('#editor_ny_top'), config)
       .then(editor => {
         this.editor_ny_top = editor
@@ -63,9 +64,10 @@ export class AdminInfoComponent implements OnInit {
       })
       .catch(error => {
         // console.error(error);
-      });
+      })
+    );
 
-    ClassicEditor
+    promises.push(ClassicEditor
       .create(document.querySelector('#editor_ny_bot'), config)
       .then(editor => {
         this.editor_ny_bot = editor
@@ -73,9 +75,10 @@ export class AdminInfoComponent implements OnInit {
       })
       .catch(error => {
         // console.error(error);
-      });
+      })
+    );
 
-    ClassicEditor
+    promises.push(ClassicEditor
       .create(document.querySelector('#editor_no_top'), config)
       .then(editor => {
         this.editor_no_top = editor
@@ -83,9 +86,10 @@ export class AdminInfoComponent implements OnInit {
       })
       .catch(error => {
         // console.error(error);
-      });
+      })
+    );
 
-    ClassicEditor
+    promises.push(ClassicEditor
       .create(document.querySelector('#editor_no_bot'), config)
       .then(editor => {
         this.editor_no_bot = editor
@@ -93,21 +97,18 @@ export class AdminInfoComponent implements OnInit {
       })
       .catch(error => {
         // console.error(error);
-      });
+      })
+    );
+
+    return Promise.all(promises);
   }
 
   loadInfo() {
-    this.infoService.getInfo()
-    .subscribe((data: InfoData) => {
-      this.info = data
-    
-      this.editor_text.setData(this.info.text);
-      this.editor_ny_top.setData(this.info.greets.he.top);
-      this.editor_ny_bot.setData(this.info.greets.he.bot);
-      this.editor_no_top.setData(this.info.greets.moin.top);
-      this.editor_no_bot.setData(this.info.greets.moin.bot);
-    });
-    
+    this.editor_text.setData(this.info.text);
+    this.editor_ny_top.setData(this.info.greets.he.top);
+    this.editor_ny_bot.setData(this.info.greets.he.bot);
+    this.editor_no_top.setData(this.info.greets.moin.top);
+    this.editor_no_bot.setData(this.info.greets.moin.bot);
   }
   
   storeInfo() {
@@ -120,13 +121,15 @@ export class AdminInfoComponent implements OnInit {
     this.infoService.putInfo(this.info)
     .subscribe((data: InfoData) => { });
   }
-  
-  resetInfo() {
-    this.editor_text.setData(this.info.text);
-    this.editor_ny_top.setData(this.info.greets.he.top);
-    this.editor_ny_bot.setData(this.info.greets.he.bot);
-    this.editor_no_top.setData(this.info.greets.moin.top);
-    this.editor_no_bot.setData(this.info.greets.moin.bot);
+
+  onClickStore() {
+    console.log(this.info.text);
+    this.storeInfo();
+  }
+
+  onClickReset() {
+    console.log(this.info.text);
+    this.loadInfo();
   }
   
 }
