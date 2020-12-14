@@ -1,16 +1,17 @@
 <div class="news-card">
     <div class="headline">
-        <p>
-            <!-- Dies ist ein Titel! -->
+        <!-- <p>
             {{data.title}}
-        </p>
+        </p> -->
+        <div class="title-container" [innerHTML]="data.title">
+        </div>
         <div class="timestamp">
-            <!-- Sa 2020/11/07 15:00 -->
             {{data.timestamp}}
         </div>
     </div>
-    <p>
-        <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
+    <!-- <p>
         {{data.message}}
-    </p>
+    </p> -->
+    <div class="message-container" [innerHTML]="data.message">
+    </div>
 </div>
