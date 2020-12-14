@@ -25,10 +25,14 @@ export class AdminInfoComponent implements OnInit {
     this.loadInfo();
   }
   
-  onClick() {
+  onClickStore() {
     console.log(this.info.text);
     this.storeInfo();
-    // this.resetInfo();
+  }
+
+  onClickReset() {
+    console.log(this.info.text);
+    this.resetInfo();
   }
 
   createEditors() {
