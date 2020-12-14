@@ -10,11 +10,11 @@ import { InfoData, InfoService } from 'src/app/info/info.service';
 })
 export class AdminInfoComponent implements OnInit {
 
-  public editor_text = ClassicEditor;
-  public editor_ny_top = ClassicEditor;
-  public editor_ny_bot = ClassicEditor;
-  public editor_no_top = ClassicEditor;
-  public editor_no_bot = ClassicEditor;
+  editor_text = ClassicEditor;
+  editor_ny_top = ClassicEditor;
+  editor_ny_bot = ClassicEditor;
+  editor_no_top = ClassicEditor;
+  editor_no_bot = ClassicEditor;
 
   info: InfoData;
 
