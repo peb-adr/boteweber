@@ -1,1 +1,33 @@
-<p>news works!</p>
+
+<p>
+    INFO:
+    <br> <br>
+    Enter = neuer Absatz (inkl. Abstand zum Vogänger)
+    <br>
+    Shfit + Enter = neue Zeile innerhalb eines Absatzes
+</p>
+
+<div id="outer-container">
+    
+    <div id="editor-container">
+
+        <!-- <div *ngFor="let n of news" [id]="'editor_' + n.id">
+            <div id="editor_title_{{n.id}}">
+
+            </div>
+            <div id="editor_message_{{n.id}}">
+
+            </div>
+        </div> -->
+
+    </div>
+
+</div>
+
+<button (click)="onClickStore()">
+    STORE
+</button>
+
+<button (click)="onClickReset()">
+    RESET
+</button>
