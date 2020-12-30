@@ -6,6 +6,7 @@ import { AdminTopbarComponent } from "./topbar/topbar.component";
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule, routingComponents } from './admin-routing.module';
 import { AdminEditorComponent } from './editor/editor.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

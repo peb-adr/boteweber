@@ -14,11 +14,9 @@
         <div id="text-container">
 
             <p>Begr&uuml;&szlig;ungstext</p>
-            
-            <!-- <ckeditor [editor]="editor_text" [data]="info.text"></ckeditor> -->
-            <div id="editor_text">
-                <!-- {{info.text}} -->
-            </div>
+
+            <app-admin-editor #editorText [data]="info.text">
+            </app-admin-editor>
 
         </div>
 
@@ -29,38 +27,24 @@
         <div id="box-container">
 
             <p>NY Adressbox - Oben</p>
-            
-            <!-- <ckeditor [editor]="editor_ny_top" [data]="info.greets.he.top"></ckeditor> -->
-            <!-- <ckeditor [editor]="editor_ny_top"></ckeditor> -->
-            <div id="editor_ny_top">
 
-            </div>
+            <app-admin-editor #editorNyTop [data]="info.greets.he.top">
+            </app-admin-editor>
 
             <p>NY Adressbox - Unten</p>
-            
-            <!-- <ckeditor [editor]="editor_ny_bot" [data]="info.greets.he.bot"></ckeditor> -->
-            <!-- <ckeditor [editor]="editor_ny_bot"></ckeditor> -->
-            <div id="editor_ny_bot">
 
-            </div>
+            <app-admin-editor #editorNyBot [data]="info.greets.he.bot">
+            </app-admin-editor>
             
             <p>NO Adressbox - Oben</p>
-            
-            <!-- <ckeditor [editor]="editor_no_top" [data]="info.greets.moin.top"></ckeditor> -->
-            <!-- <ckeditor [editor]="editor_no_top"></ckeditor> -->
-            <div id="editor_no_top">
 
-            </div>
+            <app-admin-editor #editorNoTop [data]="info.greets.moin.top">
+            </app-admin-editor>
+
             <p>NO Adressbox - Unten</p>
-            
-            <!-- <ckeditor [editor]="editor_no_bot" [data]="info.greets.moin.bot"></ckeditor> -->
-            <!-- <ckeditor [editor]="editor_no_bot"></ckeditor> -->
-            <div id="editor_no_bot">
 
-            </div>
-            <!-- <textarea id="tarea_no_bot" cols="30" rows="10">
-                {{info.greets.moin.bot}}
-            </textarea> -->
+            <app-admin-editor #editorNoBot [data]="info.greets.moin.bot">
+            </app-admin-editor>
 
         </div>
 

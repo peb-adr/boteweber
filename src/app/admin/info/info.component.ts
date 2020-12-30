@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { InfoData, InfoService } from 'src/app/info/info.service';
+import { AdminEditorComponent } from '../editor/editor.component';
+
+// import { ckConfig } from "src/app/globals";
 
 @Component({
   selector: 'app-admin-info',
@@ -10,14 +12,19 @@ import { InfoData, InfoService } from 'src/app/info/info.service';
 })
 export class AdminInfoComponent implements OnInit {
 
-  editor_text = ClassicEditor;
-  editor_ny_top = ClassicEditor;
-  editor_ny_bot = ClassicEditor;
-  editor_no_top = ClassicEditor;
-  editor_no_bot = ClassicEditor;
+  
+  // public get info() : InfoData {
+  //   return this.info ? this.info : null
+  // }
+  
+  info: InfoData = {} as InfoData;
 
-  info: InfoData;
-
+  @ViewChild("editorText") editorText: AdminEditorComponent
+  @ViewChild("editorNyTop") editorNyTop: AdminEditorComponent
+  @ViewChild("editorNyBot") editorNyBot: AdminEditorComponent
+  @ViewChild("editorNoTop") editorNoTop: AdminEditorComponent
+  @ViewChild("editorNoBot") editorNoBot: AdminEditorComponent
+  
   constructor(private infoService: InfoService) { }
 
   ngOnInit(): void {
@@ -25,110 +32,31 @@ export class AdminInfoComponent implements OnInit {
     .then((data: InfoData) => {
       this.info = data
     })
-    .then(() => {
-      return this.createEditors();
-    })
-    .then(() => {
-      this.loadInfo();
-    });
-  }
-
-  createEditors() {
-    let config = {
-      toolbar: [
-        'heading', '|',
-        'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
-        'imageUpload', 'blockQuote', 'mediaEmbed', '|',
-        'undo', 'redo'
-      ]
-    }
-      
-    let promises = [];
-    
-    promises.push(ClassicEditor
-      .create(document.querySelector('#editor_text'), config)
-      .then(editor => {
-        this.editor_text = editor
-        // console.log(editor);
-      })
-      .catch(error => {
-        // console.error(error);
-      })
-    );
-
-    promises.push(ClassicEditor
-      .create(document.querySelector('#editor_ny_top'), config)
-      .then(editor => {
-        this.editor_ny_top = editor
-        // console.log(editor);
-      })
-      .catch(error => {
-        // console.error(error);
-      })
-    );
-
-    promises.push(ClassicEditor
-      .create(document.querySelector('#editor_ny_bot'), config)
-      .then(editor => {
-        this.editor_ny_bot = editor
-        // console.log(editor);
-      })
-      .catch(error => {
-        // console.error(error);
-      })
-    );
-
-    promises.push(ClassicEditor
-      .create(document.querySelector('#editor_no_top'), config)
-      .then(editor => {
-        this.editor_no_top = editor
-        // console.log(editor);
-      })
-      .catch(error => {
-        // console.error(error);
-      })
-    );
-
-    promises.push(ClassicEditor
-      .create(document.querySelector('#editor_no_bot'), config)
-      .then(editor => {
-        this.editor_no_bot = editor
-        // console.log(editor);
-      })
-      .catch(error => {
-        // console.error(error);
-      })
-    );
-
-    return Promise.all(promises);
   }
 
   loadInfo() {
-    this.editor_text.setData(this.info.text);
-    this.editor_ny_top.setData(this.info.greets.he.top);
-    this.editor_ny_bot.setData(this.info.greets.he.bot);
-    this.editor_no_top.setData(this.info.greets.moin.top);
-    this.editor_no_bot.setData(this.info.greets.moin.bot);
+    this.editorText.data = this.info.text;
+    this.editorNyTop.data = this.info.greets.he.top;
+    this.editorNyBot.data = this.info.greets.he.bot;
+    this.editorNoTop.data = this.info.greets.moin.top;
+    this.editorNoBot.data = this.info.greets.moin.bot;
   }
   
   storeInfo() {
-    this.info.text = this.editor_text.getData();
-    this.info.greets.he.top = this.editor_ny_top.getData();
-    this.info.greets.he.bot = this.editor_ny_bot.getData();
-    this.info.greets.moin.top = this.editor_no_top.getData();
-    this.info.greets.moin.bot = this.editor_no_bot.getData();
+    this.info.text = this.editorText.data;
+    this.info.greets.he.top = this.editorNyTop.data;
+    this.info.greets.he.bot = this.editorNyBot.data;
+    this.info.greets.moin.top = this.editorNoTop.data;
+    this.info.greets.moin.bot = this.editorNoBot.data;
+  }
 
+  onClickStore() {
+    this.storeInfo()
     this.infoService.putInfo(this.info)
     .subscribe((data: InfoData) => { });
   }
 
-  onClickStore() {
-    console.log(this.info.text);
-    this.storeInfo();
-  }
-
   onClickReset() {
-    console.log(this.info.text);
     this.loadInfo();
   }
   
