@@ -4,22 +4,23 @@
     <br> <br>
     Enter = neuer Absatz (inkl. Abstand zum Vogänger)
     <br>
-    Shfit + Enter = neue Zeile innerhalb eines Absatzes
+    Shift + Enter = neue Zeile innerhalb eines Absatzes
 </p>
+
+<!-- <div style="border: 1px solid red;"> -->
+<!-- <div>
+    <app-admin-news-editor [data]="testNewsData">
+    </app-admin-news-editor>
+</div> -->
+
 
 <div id="outer-container">
     
     <div id="editor-container">
 
-        <!-- <div *ngFor="let n of news" [id]="'editor_' + n.id">
-            <div id="editor_title_{{n.id}}">
-
-            </div>
-            <div id="editor_message_{{n.id}}">
-
-            </div>
-        </div> -->
-
+        <app-admin-news-editor *ngFor="let n of news" [data]="n">
+        </app-admin-news-editor>
+        
     </div>
 
 </div>
@@ -30,4 +31,8 @@
 
 <button (click)="onClickReset()">
     RESET
+</button>
+
+<button (click)="onClickDebug()">
+    DEBUG
 </button>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import * as ClassicEditor from "@ckeditor/ckeditor5-build-balloon";
 import { NewsData, NewsService } from 'src/app/news/news.service';
 
 @Component({
@@ -9,11 +9,18 @@ import { NewsData, NewsService } from 'src/app/news/news.service';
 })
 export class AdminNewsComponent implements OnInit {
 
-  editors_title: ClassicEditor[] = [];
-  editors_message: ClassicEditor[] = [];
+  editorsTitle: ClassicEditor[] = [];
+  editorsMessage: ClassicEditor[] = [];
   
   news: NewsData[];
 
+  // testNewsData: NewsData = {
+  //   id: 32,
+  //   timestamp: new Date(),
+  //   title: "Ich bin ein Titel",
+  //   message: "Ich bin die Nachricht die von der Laenge her dann doch etwas laenger ausfaellt als der Titel."
+  // }
+  
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
@@ -21,69 +28,22 @@ export class AdminNewsComponent implements OnInit {
     .then((data: NewsData[]) => {
       this.news = data
     })
-    .then(() => {
-      return this.createEditors();
-    })
-    .then(() => {
-      this.loadNews();
-    });
   }
 
   loadNews() {
     for (let i = 0; i < this.news.length; i++) {
-      this.editors_title[i].setData(this.news[i].title);
-      this.editors_message[i].setData(this.news[i].message);
+      this.editorsTitle[i].setData(this.news[i].title);
+      this.editorsMessage[i].setData(this.news[i].message);
     }
   }
 
   storeNews() {
     for (let i = 0; i < this.news.length; i++) {
-      this.news[i].title = this.editors_title[i].getData();
-      this.news[i].message = this.editors_message[i].getData();
+      this.news[i].title = this.editorsTitle[i].getData();
+      this.news[i].message = this.editorsMessage[i].getData();
     }
   }
 
-  createEditors() {
-    let config = {
-      toolbar: [
-        'heading', '|',
-        'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
-        'imageUpload', 'blockQuote', 'mediaEmbed', '|',
-        'undo', 'redo'
-      ]
-    }
-
-    let promises = [];
-    
-    for (const n of this.news) {
-      promises.push(ClassicEditor
-        .create("<p>empty title</p", config)
-        .then(editor => {
-          document.querySelector("#editor-container").appendChild(editor.ui.element);
-          this.editors_title.push(editor);
-          console.log(this.editors_title);
-        })
-        // .catch(error => {
-        //   // console.error(error);
-        // });
-      );
-
-      promises.push(ClassicEditor
-        .create("<p>empty message</p>", config)
-        .then(editor => {
-          document.querySelector("#editor-container").appendChild(editor.ui.element);
-          this.editors_message.push(editor);
-          console.log(this.editors_message);
-        })
-        // .catch(error => {
-        //   // console.error(error);
-        // });
-      );
-    }
-
-    return Promise.all(promises);
-  }
-  
   onClickStore() {
     // console.log(this.info.text);
     // this.storeInfo();
@@ -98,6 +58,10 @@ export class AdminNewsComponent implements OnInit {
     // console.log(this.info.text);
     // this.resetInfo();
     this.loadNews();
+  }
+
+  onClickDebug() {
+    // this.testNewsData.message = this.testNewsData.message + ";lkjadsfl"
   }
   
 }

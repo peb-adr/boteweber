@@ -1,5 +1,18 @@
 #container {
-    padding: 8px;
+    margin: 10px 0px;
+    padding: 4px;
     background-color: #cccccc;
     border-radius: 8px;
+}
+
+#container p {
+    color: black;
+    /* margin: 4px; */
+    margin-top: 8px;
+    margin-bottom: 2px;
+    padding-left: 1em;
+}
+
+.editor-container {
+    padding: 4px;
 }

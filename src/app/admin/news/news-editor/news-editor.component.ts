@@ -1,7 +1,5 @@
 import { Component, Input, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import * as ClassicEditor from "@ckeditor/ckeditor5-build-balloon";
 import { NewsData } from 'src/app/news/news.service';
-import { AdminEditorComponent } from '../../editor/editor.component';
 
 
 @Component({
@@ -28,41 +26,17 @@ export class AdminNewsEditorComponent implements OnInit {
   ngAfterViewInit(): void {
     // this.editorTitle.setData(this.data.message)
   }
-  
-  private createEditors() {
-    // let promises = [];
-
-    // promises.push(ClassicEditor
-    //   .create(document.querySelector('#editor-title'), ckConfig)
-    //   .then(editor => {
-    //     this.editorTitle = editor
-    //     // console.log(editor);
-    //   })
-    //   .catch(error => {
-    //     // console.error(error);
-    //   })
-    // );
-
-    // promises.push(ClassicEditor
-    //   .create(document.querySelector('#editor-message'), ckConfig)
-    //   .then(editor => {
-    //     this.editorMessage = editor
-    //     // console.log(editor);
-    //   })
-    //   .catch(error => {
-    //     // console.error(error);
-    //   })
-    // );
-
-    // return Promise.all(promises);
-  }
 
   onClick() {
     // this.editorTitle.setData(this.data.message)
   }
-  
-  onNewData(newData: string) {
-    console.log("outside = " + newData)
+
+  onNewDataTitle(newData: string) {
+    // console.log("outside = " + newData)
+  }
+
+  onNewDataMessage(newData: string) {
+    // console.log("outside = " + newData)
   }
   
 }
