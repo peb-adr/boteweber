@@ -1,0 +1,23 @@
+
+<!-- {{ data.message }} -->
+
+<!-- <ckeditor [(ngModel)]="data.message" [editor]="titleEditor"></ckeditor> -->
+<!-- <ckeditor [editor]="titleEditor"></ckeditor> -->
+
+<div id="container">
+   
+    <!-- <div id="editor-title" class="ck-custom">
+    </div> -->
+    
+    <app-admin-editor #editorTitle [data]="data.message" (newDataEvent)="onNewData($event)">
+
+    </app-admin-editor>
+    
+    <!-- <div id="editor-message" class="ck-custom">
+    </div> -->
+
+    <button (click)="onClick()">
+        DEBUG
+    </button>
+
+</div>

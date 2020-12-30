@@ -1,4 +1,4 @@
 
-
-<div id="editor" class="ck-custom">
+<div class="ck-custom">
+    <ckeditor [(ngModel)]="data" [editor]="editor" [config]="ckConfig" (change)="onDataChange($event)"></ckeditor>
 </div>

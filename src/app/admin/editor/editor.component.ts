@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChanges, SimpleChange, Output, EventEmitter} from '@angular/core';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-balloon";
 
 @Component({
@@ -7,18 +6,16 @@ import * as ClassicEditor from "@ckeditor/ckeditor5-build-balloon";
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.css']
 })
-export class AdminEditorComponent implements OnInit, OnChanges, OnDestroy {
+export class AdminEditorComponent implements OnInit {
 
   @Input()
   data = "";
   @Output()
   newDataEvent = new EventEmitter<string>();
 
-  private initialized = false;
-  // hold the promise instead of the editor instance so every operation can be sure it has been intitialized
-  private editorCreatePromise = null;
+  editor = ClassicEditor
   
-  private ckConfig = {
+  ckConfig = {
     toolbar: [
       'heading', '|',
       'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
@@ -29,56 +26,9 @@ export class AdminEditorComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log("create")
-    // initiate editor creation
-    this.editorCreatePromise = ClassicEditor
-      .create(document.querySelector('#editor'), this.ckConfig)
-    // queue event listener attachment
-    this.editorCreatePromise
-      .then(editor => {
-        editor.model.document.on('change:data', this.onDataChange.bind(this))
-      })
-    this.updateData();
-    this.initialized = true;
-  }
+  ngOnInit(): void { }
 
-  ngOnDestroy() {
-    this.editorCreatePromise
-      .then(editor => {
-        editor.destroy()
-          .catch(error => {
-            console.log(error)
-          });
-      })
+  onDataChange(event) {
+    this.newDataEvent.emit(this.data)
   }
-  
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.initialized && changes.data.currentValue) {
-      this.updateData();
-    }
-  }
-  
-  updateData() {
-    this.editorCreatePromise
-      .then(editor => {
-        editor.setData(this.data);
-        console.log(this.data)
-      })
-  }
-
-  onDataChange() {
-    if (!this.initialized) {
-      return;
-    }
-
-    this.editorCreatePromise
-    .then(editor => {
-      this.data = editor.getData();
-    })
-    .then(() => {
-        this.newDataEvent.emit(this.data)
-      })
-  }
-  
 }

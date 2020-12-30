@@ -11,13 +11,14 @@ import { AdminEditorComponent } from './editor/editor.component';
   declarations: [
     AdminComponent,
     AdminTopbarComponent,
-    routingComponents
+    routingComponents,
     AdminEditorComponent
   ],
   imports: [
     AdminRoutingModule,
     CKEditorModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class AdminModule { }
