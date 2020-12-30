@@ -23,6 +23,11 @@ body {
     margin: 8px 30px;
 }
 
+a {
+    color: #9fbbff;
+    text-decoration: none;
+}
+
 .ck {
     color: black;
 }
