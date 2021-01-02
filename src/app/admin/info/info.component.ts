@@ -36,18 +36,18 @@ export class AdminInfoComponent implements OnInit {
 
   loadInfo() {
     this.editorText.data = this.info.text;
-    this.editorNyTop.data = this.info.greets.he.top;
-    this.editorNyBot.data = this.info.greets.he.bot;
-    this.editorNoTop.data = this.info.greets.moin.top;
-    this.editorNoBot.data = this.info.greets.moin.bot;
+    this.editorNyTop.data = this.info.greet_ny_top;
+    this.editorNyBot.data = this.info.greet_ny_bot;
+    this.editorNoTop.data = this.info.greet_no_top;
+    this.editorNoBot.data = this.info.greet_no_bot;
   }
   
   storeInfo() {
     this.info.text = this.editorText.data;
-    this.info.greets.he.top = this.editorNyTop.data;
-    this.info.greets.he.bot = this.editorNyBot.data;
-    this.info.greets.moin.top = this.editorNoTop.data;
-    this.info.greets.moin.bot = this.editorNoBot.data;
+    this.info.greet_ny_top = this.editorNyTop.data;
+    this.info.greet_ny_bot = this.editorNyBot.data;
+    this.info.greet_no_top = this.editorNoTop.data;
+    this.info.greet_no_bot = this.editorNoBot.data;
   }
 
   onClickStore() {

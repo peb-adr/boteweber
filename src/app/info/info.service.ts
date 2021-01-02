@@ -5,16 +5,10 @@ import { backendUrl } from "src/app/globals";
 
 export interface InfoData {
   text: string;
-  greets: {
-    he: {
-      top: string;
-      bot: string;
-    };
-    moin: {
-      top: string;
-      bot: string;
-    };
-  };
+  greet_ny_top: string;
+  greet_ny_bot: string;
+  greet_no_top: string;
+  greet_no_bot: string;
 }
 
 @Injectable({
