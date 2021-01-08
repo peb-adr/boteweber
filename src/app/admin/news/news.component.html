@@ -7,31 +7,61 @@
     Shift + Enter = neue Zeile innerhalb eines Absatzes
 </p>
 
-<!-- <div style="border: 1px solid red;"> -->
-<!-- <div>
-    <app-admin-news-editor [data]="testNewsData">
-    </app-admin-news-editor>
-</div> -->
-
-
 <div id="outer-container">
-    
-    <div id="editor-container">
 
-        <app-admin-news-editor *ngFor="let n of news" [data]="n">
-        </app-admin-news-editor>
+    <hr>
+
+    <p>
+        Neue Nachricht verfassen
+    </p>
+    
+    <div id="new-news-editor-container">
+
+        <!-- <div class="news-editor new-news-editor"> -->
+            <app-admin-news-editor
+                    [data]="blankNewsData"
+                    [isPoster]=true
+                    (postNews)="post($event)"
+            >
+            </app-admin-news-editor>
+
+            <!-- <div class="edit-panel">
+                <button>
+                    +
+                </button>
+                <input type="number" min="0">
+            </div>
+        </div> -->
+
+    </div>
+
+    <hr>
+
+    <p>
+        Alte Nachrichten bearbeiten
+    </p>
+
+    <div id="existing-news-editor-container">
+
+        <!-- <div *ngFor="let n of news" class="news-editor existing-news-editor"> -->
+            <app-admin-news-editor *ngFor="let n of news"
+                    [data]="n"
+                    (putNews)="put($event)"
+                    (deleteNews)="delete($event)"
+            >
+            </app-admin-news-editor>
+
+            <!-- <div class="edit-panel">
+                <button>
+                    -
+                </button>
+                <input type="text">
+            </div>
+        </div> -->
         
     </div>
 
 </div>
-
-<button (click)="onClickStore()">
-    STORE
-</button>
-
-<button (click)="onClickReset()">
-    RESET
-</button>
 
 <button (click)="onClickDebug()">
     DEBUG

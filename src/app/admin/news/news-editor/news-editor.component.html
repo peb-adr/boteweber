@@ -1,20 +1,59 @@
 
 <div id="container">
    
-    <p>Titel</p>
-    <div class="editor-container">
-        <app-admin-editor #editorTitle [data]="data.title" (newDataEvent)="onNewDataTitle($event)">
-        </app-admin-editor>
+    <div id="text-pane">
+        <p>Titel</p>
+        <div class="editor-container">
+            <app-admin-editor #editorTitle
+                    [placeholder]="isPoster? placeholderTitle : ''"
+                    [data]="data.title"
+                    (newDataEvent)="onNewDataTitle($event)"
+            >
+            </app-admin-editor>
+        </div>
+
+        <p>Nachricht</p>
+        <div class="editor-container">
+            <app-admin-editor #editorMessage
+                    [placeholder]="isPoster? placeholderMessage : ''"
+                    [data]="data.message"
+                    (newDataEvent)="onNewDataMessage($event)"
+            >
+            </app-admin-editor>
+        </div>
     </div>
 
-    <p>Nachricht</p>
-    <div class="editor-container">
-        <app-admin-editor #editorMessage [data]="data.message" (newDataEvent)="onNewDataMessage($event)">
-        </app-admin-editor>
-    </div>
+    <div id="side-pane">
 
-    <!-- <button (click)="onClick()">
-        DEBUGAA
-    </button> -->
+        <div class="spacer-edge">
+        </div>
+
+        <div id="prop-pane">
+            <input class="side-pane-item" type="number" min="0">
+        </div>
+        
+        <div class="spacer-middle">
+        </div>
+
+        <div id="action-pane">
+            <div *ngIf="isPoster">
+                <button id="create-button" class="side-pane-item" (click)="onClickCreate()">
+                    CREATE
+                </button>
+            </div>
+            <div *ngIf="!isPoster">
+                <button id="update-button" class="side-pane-item" (click)="onClickUpdate()">
+                    UPDATE
+                </button>
+                <button id="delete-button" class="side-pane-item" (click)="onClickDelete()">
+                    DELETE
+                </button>
+            </div>
+        </div>
+
+        <div class="spacer-edge">
+        </div>
+
+    </div>
 
 </div>

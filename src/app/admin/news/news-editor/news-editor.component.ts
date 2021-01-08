@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { NewsData } from 'src/app/news/news.service';
 
 
@@ -10,7 +10,23 @@ import { NewsData } from 'src/app/news/news.service';
 export class AdminNewsEditorComponent implements OnInit {
 
   @Input()
-  data: NewsData;
+  data: NewsData = {
+    id: -1,
+    title: "",
+    message: "",
+    timestamp: null
+  };
+  @Input()
+  isPoster: boolean = false;
+  @Output()
+  postNews = new EventEmitter<NewsData>();
+  @Output()
+  putNews = new EventEmitter<NewsData>();
+  @Output()
+  deleteNews = new EventEmitter<NewsData>();
+
+  placeholderTitle: string = "Neuer Titel"
+  placeholderMessage: string = "Neue Nachricht"
 
   // @ViewChild('editorTitle')
   // editorTitle: AdminEditorComponent
@@ -27,16 +43,29 @@ export class AdminNewsEditorComponent implements OnInit {
     // this.editorTitle.setData(this.data.message)
   }
 
-  onClick() {
-    // this.editorTitle.setData(this.data.message)
+  onClickCreate() {
+    console.log("clicked Create")
+    this.postNews.emit(this.data);
+  }
+
+  onClickUpdate() {
+    console.log("clicked Update")
+    this.putNews.emit(this.data);
+  }
+
+  onClickDelete() {
+    console.log("clicked Delete")
+    this.deleteNews.emit(this.data);
   }
 
   onNewDataTitle(newData: string) {
     // console.log("outside = " + newData)
+    this.data.title = newData;
   }
 
   onNewDataMessage(newData: string) {
     // console.log("outside = " + newData)
+    this.data.message = newData;
   }
   
 }

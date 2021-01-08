@@ -9,17 +9,8 @@ import { NewsData, NewsService } from 'src/app/news/news.service';
 })
 export class AdminNewsComponent implements OnInit {
 
-  editorsTitle: ClassicEditor[] = [];
-  editorsMessage: ClassicEditor[] = [];
-  
   news: NewsData[];
-
-  // testNewsData: NewsData = {
-  //   id: 32,
-  //   timestamp: new Date(),
-  //   title: "Ich bin ein Titel",
-  //   message: "Ich bin die Nachricht die von der Laenge her dann doch etwas laenger ausfaellt als der Titel."
-  // }
+  blankNewsData: NewsData;
   
   constructor(private newsService: NewsService) { }
 
@@ -28,36 +19,43 @@ export class AdminNewsComponent implements OnInit {
     .then((data: NewsData[]) => {
       this.news = data
     })
-  }
-
-  loadNews() {
-    for (let i = 0; i < this.news.length; i++) {
-      this.editorsTitle[i].setData(this.news[i].title);
-      this.editorsMessage[i].setData(this.news[i].message);
+    this.blankNewsData = {
+      id: -1,
+      timestamp: null,
+      title: "",
+      message: ""
     }
   }
 
-  storeNews() {
-    for (let i = 0; i < this.news.length; i++) {
-      this.news[i].title = this.editorsTitle[i].getData();
-      this.news[i].message = this.editorsMessage[i].getData();
-    }
+  post(data: NewsData) {
+    data.timestamp = new Date();
+    console.log("sending post request with data:");
+    console.log(data);
+    this.newsService.postNews(data).toPromise()
+    .then((data: NewsData) => {
+      console.log(data);
+      this.ngOnInit();
+    });
   }
 
-  onClickStore() {
-    // console.log(this.info.text);
-    // this.storeInfo();
-    this.storeNews();
-    for (const n of this.news) {
-      this.newsService.putNewsId(n.id, n)
-        .subscribe((data: NewsData) => { });
-    }
+  put(data: NewsData) {
+    console.log("sending put request with data:");
+    console.log(data);
+    this.newsService.putNewsId(data.id, data).toPromise()
+    .then((data: NewsData) => {
+      console.log(data);
+      this.ngOnInit();
+    });
   }
 
-  onClickReset() {
-    // console.log(this.info.text);
-    // this.resetInfo();
-    this.loadNews();
+  delete(data: NewsData) {
+    console.log("sending delete request with data:");
+    console.log(data);
+    this.newsService.deleteNewsId(data.id).toPromise()
+    .then((data: NewsData) => {
+      console.log(data);
+      this.ngOnInit();
+    });
   }
 
   onClickDebug() {

@@ -35,8 +35,8 @@ export class NewsService {
   }
 
 
-  postNews() {
-
+  postNews(news: NewsData) {
+    return this.http.post<NewsData>(backendUrl + "/news", news);
   }
 
 
@@ -46,7 +46,7 @@ export class NewsService {
 
 
   deleteNewsId(id) {
-
+    return this.http.delete<NewsData>(backendUrl + "/news/" + id);
   }
 
     
