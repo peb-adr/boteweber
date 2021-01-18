@@ -18,9 +18,8 @@
     <div id="new-news-editor-container">
 
         <app-admin-news-editor
-                [data]="blankNewsData"
                 [isPoster]=true
-                (postNews)="post($event)"
+                (createNews)="create($event)"
         >
         </app-admin-news-editor>
 
@@ -39,7 +38,8 @@
 
             <app-admin-news-editor
                     [data]="n"
-                    (putNews)="put($event)"
+                    (updateNews)="update($event)"
+                    (resetNews)="reset($event)"
                     (deleteNews)="delete($event)"
                     >
             </app-admin-news-editor>

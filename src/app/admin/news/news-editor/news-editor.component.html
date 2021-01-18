@@ -23,7 +23,8 @@
         </div>
     </div>
 
-    <div id="side-pane">
+    <div id="side-pane"
+            [class.changed]="syncState != eSyncState.synced">
 
         <div class="spacer-edge">
         </div>
@@ -49,6 +50,9 @@
             <div *ngIf="!isPoster">
                 <button id="update-button" class="side-pane-item" (click)="onClickUpdate()">
                     UPDATE
+                </button>
+                <button id="reset-button" class="side-pane-item" (click)="onClickReset()">
+                    RESET
                 </button>
                 <button id="delete-button" class="side-pane-item" (click)="onClickDelete()">
                     DELETE

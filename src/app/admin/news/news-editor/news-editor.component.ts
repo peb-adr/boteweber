@@ -2,6 +2,12 @@ import { Component, Input, OnInit, AfterViewInit, ViewChild, Output, EventEmitte
 import { NewsData } from 'src/app/news/news.service';
 
 
+export enum SyncState {
+  synced,
+  unsynced,
+  syncing
+}
+
 @Component({
   selector: 'app-admin-news-editor',
   templateUrl: './news-editor.component.html',
@@ -9,6 +15,8 @@ import { NewsData } from 'src/app/news/news.service';
 })
 export class AdminNewsEditorComponent implements OnInit {
 
+  eSyncState = SyncState;
+  
   @Input()
   data: NewsData = {
     id: -1,
@@ -17,12 +25,15 @@ export class AdminNewsEditorComponent implements OnInit {
     timestamp: null,
     priority: 1
   };
+  syncState: SyncState = SyncState.synced;
   @Input()
   isPoster: boolean = false;
   @Output()
-  postNews = new EventEmitter<NewsData>();
+  createNews = new EventEmitter<NewsData>();
   @Output()
-  putNews = new EventEmitter<NewsData>();
+  updateNews = new EventEmitter<NewsData>();
+  @Output()
+  resetNews = new EventEmitter<NewsData>();
   @Output()
   deleteNews = new EventEmitter<NewsData>();
 
@@ -45,31 +56,56 @@ export class AdminNewsEditorComponent implements OnInit {
   }
 
   onClickCreate() {
+    this.syncState = SyncState.syncing;
     console.log("clicked Create")
-    this.postNews.emit(this.data);
+    this.createNews.emit(this.data);
   }
 
   onClickUpdate() {
+    this.syncState = SyncState.syncing;
     console.log("clicked Update")
-    this.putNews.emit(this.data);
+    this.updateNews.emit(this.data);
+  }
+
+  onClickReset() {
+    this.syncState = SyncState.syncing;
+    console.log("clicked Reset")
+    this.resetNews.emit(this.data);
   }
 
   onClickDelete() {
+    this.syncState = SyncState.syncing;
     console.log("clicked Delete")
     this.deleteNews.emit(this.data);
   }
 
   onNewDataTitle(newData: string) {
-    // console.log("outside = " + newData)
+    if (this.isPoster && newData.length == 0) {
+      this.syncState = SyncState.synced;
+    }
+    else {
+      this.syncState = SyncState.unsynced;
+    }
     this.data.title = newData;
   }
 
   onNewDataMessage(newData: string) {
-    // console.log("outside = " + newData)
+    if (this.isPoster && newData.length == 0) {
+      this.syncState = SyncState.synced;
+    }
+    else {
+      this.syncState = SyncState.unsynced;
+    }
     this.data.message = newData;
   }
   
   onChangePriority(change) {
+    if (this.isPoster && change.target.valueAsNumber == 1) {
+      this.syncState = SyncState.synced;
+    }
+    else {
+      this.syncState = SyncState.unsynced;
+    }
     this.data.priority = change.target.valueAsNumber;
   }
   

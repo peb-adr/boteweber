@@ -41,6 +41,10 @@
     align-items: center;
 }
 
+.changed {
+    background-color: rgb(245, 169, 169);
+}
+
 .side-pane-item {
     width: 100%;
     box-sizing: border-box;
