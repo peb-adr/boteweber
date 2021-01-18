@@ -17,21 +17,12 @@
     
     <div id="new-news-editor-container">
 
-        <!-- <div class="news-editor new-news-editor"> -->
-            <app-admin-news-editor
-                    [data]="blankNewsData"
-                    [isPoster]=true
-                    (postNews)="post($event)"
-            >
-            </app-admin-news-editor>
-
-            <!-- <div class="edit-panel">
-                <button>
-                    +
-                </button>
-                <input type="number" min="0">
-            </div>
-        </div> -->
+        <app-admin-news-editor
+                [data]="blankNewsData"
+                [isPoster]=true
+                (postNews)="post($event)"
+        >
+        </app-admin-news-editor>
 
     </div>
 
@@ -43,21 +34,21 @@
 
     <div id="existing-news-editor-container">
 
-        <!-- <div *ngFor="let n of news" class="news-editor existing-news-editor"> -->
-            <app-admin-news-editor *ngFor="let n of news"
+        <div class="priority-spaced-news-editor"
+                *ngFor="let n of news; index as i; last as isLast">
+
+            <app-admin-news-editor
                     [data]="n"
                     (putNews)="put($event)"
                     (deleteNews)="delete($event)"
-            >
+                    >
             </app-admin-news-editor>
-
-            <!-- <div class="edit-panel">
-                <button>
-                    -
-                </button>
-                <input type="text">
+            
+            <div class="spacer"
+                    *ngIf="!isLast && news[i].priority != news[i+1].priority">
             </div>
-        </div> -->
+
+        </div>
         
     </div>
 

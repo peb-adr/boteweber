@@ -29,7 +29,12 @@
         </div>
 
         <div id="prop-pane">
-            <input class="side-pane-item" type="number" min="0">
+            <label for="priority-chooser-{{data.id}}">Priorit&auml;t</label>
+            <input id="priority-chooser-{{data.id}}" class="side-pane-item"
+                    type="number"
+                    min="1"
+                    [value]="data.priority"
+                    (change)="onChangePriority($event)">
         </div>
         
         <div class="spacer-middle">

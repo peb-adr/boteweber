@@ -35,6 +35,12 @@
     padding-left: 4px;
 }
 
+#prop-pane {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .side-pane-item {
     width: 100%;
     box-sizing: border-box;

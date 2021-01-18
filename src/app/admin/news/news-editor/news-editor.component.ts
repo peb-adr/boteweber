@@ -14,7 +14,8 @@ export class AdminNewsEditorComponent implements OnInit {
     id: -1,
     title: "",
     message: "",
-    timestamp: null
+    timestamp: null,
+    priority: 1
   };
   @Input()
   isPoster: boolean = false;
@@ -66,6 +67,10 @@ export class AdminNewsEditorComponent implements OnInit {
   onNewDataMessage(newData: string) {
     // console.log("outside = " + newData)
     this.data.message = newData;
+  }
+  
+  onChangePriority(change) {
+    this.data.priority = change.target.valueAsNumber;
   }
   
 }

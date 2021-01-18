@@ -23,7 +23,8 @@ export class AdminNewsComponent implements OnInit {
       id: -1,
       timestamp: null,
       title: "",
-      message: ""
+      message: "",
+      priority: 1
     }
   }
 

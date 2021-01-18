@@ -9,6 +9,7 @@ export interface NewsData{
   timestamp: Date;
   title: string;
   message: string;
+  priority: number;
 }
 
 @Injectable({

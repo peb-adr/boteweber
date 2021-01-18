@@ -1,0 +1,9 @@
+
+.priority-spaced-news-editor {
+    display: flex;
+    flex-direction: column;
+}
+
+.spacer {
+    flex: 0 0 2em;
+}
