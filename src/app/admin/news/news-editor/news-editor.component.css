@@ -1,7 +1,7 @@
 #container {
     display: flex;
     justify-content: space-between;
-    background-color: #cccccc;
+    background-color: rgb(var(--color-secondary-light));
     border-radius: 8px;
     margin: 10px 0px;
     padding: 4px;

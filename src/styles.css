@@ -2,23 +2,26 @@
 
 :root {
     /* color variables */
+    --color-primary: 47,47,47;
+    --color-primary-light: 62,62,62;
+    --color-primary-dark:0,0,0;
+    --color-secondary:157,184,255;
+    --color-secondary-light: 163,182,237;
+    --color-secondary-dark: 107,136,204;
+    --text-color-light: 255,255,255;
+    --text-color-dark: 33,33,33;
+
     --content-width: 1000px;
-    
-    --text-color: white;
-    --text-news-color: #222233;
-    --bg-color: #222222;
-    --bg-topbar-color: #111111;
-    --bg-button-color: #555555;
-    --bg-news-color: #d9d9d9;
-    color: var(--text-color, red);
-    background-color: var(--bg-color, red);
+
+    color: rgb(var(--text-color-light));
+    background-color: rgb(var(--color-primary-light));
 
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 hr {
-    color: var(--text-color, red);
-    background-color: var(--text-color, red);
+    color: rgb(var(--text-color-light));
+    background-color: rgb(var(--text-color-light));
 }
 
 body {
@@ -26,6 +29,8 @@ body {
 }
 
 a {
-    color: #9fbbff;
+    /* color: rgb(var(--color-secondary)); */
+    color: white;
+    /* color: #9db8ff; */
     text-decoration: none;
 }

@@ -13,7 +13,7 @@
     /* padding-bottom: 0.5em; */
     height: 100px;
     
-    background-color: var(--bg-topbar-color, red);
+    background-color: rgb(var(--color-primary-dark));;
     
     /* background-image: url('../../assets/auto-cropped.jpg'), linear-gradient(to right, black, white);
     background-size: auto 100%; */
@@ -50,7 +50,7 @@
     padding: 0.25em;
     font-size: 24px;
     /* border: 0.1em solid #555555; */
-    background-color: var(--bg-button-color, red);
+    background-color: rgb(var(--color-primary-light));
 }
 
 #image-container {

@@ -25,15 +25,3 @@
 .spacer {
     flex-basis: 100px;
 }
-
-:host ::ng-deep .ck-editor__editable_inline {
-    /* min-height: 500px; */
-    min-height: 100%;
-}
-
-
-
-/* .ck-editor__editable_inline {
-    width: auto;
-    min-height: 500px;
-} */

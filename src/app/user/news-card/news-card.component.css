@@ -2,10 +2,11 @@
 .news-card {
     margin-bottom: 5px;
     padding: 5px;
+    border: 1px solid rgb(var(--color-primary-dark));
     border-radius: 2px;
     min-height: 50px;
-    color: var(--text-news-color, red);
-    background-color: var(--bg-news-color, red);
+    color: rgb(var(--text-color-dark));
+    background-color: rgb(160, 160, 160);
     background-image: url('../../../assets/crumpled-paper-seamless.png');
 }
 

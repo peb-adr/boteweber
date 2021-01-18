@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(var(--color-primary));
 }
 
 .headline {
@@ -9,7 +13,7 @@
     justify-content: space-between;
     align-items: center;
     /* margin: 5px 0px; */
-    border: 1px solid #555555;
+    border: 2px solid rgb(var(--color-primary-light));;
 }
 
 .headline > p {
@@ -23,5 +27,5 @@
 #sub-button {
     margin: 5px;
     padding: 5px;
-    background-color: var(--bg-button-color, red);
+    background-color: rgb(var(--color-secondary-dark));
 }
