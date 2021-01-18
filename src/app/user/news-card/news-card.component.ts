@@ -17,4 +17,8 @@ export class UserNewsCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  formatTimestamp(): string {
+    return this.data.timestamp.toLocaleString();
+  }
+  
 }
