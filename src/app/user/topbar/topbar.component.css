@@ -1,5 +1,10 @@
 
-.topbar-container {
+.edge-spacer {
+    flex: 1 1;
+}
+
+#topbar-container {
+    
     position: absolute;
     top: 0;
     left: 0;
@@ -13,17 +18,27 @@
     /* background-image: url('../../assets/auto-cropped.jpg'), linear-gradient(to right, black, white);
     background-size: auto 100%; */
     /* background: linear-gradient(to right, #111111, #111111, transparent), url("../../assets/auto-cropped.jpg") no-repeat center;  */
-    background-image: url("../../../assets/car-cropped-faded.png");
+
+    /* background-image: url("../../../assets/car-cropped-faded.png");
     background-size: contain; 
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: right; */
 
+    display: flex;
+}
+
+#inner-container {
+    flex: 0 1 var(--content-width);
     display: flex;
     align-items: center;
 }
 
-.spacer {
-    flex-basis: 3em;
+#spacer1 {
+    flex: 0 1 3em;
+}
+
+#spacer2 {
+    flex: 1 1;
 }
 
 #nav {
@@ -38,13 +53,22 @@
     background-color: var(--bg-button-color, red);
 }
 
+#image-container {
+    /* height: auto; */
+}
+
+img {
+    height: 100%;
+    max-width: 100%;
+}
+
 .logo {
     /* margin: 0.5em; */
     /* margin: 8px; */
     /* margin-top: 0.5em;
     margin-left: 1em;
     margin-right: 0.5em; */
-    margin-left: 30px;
+    /* margin-left: 30px; */
 }
 
 .logohead {

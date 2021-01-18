@@ -1,0 +1,12 @@
+
+#site-container {
+    display: flex;
+}
+
+#content-container {
+    flex: 0 1 var(--content-width);
+}
+
+.edge-spacer {
+    flex: 1 1;
+}

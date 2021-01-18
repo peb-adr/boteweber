@@ -2,6 +2,8 @@
 
 :root {
     /* color variables */
+    --content-width: 1000px;
+    
     --text-color: white;
     --text-news-color: #222233;
     --bg-color: #222222;
