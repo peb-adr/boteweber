@@ -29,3 +29,12 @@
     padding: 5px;
     background-color: rgb(var(--color-secondary-dark));
 }
+
+.priority-spaced-news-editor {
+    display: flex;
+    flex-direction: column;
+}
+
+.priority-spacer {
+    flex: 0 0 1em;
+}

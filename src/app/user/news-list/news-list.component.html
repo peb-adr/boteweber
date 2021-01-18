@@ -1,3 +1,4 @@
+
 <div class="news-container">
 
     <div class="headline">
@@ -10,7 +11,14 @@
     <div id="spacer">
     </div>
 
-    <app-user-news-card *ngFor="let n of news" [data]="n">
-    </app-user-news-card>
+    <div class="priority-spaced-news-editor" *ngFor="let n of news; index as i; last as isLast">
+
+        <app-user-news-card [data]="n">
+        </app-user-news-card>
+        
+        <div class="priority-spacer" *ngIf="!isLast && news[i].priority != news[i+1].priority">
+        </div>
+    
+    </div>
     
 </div>
