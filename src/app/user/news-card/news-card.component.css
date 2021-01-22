@@ -7,7 +7,7 @@
     min-height: 50px;
     color: rgb(var(--text-color-dark));
     background-color: rgb(160, 160, 160);
-    background-image: url('../../../assets/crumpled-paper-seamless.png');
+    background-image: url('/assets/crumpled-paper-seamless.png');
 }
 
 .headline {
