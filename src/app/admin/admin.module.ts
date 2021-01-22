@@ -9,6 +9,7 @@ import { AdminNewsEditorComponent } from './news/news-editor/news-editor.compone
 import { AdminEditorComponent } from './editor/editor.component';
 import { FormsModule } from '@angular/forms';
 import { AdminEditableListComponent } from './editable-list/editable-list.component';
+import { ModalComponent } from '../modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AdminEditableListComponent } from './editable-list/editable-list.compon
     routingComponents,
     AdminNewsEditorComponent,
     AdminEditorComponent,
-    AdminEditableListComponent
+    AdminEditableListComponent,
+    ModalComponent
   ],
   imports: [
     AdminRoutingModule,
