@@ -34,3 +34,9 @@ a {
     /* color: #9db8ff; */
     text-decoration: none;
 }
+
+.page-element {
+    border-radius: 5px;
+    background-color: rgb(var(--color-primary));
+    padding: 10px;
+}
