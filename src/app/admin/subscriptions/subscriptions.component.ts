@@ -11,8 +11,6 @@ export class AdminSubscriptionsComponent implements OnInit {
   subscribers: SubscriberData[];
   subscriberNames: string[];
   
-  showModal: boolean = false;
-  
   constructor(private subscriberService: SubscriberService) { }
 
   ngOnInit(): void {
@@ -23,11 +21,6 @@ export class AdminSubscriptionsComponent implements OnInit {
     })
   }
 
-  onClickModal() {
-    console.log(this.showModal);
-    this.showModal = true;
-  }
-  
   private formatSubscriberNames() {
     this.subscriberNames = this.subscribers
     .map((data: SubscriberData) => {
