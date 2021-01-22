@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-import { GroupsService } from "./groups.service";
+import { GroupService } from "./group.service";
 
 @NgModule({
   imports: [
@@ -10,7 +10,7 @@ import { GroupsService } from "./groups.service";
     HttpClientModule
   ],
   providers: [
-    GroupsService
+    GroupService
   ]
 })
-export class GroupsModule { }
+export class GroupModule { }

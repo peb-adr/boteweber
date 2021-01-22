@@ -18,7 +18,7 @@ export class SubscriberService {
   constructor(private http: HttpClient) { }
 
   getSubscribers() {
-    return this.http.get<SubscriberData>(backendUrl + "/subscribers");
+    return this.http.get<SubscriberData[]>(backendUrl + "/subscribers");
   }
 
   getSubscriberId(id: number) {

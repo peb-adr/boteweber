@@ -12,12 +12,12 @@ export interface GroupData {
 @Injectable({
   providedIn: 'root'
 })
-export class GroupsService {
+export class GroupService {
   
   constructor(private http: HttpClient) { }
 
   getGroups() {
-    return this.http.get<GroupData>(backendUrl + "/groups");
+    return this.http.get<GroupData[]>(backendUrl + "/groups");
   }
 
   getGroupId(id: number) {
