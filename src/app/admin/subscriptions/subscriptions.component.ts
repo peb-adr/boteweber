@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SubscriberData, SubscriberService } from 'src/app/subscriber/subscriber.service';
 
 @Component({
   selector: 'app-admin-subscriptions',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminSubscriptionsComponent implements OnInit {
 
-  constructor() { }
+  subscribers: SubscriberData[];
+  subscriberNames: string[];
+  
+  constructor(private subscriberService: SubscriberService) { }
 
   ngOnInit(): void {
+    this.subscriberService.getSubscribers().toPromise()
+    .then((data: SubscriberData[]) => {
+      this.subscribers = data;
+      this.formatSubscriberNames();
+    })
   }
 
+  private formatSubscriberNames() {
+    this.subscriberNames = this.subscribers
+    .map((data: SubscriberData) => {
+      return data.name + " <" + data.email + ">";
+    })
+  }
+  
 }
