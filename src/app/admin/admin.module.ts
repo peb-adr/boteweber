@@ -8,6 +8,7 @@ import { AdminRoutingModule, routingComponents } from './admin-routing.module';
 import { AdminNewsEditorComponent } from './news/news-editor/news-editor.component';
 import { AdminEditorComponent } from './editor/editor.component';
 import { FormsModule } from '@angular/forms';
+import { AdminEditableListComponent } from './editable-list/editable-list.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     AdminTopbarComponent,
     routingComponents,
     AdminNewsEditorComponent,
-    AdminEditorComponent
+    AdminEditorComponent,
+    AdminEditableListComponent
   ],
   imports: [
     AdminRoutingModule,
