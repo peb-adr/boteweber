@@ -10,6 +10,8 @@ export class AdminSubscriptionsComponent implements OnInit {
 
   subscribers: SubscriberData[];
   subscriberNames: string[];
+
+  showModal = false;
   
   constructor(private subscriberService: SubscriberService) { }
 
@@ -26,6 +28,15 @@ export class AdminSubscriptionsComponent implements OnInit {
     .map((data: SubscriberData) => {
       return data.name + " <" + data.email + ">";
     })
+  }
+  
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal(event) {
+    if (event.target.classList.contains('modal'))
+      this.showModal = false;
   }
   
 }

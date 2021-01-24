@@ -1,3 +1,14 @@
 
 <app-admin-editable-list [names]="subscriberNames">
 </app-admin-editable-list>
+
+<button (click)="openModal()">
+    MODAL
+</button>
+
+<div class="modal"
+        [ngClass]="{'modal-open': showModal}"
+        (click)="closeModal($event)">
+    <div>
+    </div>
+</div>
