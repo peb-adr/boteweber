@@ -5,10 +5,12 @@
     border-radius: 8px;
     margin: 10px 0px;
     padding: 4px;
+    
+    color: black;
 }
 
 #container p {
-    color: black;
+    /* color: black; */
     /* margin: 4px; */
     margin-top: 8px;
     margin-bottom: 2px;

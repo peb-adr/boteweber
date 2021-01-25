@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { NewsData, NewsService } from 'src/app/news/news.service';
 import { SyncState } from '../edit/synced';
 import { AdminNewsEditorComponent } from './news-editor/news-editor.component';
@@ -11,6 +11,9 @@ import { AdminNewsEditorComponent } from './news-editor/news-editor.component';
 export class AdminNewsComponent implements OnInit {
 
   news: NewsData[];
+
+  @ViewChild("posterEditor")
+  posterEditor: AdminNewsEditorComponent
   @ViewChildren(AdminNewsEditorComponent)
   editors: QueryList<AdminNewsEditorComponent>
   
@@ -25,6 +28,17 @@ export class AdminNewsComponent implements OnInit {
   }
 
   preserveLocalChanges() {
+    if (this.posterEditor.syncState == SyncState.syncing) {
+      this.posterEditor.data = {
+        id: -1,
+        title: "",
+        message: "",
+        timestamp: null,
+        priority: 1
+      };
+      this.posterEditor.syncState = SyncState.synced;
+    }
+    
     for (let i = 0; i < this.news.length; i++) {
       let nEditor = this.getEditorById(this.news[i].id);
       if (nEditor) {
