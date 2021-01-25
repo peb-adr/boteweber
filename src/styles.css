@@ -62,3 +62,9 @@ a {
  .modal-open {
     display: flex;
 }
+
+.modal > * {
+    background-color: rgb(var(--color-primary-light));
+    border: 1px solid rgb(var(--color-primary-dark));
+    padding: 10px;
+}
