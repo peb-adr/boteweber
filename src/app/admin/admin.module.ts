@@ -6,9 +6,9 @@ import { AdminTopbarComponent } from "./topbar/topbar.component";
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule, routingComponents } from './admin-routing.module';
 import { AdminNewsEditorComponent } from './news/news-editor/news-editor.component';
-import { AdminEditorComponent } from './editor/editor.component';
+import { AdminEditorComponent } from './edit/editor/editor.component';
 import { FormsModule } from '@angular/forms';
-import { AdminEditableListComponent } from './editable-list/editable-list.component';
+import { AdminEditableElementComponent } from './edit/editable-element/editable-element.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { AdminEditableListComponent } from './editable-list/editable-list.compon
     routingComponents,
     AdminNewsEditorComponent,
     AdminEditorComponent,
-    AdminEditableListComponent
+    AdminEditableElementComponent,
   ],
   imports: [
     AdminRoutingModule,
