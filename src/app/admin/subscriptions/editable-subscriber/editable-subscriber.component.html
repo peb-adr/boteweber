@@ -1,0 +1,75 @@
+
+<app-admin-editable-element
+        [name]="formatName()"
+        (clickEdit)="openEditModal()">
+    
+</app-admin-editable-element>
+
+<div class="modal"
+        [ngClass]="{'modal-open': showEditModal}"
+        (click)="closeEditModal($event)">
+
+    <div class="modal-content">
+  
+        <div class="prop-list">
+
+            <div class="prop-element">
+                <label for="input-email">Email</label>
+                <input id="input-email" type="email"
+                        [value]="data.email"
+                        (input)="onNewDataEmail($event)">
+            </div>
+
+            <div class="prop-element">
+                <label for="input-name">Name</label>
+                <input id="input-name" type="text"
+                        [value]="data.name"
+                        (input)="onNewDataName($event)">
+            </div>
+
+            <div class="prop-element">
+                <label for="input-group">Gruppen</label>
+                <!-- <input id="input-group" type="radio"> -->
+                <fieldset id="input-group">
+                    <label *ngFor="let g of groupData">
+                        <input type="checkbox" name="groups"
+                                [value]="g.id"
+                                [checked]="data.groups.includes(g.id)"
+                                (input)="onNewDataGroups($event)">
+                        {{g.name}}
+                    </label>
+                </fieldset>
+            </div>
+
+        </div>
+
+        <div id="action-pane"
+                [class.unsynced]="syncState == eSyncState.unsynced"
+                [class.syncing]="syncState == eSyncState.syncing">
+            
+            <div *ngIf="isPoster">
+                <button id="create-button" class="side-pane-item"
+                        (click)="onCreate()">
+                    CREATE
+                </button>
+            </div>
+
+            <div *ngIf="!isPoster">
+                <button id="delete-button" class="side-pane-item"
+                        (click)="onDelete()">
+                    DELETE
+               </button>
+                <button id="reset-button" class="side-pane-item"
+                        (click)="onReset()">
+                    RESET
+                </button>
+                <button id="update-button" class="side-pane-item"
+                        (click)="onUpdate()">
+                    UPDATE
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

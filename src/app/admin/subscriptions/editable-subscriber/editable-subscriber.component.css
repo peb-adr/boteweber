@@ -1,0 +1,46 @@
+
+.modal-content {
+    background-color: rgb(var(--color-secondary-light));
+    color: black;
+
+    padding: 4px;
+}
+
+.prop-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.prop-element {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 2px;
+}
+
+.prop-element > label {
+    margin-right: 10px;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+
+    /* border: 1px solid rgb(var(--color-primary-dark)); */
+    border: none;
+    padding: 5px;
+}
+
+#action-pane {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    /* padding: 10px; */
+
+    border-top: 2px solid white;
+    border-radius: 0px 0px 6px 6px;
+    padding: 4px 10px;
+}
