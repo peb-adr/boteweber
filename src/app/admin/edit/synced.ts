@@ -26,31 +26,23 @@ export class Synced {
     delete = new EventEmitter();
 
 
-    onClickCreate() {
+    onCreate() {
         this.syncState = SyncState.syncing;
-        console.log("clicked Create");
-        console.log(this.data)
         this.create.emit(this.data);
     }
 
-    onClickUpdate() {
+    onUpdate() {
         this.syncState = SyncState.syncing;
-        console.log("clicked Update");
-        console.log(this.data)
         this.update.emit(this.data);
     }
 
-    onClickReset() {
+    onReset() {
         this.syncState = SyncState.syncing;
-        console.log("clicked Reset");
-        console.log(this.data)
         this.reset.emit(this.data);
     }
 
-    onClickDelete() {
+    onDelete() {
         this.syncState = SyncState.syncing;
-        console.log("clicked Delete");
-        console.log(this.data)
         this.delete.emit(this.data);
     }
 

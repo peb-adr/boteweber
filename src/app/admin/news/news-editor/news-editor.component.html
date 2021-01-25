@@ -43,18 +43,18 @@
 
         <div id="action-pane">
             <div *ngIf="isPoster">
-                <button id="create-button" class="side-pane-item" (click)="onClickCreate()">
+                <button id="create-button" class="side-pane-item" (click)="onCreate()">
                     CREATE
                 </button>
             </div>
             <div *ngIf="!isPoster">
-                <button id="update-button" class="side-pane-item" (click)="onClickUpdate()">
+                <button id="update-button" class="side-pane-item" (click)="onUpdate()">
                     UPDATE
                 </button>
-                <button id="reset-button" class="side-pane-item" (click)="onClickReset()">
+                <button id="reset-button" class="side-pane-item" (click)="onReset()">
                     RESET
                 </button>
-                <button id="delete-button" class="side-pane-item" (click)="onClickDelete()">
+                <button id="delete-button" class="side-pane-item" (click)="onDelete()">
                     DELETE
                 </button>
             </div>
