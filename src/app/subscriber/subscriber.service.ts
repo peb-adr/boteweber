@@ -7,7 +7,7 @@ export interface SubscriberData {
   id: number;
   email: string;
   name: string;
-  groups: [number];
+  groups: number[];
 }
 
 @Injectable({
