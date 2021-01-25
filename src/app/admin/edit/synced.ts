@@ -14,6 +14,9 @@ export class Synced {
 
     @Input()
     data;
+    
+    @Input()
+    isPoster: boolean = false;
     syncState: SyncState = SyncState.synced;
 
     @Output()

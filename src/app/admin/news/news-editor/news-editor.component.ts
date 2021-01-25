@@ -10,9 +10,6 @@ import { Synced, SyncState } from '../../edit/synced';
 })
 export class AdminNewsEditorComponent extends Synced implements OnInit {
 
-  @Input()
-  isPoster: boolean = false;
-
   placeholderTitle: string = "Neuer Titel"
   placeholderMessage: string = "Neue Nachricht"
 
