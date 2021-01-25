@@ -54,21 +54,15 @@ export class AdminNewsComponent implements OnInit {
 
   create(data: NewsData) {
     data.timestamp = new Date();
-    console.log("sending post request with data:");
-    console.log(data);
     this.newsService.postNews(data).toPromise()
     .then((newData: NewsData) => {
-      console.log(newData);
       this.ngOnInit();
     });
   }
 
   update(data: NewsData) {
-    console.log("sending put request with data:");
-    console.log(data);
     this.newsService.putNewsId(data.id, data).toPromise()
     .then((data: NewsData) => {
-      console.log(data);
       this.ngOnInit();
     });
   }
@@ -78,11 +72,8 @@ export class AdminNewsComponent implements OnInit {
   }
 
   delete(data: NewsData) {
-    console.log("sending delete request with data:");
-    console.log(data);
     this.newsService.deleteNewsId(data.id).toPromise()
     .then((data: NewsData) => {
-      console.log(data);
       this.ngOnInit();
     });
   }
