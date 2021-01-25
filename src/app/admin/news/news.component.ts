@@ -1,6 +1,6 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { NewsData, NewsService } from 'src/app/news/news.service';
-import { SyncState } from '../edit/synced';
+import { SyncState } from '../edit/synced.component';
 import { AdminNewsEditorComponent } from './news-editor/news-editor.component';
 
 @Component({

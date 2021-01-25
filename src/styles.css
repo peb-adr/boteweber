@@ -68,12 +68,3 @@ a {
     border: 1px solid rgb(var(--color-primary-dark));
     padding: 10px;
 }
-
-
-.unsynced {
-    background-color: rgb(245, 169, 169);
-}
-
-.syncing {
-    background-color: rgb(225, 245, 169);
-}
