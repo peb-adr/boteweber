@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { GroupData, GroupService } from 'src/app/group/group.service';
 import { SubscriberData, SubscriberService } from 'src/app/subscriber/subscriber.service';
+import { SyncState } from '../edit/synced.component';
+import { AdminEditableSubscriberComponent } from './editable-subscriber/editable-subscriber.component';
 
 @Component({
   selector: 'app-admin-subscriptions',
@@ -9,34 +12,94 @@ import { SubscriberData, SubscriberService } from 'src/app/subscriber/subscriber
 export class AdminSubscriptionsComponent implements OnInit {
 
   subscribers: SubscriberData[];
-  subscriberNames: string[];
+  groups: GroupData[];
 
-  showModal = false;
-  
-  constructor(private subscriberService: SubscriberService) { }
+  @ViewChild("subscriberPosterElement")
+  subscriberPosterElement: AdminEditableSubscriberComponent
+  @ViewChildren(AdminEditableSubscriberComponent)
+  subscriberElements: QueryList<AdminEditableSubscriberComponent>
+
+  constructor(
+      private subscriberService: SubscriberService,
+      private groupService: GroupService) {
+  }
 
   ngOnInit(): void {
     this.subscriberService.getSubscribers().toPromise()
     .then((data: SubscriberData[]) => {
       this.subscribers = data;
-      this.formatSubscriberNames();
+    })
+    this.groupService.getGroups().toPromise()
+    .then((data: GroupData[]) => {
+      this.groups = data;
     })
   }
 
-  private formatSubscriberNames() {
-    this.subscriberNames = this.subscribers
-    .map((data: SubscriberData) => {
-      return data.name + " <" + data.email + ">";
-    })
+  preserveLocalChanges() {
+    for (let i = 0; i < this.subscribers.length; i++) {
+      let sElement = this.getSubscriberElementById(this.subscribers[i].id);
+      if (sElement) {
+        if (sElement.syncState == SyncState.unsynced) {
+          this.subscribers[i] = sElement.data;
+        }
+        if (sElement.syncState == SyncState.syncing) {
+          sElement.syncState = SyncState.synced;
+        }
+      }
+    }
   }
   
-  openModal() {
-    this.showModal = true;
+  createSubscriber(data: SubscriberData) {
+    console.log("sending postSubscriber request")
+    this.subscriberService.postSubscriber(data).toPromise()
+    .then((newData: SubscriberData) => {
+      this.ngOnInit();
+    });
   }
 
-  closeModal(event) {
-    if (event.target.classList.contains('modal'))
-      this.showModal = false;
+  updateSubscriber(data: SubscriberData) {
+    console.log("sending putSubscriberId request")
+    this.subscriberService.putSubscriberId(data.id, data).toPromise()
+    .then((newData: SubscriberData) => {
+      // this.ngOnInit();
+
+
+
+      // Promise.all([
+      //   this.subscriberService.getSubscribers().toPromise()
+      //     .then((data: SubscriberData[]) => {
+      //       this.subscribers = data;
+      //     }),
+      //   this.groupService.getGroups().toPromise()
+      //     .then((data: GroupData[]) => {
+      //       this.groups = data;
+      //     })
+      //   ])
+      //   .then(() => {
+      //     let sElement = this.getSubscriberElementById(data.id);
+      //     sElement.syncState = SyncState.synced;
+      //     sElement.showEditModal = true;
+
+      //   })
+      
+    });
+  }
+
+  resetSubscriber(data: SubscriberData) {
+    console.log("resetting")
+    this.ngOnInit();
+  }
+
+  deleteSubscriber(data: SubscriberData) {
+    console.log("sending deleteSubscriberId request")
+    this.subscriberService.deleteSubscriberId(data.id).toPromise()
+    .then((newData: SubscriberData) => {
+      this.ngOnInit();
+    });
+  }
+
+  getSubscriberElementById(id: number) {
+    return this.subscriberElements.find((item) => { return item.data.id == id });
   }
   
 }

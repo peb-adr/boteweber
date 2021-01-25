@@ -5,13 +5,22 @@
         (clickDelete)="onSubsClickDelete()">
 </app-admin-editable-element> -->
 
-<button (click)="openModal()">
-    MODAL
-</button>
-
-<div class="modal"
-        [ngClass]="{'modal-open': showModal}"
-        (click)="closeModal($event)">
-    <div>
-    </div>
+<div id="new-subscriber-element-container">
+    <app-admin-editable-subscriber #subscriberPosterElement
+            [groupData]="groups"
+            [isPoster]=true
+            (create)="createSubscriber($event)">
+    </app-admin-editable-subscriber>
 </div>
+
+<div id="existing-subscriber-element-container">
+    <app-admin-editable-subscriber
+            *ngFor="let s of subscribers"
+            [data]="s"
+            [groupData]="groups"
+            (update)="updateSubscriber($event)"
+            (reset)="resetSubscriber($event)"
+            (delete)="deleteSubscriber($event)">
+    </app-admin-editable-subscriber>
+</div>
+    
