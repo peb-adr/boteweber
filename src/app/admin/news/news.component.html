@@ -19,7 +19,7 @@
 
         <app-admin-news-editor
                 [isPoster]=true
-                (createNews)="create($event)"
+                (create)="create($event)"
         >
         </app-admin-news-editor>
 
@@ -38,9 +38,9 @@
 
             <app-admin-news-editor
                     [data]="n"
-                    (updateNews)="update($event)"
-                    (resetNews)="reset($event)"
-                    (deleteNews)="delete($event)"
+                    (update)="update($event)"
+                    (reset)="reset($event)"
+                    (delete)="delete($event)"
                     >
             </app-admin-news-editor>
             
