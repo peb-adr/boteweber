@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SubscriberData } from 'src/app/subscriber/subscriber.service';
-import { Synced, SyncState } from '../../edit/synced.component';
+import { Synced } from '../../edit/synced.component';
 
 @Component({
   selector: 'app-admin-editable-subscriber',
@@ -42,12 +42,12 @@ export class AdminEditableSubscriberComponent extends Synced implements OnInit {
 
   onNewDataEmail(event) {
     this.data.email = event.target.value;
-    this.syncState = SyncState.unsynced;
+    this.setStateUnsynced();
   }
 
   onNewDataName(event) {
     this.data.name = event.target.value;
-    this.syncState = SyncState.unsynced;
+    this.setStateUnsynced();
   }
 
   onNewDataGroups(event) {
@@ -70,7 +70,7 @@ export class AdminEditableSubscriberComponent extends Synced implements OnInit {
       }
     }
     
-    this.syncState = SyncState.unsynced;
+    this.setStateUnsynced();
   }
   
   formatName() {

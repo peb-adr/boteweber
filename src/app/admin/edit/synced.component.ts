@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-export enum SyncState {
+enum SyncState {
   synced,
   unsynced,
   syncing
@@ -11,7 +11,6 @@ export enum SyncState {
   styleUrls: ['./synced.component.css']
 })
 export class Synced {
-  eSyncState = SyncState;
   
   @Input()
   data;
@@ -31,23 +30,47 @@ export class Synced {
   
   
   onCreate() {
-    this.syncState = SyncState.syncing;
+    this.setStateSyncing();
     this.create.emit(this.data);
   }
   
   onUpdate() {
-    this.syncState = SyncState.syncing;
+    this.setStateSyncing();
     this.update.emit(this.data);
   }
   
   onReset() {
-    this.syncState = SyncState.syncing;
+    this.setStateSyncing();
     this.reset.emit(this.data);
   }
   
   onDelete() {
-    this.syncState = SyncState.syncing;
+    this.setStateSyncing();
     this.delete.emit(this.data);
   }
-  
+
+  setStateSynced() {
+    this.syncState = SyncState.synced;
+  }
+
+  setStateUnsynced() {
+    this.syncState = SyncState.unsynced;
+  }
+
+  setStateSyncing() {
+    this.syncState = SyncState.syncing;
+  }
+
+  isStateSynced(): boolean {
+    return this.syncState == SyncState.synced;
+  }
+
+  isStateUnsynced(): boolean {
+    return this.syncState == SyncState.unsynced;
+  }
+
+  isStateSyncing(): boolean {
+    return this.syncState == SyncState.syncing;
+  }
+
 }

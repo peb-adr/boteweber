@@ -1,6 +1,5 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { NewsData, NewsService } from 'src/app/news/news.service';
-import { SyncState } from '../edit/synced.component';
 import { AdminNewsEditorComponent } from './news-editor/news-editor.component';
 
 @Component({
@@ -28,7 +27,7 @@ export class AdminNewsComponent implements OnInit {
   }
 
   preserveLocalChanges() {
-    if (this.posterEditor.syncState == SyncState.syncing) {
+    if (this.posterEditor.isStateSyncing()) {
       this.posterEditor.data = {
         id: -1,
         title: "",
@@ -36,17 +35,17 @@ export class AdminNewsComponent implements OnInit {
         timestamp: null,
         priority: 1
       };
-      this.posterEditor.syncState = SyncState.synced;
+      this.posterEditor.setStateSynced();
     }
     
     for (let i = 0; i < this.news.length; i++) {
       let nEditor = this.getEditorById(this.news[i].id);
       if (nEditor) {
-        if (nEditor.syncState == SyncState.unsynced) {
+        if (nEditor.isStateUnsynced()) {
           this.news[i] = nEditor.data;
         }
-        if (nEditor.syncState == SyncState.syncing) {
-          nEditor.syncState = SyncState.synced;
+        if (nEditor.isStateSyncing()) {
+          nEditor.setStateSynced();
         }
       }
     }

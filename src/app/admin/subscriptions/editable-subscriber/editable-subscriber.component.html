@@ -44,26 +44,26 @@
         </div>
 
         <div id="action-pane"
-                [class.unsynced]="syncState == eSyncState.unsynced"
-                [class.syncing]="syncState == eSyncState.syncing">
+                [class.unsynced]="isStateUnsynced()"
+                [class.syncing]="isStateSyncing()">
             
             <div *ngIf="isPoster">
-                <button id="create-button" class="side-pane-item"
+                <button id="create-button"
                         (click)="onCreate()">
                     CREATE
                 </button>
             </div>
 
             <div *ngIf="!isPoster">
-                <button id="delete-button" class="side-pane-item"
+                <button id="delete-button"
                         (click)="onDelete()">
                     DELETE
                </button>
-                <button id="reset-button" class="side-pane-item"
+                <button id="reset-button"
                         (click)="onReset()">
                     RESET
                 </button>
-                <button id="update-button" class="side-pane-item"
+                <button id="update-button"
                         (click)="onUpdate()">
                     UPDATE
                 </button>

@@ -1,7 +1,6 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { GroupData, GroupService } from 'src/app/group/group.service';
 import { SubscriberData, SubscriberService } from 'src/app/subscriber/subscriber.service';
-import { SyncState } from '../edit/synced.component';
 import { AdminEditableSubscriberComponent } from './editable-subscriber/editable-subscriber.component';
 
 @Component({
@@ -39,11 +38,11 @@ export class AdminSubscriptionsComponent implements OnInit {
     for (let i = 0; i < this.subscribers.length; i++) {
       let sElement = this.getSubscriberElementById(this.subscribers[i].id);
       if (sElement) {
-        if (sElement.syncState == SyncState.unsynced) {
+        if (sElement.isStateUnsynced()) {
           this.subscribers[i] = sElement.data;
         }
-        if (sElement.syncState == SyncState.syncing) {
-          sElement.syncState = SyncState.synced;
+        if (sElement.isStateSyncing()) {
+          sElement.setStateSynced();
         }
       }
     }
@@ -77,7 +76,7 @@ export class AdminSubscriptionsComponent implements OnInit {
       //   ])
       //   .then(() => {
       //     let sElement = this.getSubscriberElementById(data.id);
-      //     sElement.syncState = SyncState.synced;
+      //     sElement.setStateSynced();
       //     sElement.showEditModal = true;
 
       //   })
