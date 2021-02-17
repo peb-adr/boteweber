@@ -5,12 +5,14 @@ import { AdminEditorComponent } from './editor/editor.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule } from '@angular/forms';
 import { PageSelectComponent } from './page-select/page-select.component';
+import { CrudActionPaneComponent } from './crud-action-pane/crud-action-pane.component';
 
 @NgModule({
   declarations: [
     AdminEditableElementComponent,
     AdminEditorComponent,
     PageSelectComponent
+    CrudActionPaneComponent,
   ],
   imports: [
     CommonModule,
@@ -22,6 +24,7 @@ import { PageSelectComponent } from './page-select/page-select.component';
     AdminEditableElementComponent,
     AdminEditorComponent,
     PageSelectComponent
+    CrudActionPaneComponent,
   ]
 })
 export class EditModule { }
