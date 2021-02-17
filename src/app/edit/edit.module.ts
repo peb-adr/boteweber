@@ -11,7 +11,7 @@ import { CrudActionPaneComponent } from './crud-action-pane/crud-action-pane.com
   declarations: [
     AdminEditableElementComponent,
     AdminEditorComponent,
-    PageSelectComponent
+    PageSelectComponent,
     CrudActionPaneComponent,
   ],
   imports: [
@@ -23,7 +23,7 @@ import { CrudActionPaneComponent } from './crud-action-pane/crud-action-pane.com
   [
     AdminEditableElementComponent,
     AdminEditorComponent,
-    PageSelectComponent
+    PageSelectComponent,
     CrudActionPaneComponent,
   ]
 })
