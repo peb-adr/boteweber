@@ -13,8 +13,10 @@
             
             <div id="new-subscriber-element-container">
                 <app-admin-editable-element
-                    [name]="'new'">
-                </app-admin-editable-element>
+                    [value]="-1"
+                    [name]="'new'"
+                    (clickEdit)="onEditElement($event)">
+                    </app-admin-editable-element>
             </div>
     
             <div id="existing-subscriber-element-container">
@@ -30,9 +32,19 @@
     
         <div class="propeditor-container">
             <app-admin-propeditor-subscriber
-                [data]="editedSubscriber">
+                [data]="editedSubscriber"
+                (dataChanged)="onEditedDataChanged()">
 
             </app-admin-propeditor-subscriber>
+            
+            <app-crud-action-pane
+                [isPoster]="editedSubscriber.id < 0"
+                (create)="createSubscriber()"
+                (update)="updateSubscriber()"
+                (reset)="resetSubscriber()"
+                (delete)="deleteSubscriber()">
+    
+            </app-crud-action-pane>
         </div>
 
     </div>
@@ -40,7 +52,7 @@
     <div class="pageselect-container">
         <app-page-select
             [elementsMax]="allSubscriberIds.length"
-            [elementsPerPageDefault]="2"
+            [elementsPerPageDefault]="pagePer"
             (pageSelectedChange)="onPageSelChanged($event)"
             (elementsPerPageChange)="onPagePerChanged($event)"
             >

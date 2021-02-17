@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SubscriberData } from 'src/app/subscriber/subscriber.service';
 import { Synced } from 'src/app/edit/synced.component';
 
@@ -10,18 +10,21 @@ import { Synced } from 'src/app/edit/synced.component';
     '../../../edit/synced.component.css'
   ]
 })
-export class AdminPropeditorSubscriberComponent extends Synced implements OnInit {
+export class AdminPropeditorSubscriberComponent implements OnInit {
 
   @Input()
   readonly groupData;
   @Input()
   data: SubscriberData;
   
+
+  @Output()
+  dataChanged = new EventEmitter<void>();
+  
   showEditModal = false;
   notSyncedHint = false;
   
   constructor() {
-    super();
     this.data = {
       id: -1,
       email: "",
@@ -33,41 +36,18 @@ export class AdminPropeditorSubscriberComponent extends Synced implements OnInit
   ngOnInit(): void {
   }
 
-  openEditModal() {
-    this.showEditModal = true;
-  }
-
-  closeEditModal(event) {
-    if (!event.target.classList.contains('modal')) {
-      return;
-    }
-
-    if (!this.isStateSynced()) {
-      this.notSyncedHint = true;
-      return
-    }
-
-    this.showEditModal = false;
-  }
-
-  // override
-  setStateSynced() {
-    super.setStateSynced();
-    this.notSyncedHint = false;
-  }  
-
   debug(event) {
     console.log(event)
   }
 
   onNewDataEmail(event) {
     this.data.email = event.target.value;
-    this.setStateUnsynced();
+    this.dataChanged.emit();
   }
 
   onNewDataName(event) {
     this.data.name = event.target.value;
-    this.setStateUnsynced();
+    this.dataChanged.emit();
   }
 
   onNewDataGroups(event) {
@@ -90,15 +70,6 @@ export class AdminPropeditorSubscriberComponent extends Synced implements OnInit
       }
     }
     
-    this.setStateUnsynced();
+    this.dataChanged.emit();
   }
-  
-  formatName() {
-    if (this.isPoster) {
-      return "<i>Neuer Abonent</i>"
-    }
-
-    return this.data.name + " <" + this.data.email + ">";
-  }
-
 }

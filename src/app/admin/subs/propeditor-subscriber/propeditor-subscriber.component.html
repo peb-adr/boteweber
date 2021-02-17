@@ -30,33 +30,3 @@
     </div>
 
 </div>
-
-<div id="action-pane"
-        [class.unsynced]="isStateUnsynced()"
-        [class.syncing]="isStateSyncing()"
-        [class.flash]="notSyncedHint"
-        (animationEnd)="debug($event)">
-    
-    <div *ngIf="isPoster">
-        <button id="create-button"
-                (click)="onCreate()">
-            CREATE
-        </button>
-    </div>
-
-    <div *ngIf="!isPoster">
-        <button id="delete-button"
-                (click)="onDelete()">
-            DELETE
-        </button>
-        <button id="reset-button"
-                (click)="onReset()">
-            RESET
-        </button>
-        <button id="update-button"
-                (click)="onUpdate()">
-            UPDATE
-        </button>
-    </div>
-
-</div>

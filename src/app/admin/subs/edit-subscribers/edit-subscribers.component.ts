@@ -1,4 +1,5 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { CrudActionPaneComponent } from 'src/app/edit/crud-action-pane/crud-action-pane.component';
 import { GroupData, GroupService } from 'src/app/group/group.service';
 import { SubscriberData, SubscriberService } from 'src/app/subscriber/subscriber.service';
 import { AdminPropeditorSubscriberComponent } from '../propeditor-subscriber/propeditor-subscriber.component';
@@ -17,13 +18,12 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
 
   editedSubscriber: SubscriberData;
 
-  @ViewChild("subscriberPosterElement")
-  subscriberPosterElement: AdminPropeditorSubscriberComponent
-  @ViewChildren(AdminPropeditorSubscriberComponent)
-  subscriberElements: QueryList<AdminPropeditorSubscriberComponent>
+  @ViewChild(CrudActionPaneComponent)
+  crudPane: CrudActionPaneComponent;
+  
 
   pageSel = 1;
-  pagePer = 2;
+  pagePer = 3;
   
   constructor(
       private subscriberService: SubscriberService,
@@ -75,76 +75,54 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
     }
   }
   
-  preserveLocalChanges() {
-    for (let i = 0; i < this.subscribers.length; i++) {
-      let sElement = this.getSubscriberElementById(this.subscribers[i].id);
-      if (sElement) {
-        if (sElement.isStateUnsynced()) {
-          this.subscribers[i] = sElement.data;
-        }
-        if (sElement.isStateSyncing()) {
-          sElement.setStateSynced();
-        }
-      }
-    }
-  }
-  
-  createSubscriber(data: SubscriberData) {
+  createSubscriber() {
     console.log("sending postSubscriber request")
-    this.subscriberService.postSubscriber(data).toPromise()
+    this.subscriberService.postSubscriber(this.editedSubscriber).toPromise()
     .then((newData: SubscriberData) => {
-      this.ngOnInit();
+      this.getSubscribers();
+      this.crudPane.setStateSynced();
     });
   }
 
-  updateSubscriber(data: SubscriberData) {
+  updateSubscriber() {
     console.log("sending putSubscriberId request")
-    this.subscriberService.putSubscriberId(data.id, data).toPromise()
+    this.subscriberService.putSubscriberId(this.editedSubscriber.id, this.editedSubscriber).toPromise()
     .then((newData: SubscriberData) => {
-      // this.ngOnInit();
-
-
-
-      // Promise.all([
-      //   this.subscriberService.getSubscribers().toPromise()
-      //     .then((data: SubscriberData[]) => {
-      //       this.subscribers = data;
-      //     }),
-      //   this.groupService.getGroups().toPromise()
-      //     .then((data: GroupData[]) => {
-      //       this.groups = data;
-      //     })
-      //   ])
-      //   .then(() => {
-      //     let sElement = this.getSubscriberElementById(data.id);
-      //     sElement.setStateSynced();
-      //     sElement.showEditModal = true;
-
-      //   })
-      
+      this.getSubscribers();
+      this.crudPane.setStateSynced();
     });
   }
 
-  resetSubscriber(data: SubscriberData) {
+  resetSubscriber() {
     console.log("resetting")
-    this.ngOnInit();
+    this.subscriberService.getSubscriberId(this.editedSubscriber.id).toPromise()
+    .then((data: SubscriberData) => {
+      this.editedSubscriber = data;
+      this.crudPane.setStateSynced();
+    })
   }
 
-  deleteSubscriber(data: SubscriberData) {
+  deleteSubscriber() {
     console.log("sending deleteSubscriberId request")
-    this.subscriberService.deleteSubscriberId(data.id).toPromise()
+    this.subscriberService.deleteSubscriberId(this.editedSubscriber.id).toPromise()
     .then((newData: SubscriberData) => {
-      this.ngOnInit();
+      this.getSubscribers();
+      this.clearEditedSubscriber();
+      this.crudPane.setStateSynced();
     });
-  }
-
-  getSubscriberElementById(id: number) {
-    return this.subscriberElements.find((item) => { return item.data.id == id });
   }
 
   onEditElement(value) {
     console.log(this.allSubscriberIds);
+    if (value < 0) {
+      this.clearEditedSubscriber();
+      return;
+    }
     this.editedSubscriber = this.subscribers[this.subscribersIndexMap[value]];
+  }
+
+  onEditedDataChanged() {
+    this.crudPane.setStateUnsynced();
   }
 
   onPageSelChanged(sel) {
