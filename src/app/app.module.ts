@@ -14,7 +14,6 @@ import { AdminModule } from './admin/admin.module';
   imports: [
     AppRoutingModule,
     BrowserModule,
-    NewsModule,
     UserModule,
     AdminModule
   ],

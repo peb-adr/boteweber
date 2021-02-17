@@ -5,8 +5,15 @@ import { UserComponent } from "./user/user.component";
 import { AdminComponent } from "./admin/admin.component";
 
 const routes: Routes = [
-  {path: '', component: UserComponent},
-  {path: 'admin', component: AdminComponent}
+  {
+    path: '',
+    component: UserComponent
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module')
+      .then(m => m.AdminModule)
+  }
 ]
 export const routingComponents = [UserComponent, AdminComponent]
 

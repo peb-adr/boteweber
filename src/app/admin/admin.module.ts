@@ -1,31 +1,28 @@
 import { NgModule } from '@angular/core';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CommonModule } from '@angular/common';
 
 import { AdminTopbarComponent } from "./topbar/topbar.component";
 import { AdminComponent } from './admin.component';
-import { AdminRoutingModule, routingComponents } from './admin-routing.module';
+import { AdminRoutingModule } from './admin-routing.module';
 import { AdminNewsEditorComponent } from './news/news-editor/news-editor.component';
-import { AdminEditorComponent } from './edit/editor/editor.component';
 import { FormsModule } from '@angular/forms';
-import { AdminEditableElementComponent } from './edit/editable-element/editable-element.component';
-import { AdminEditableSubscriberComponent } from './subscriptions/editable-subscriber/editable-subscriber.component';
+import { AdminNewsComponent } from './news/news.component';
+import { AdminInfoComponent } from './info/info.component';
+import { EditModule } from '../edit/edit.module';
 
 @NgModule({
   declarations: [
     AdminComponent,
     AdminTopbarComponent,
-    routingComponents,
+    AdminInfoComponent,
+    AdminNewsComponent,
     AdminNewsEditorComponent,
-    AdminEditorComponent,
-    AdminEditableElementComponent,
-    AdminEditableSubscriberComponent
   ],
   imports: [
     AdminRoutingModule,
-    CKEditorModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    EditModule
   ]
 })
 export class AdminModule { }

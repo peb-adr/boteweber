@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { NewsData } from 'src/app/news/news.service';
-import { Synced } from '../../edit/synced.component';
+import { Synced } from 'src/app/edit/synced.component';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { Synced } from '../../edit/synced.component';
   templateUrl: './news-editor.component.html',
   styleUrls: [
     './news-editor.component.css',
-    '../../edit/synced.component.css'
+    '../../../edit/synced.component.css'
   ]
 })
 export class AdminNewsEditorComponent extends Synced implements OnInit {

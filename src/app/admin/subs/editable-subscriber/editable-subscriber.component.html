@@ -45,7 +45,9 @@
 
         <div id="action-pane"
                 [class.unsynced]="isStateUnsynced()"
-                [class.syncing]="isStateSyncing()">
+                [class.syncing]="isStateSyncing()"
+                [class.flash]="notSyncedHint"
+                (animationEnd)="debug($event)">
             
             <div *ngIf="isPoster">
                 <button id="create-button"

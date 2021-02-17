@@ -1,14 +1,14 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { GroupData, GroupService } from 'src/app/group/group.service';
 import { SubscriberData, SubscriberService } from 'src/app/subscriber/subscriber.service';
-import { AdminEditableSubscriberComponent } from './editable-subscriber/editable-subscriber.component';
+import { AdminEditableSubscriberComponent } from '../editable-subscriber/editable-subscriber.component';
 
 @Component({
-  selector: 'app-admin-subscriptions',
-  templateUrl: './subscriptions.component.html',
-  styleUrls: ['./subscriptions.component.css']
+  selector: 'app-admin-edit-subscribers',
+  templateUrl: './edit-subscribers.component.html',
+  styleUrls: ['./edit-subscribers.component.css']
 })
-export class AdminSubscriptionsComponent implements OnInit {
+export class AdminSubsEditSubscribersComponent implements OnInit {
 
   subscribers: SubscriberData[];
   groups: GroupData[];
