@@ -20,13 +20,13 @@ export class Synced {
   syncState: SyncState = SyncState.synced;
   
   @Output()
-  create = new EventEmitter();
+  create = new EventEmitter<void>();
   @Output()
-  update = new EventEmitter();
+  update = new EventEmitter<void>();
   @Output()
-  reset = new EventEmitter();
+  reset = new EventEmitter<void>();
   @Output()
-  delete = new EventEmitter();
+  delete = new EventEmitter<void>();
   
   
   onCreate() {

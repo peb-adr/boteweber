@@ -1,4 +1,8 @@
 
+.synced {
+    background-color: rgb(var(--color-secondary-light));
+}
+
 .unsynced {
     background-color: rgb(245, 169, 169);
 }
