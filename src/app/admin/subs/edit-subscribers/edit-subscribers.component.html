@@ -5,22 +5,46 @@
         (clickDelete)="onSubsClickDelete()">
 </app-admin-editable-element> -->
 
-<div id="new-subscriber-element-container">
-    <app-admin-editable-subscriber #subscriberPosterElement
-            [groupData]="groups"
-            [isPoster]=true
-            (create)="createSubscriber($event)">
-    </app-admin-editable-subscriber>
-</div>
+<div class="outer-container">
 
-<div id="existing-subscriber-element-container">
-    <app-admin-editable-subscriber
-            *ngFor="let s of subscribers"
-            [data]="s"
-            [groupData]="groups"
-            (update)="updateSubscriber($event)"
-            (reset)="resetSubscriber($event)"
-            (delete)="deleteSubscriber($event)">
-    </app-admin-editable-subscriber>
-</div>
+    <div class="editor-container">
+        
+        <div class="list-container">
+            
+            <div id="new-subscriber-element-container">
+                <app-admin-editable-element
+                    [name]="'new'">
+                </app-admin-editable-element>
+            </div>
     
+            <div id="existing-subscriber-element-container">
+                <app-admin-editable-element
+                    *ngFor="let s of subscribersRenderNames"
+                    [value]="s.id"
+                    [name]="s.name"
+                    (clickEdit)="onEditElement($event)">
+                </app-admin-editable-element>
+            </div>
+    
+        </div>
+    
+        <div class="propeditor-container">
+            <app-admin-propeditor-subscriber
+                [data]="editedSubscriber">
+
+            </app-admin-propeditor-subscriber>
+        </div>
+
+    </div>
+
+    <div class="pageselect-container">
+        <app-page-select
+            [elementsMax]="allSubscriberIds.length"
+            [elementsPerPageDefault]="2"
+            (pageSelectedChange)="onPageSelChanged($event)"
+            (elementsPerPageChange)="onPagePerChanged($event)"
+            >
+        </app-page-select>
+    </div>
+
+</div>

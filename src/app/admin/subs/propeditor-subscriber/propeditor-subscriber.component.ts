@@ -3,17 +3,19 @@ import { SubscriberData } from 'src/app/subscriber/subscriber.service';
 import { Synced } from 'src/app/edit/synced.component';
 
 @Component({
-  selector: 'app-admin-editable-subscriber',
-  templateUrl: './editable-subscriber.component.html',
+  selector: 'app-admin-propeditor-subscriber',
+  templateUrl: './propeditor-subscriber.component.html',
   styleUrls: [
-    './editable-subscriber.component.css',
+    './propeditor-subscriber.component.css',
     '../../../edit/synced.component.css'
   ]
 })
-export class AdminEditableSubscriberComponent extends Synced implements OnInit {
+export class AdminPropeditorSubscriberComponent extends Synced implements OnInit {
 
   @Input()
   readonly groupData;
+  @Input()
+  data: SubscriberData;
   
   showEditModal = false;
   notSyncedHint = false;

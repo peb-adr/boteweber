@@ -17,8 +17,23 @@ export class SubscriberService {
 
   constructor(private http: HttpClient) { }
 
-  getSubscribers() {
-    return this.http.get<SubscriberData[]>(backendUrl + "/subscribers");
+  getSubscribers(page: number = 0, perpage: number = 0) {
+    let qParams = {};
+    if (page != 0) {
+      qParams['page'] = page;
+      if (perpage != 0) {
+        qParams['perpage'] = perpage;
+      }
+    }
+    return this.http.get<SubscriberData[]>(backendUrl + "/subscribers", {
+      params: qParams
+    });
+  }
+
+  getSubscriberIds() {
+    return this.http.get<number[]>(backendUrl + "/subscribers", {
+      params: {idsonly: ''}
+    });
   }
 
   getSubscriberId(id: number) {

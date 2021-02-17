@@ -1,7 +1,7 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { GroupData, GroupService } from 'src/app/group/group.service';
 import { SubscriberData, SubscriberService } from 'src/app/subscriber/subscriber.service';
-import { AdminEditableSubscriberComponent } from '../editable-subscriber/editable-subscriber.component';
+import { AdminPropeditorSubscriberComponent } from '../propeditor-subscriber/propeditor-subscriber.component';
 
 @Component({
   selector: 'app-admin-edit-subscribers',
@@ -10,30 +10,71 @@ import { AdminEditableSubscriberComponent } from '../editable-subscriber/editabl
 })
 export class AdminSubsEditSubscribersComponent implements OnInit {
 
-  subscribers: SubscriberData[];
-  groups: GroupData[];
+  subscribers: SubscriberData[] = [];
+  subscribersIndexMap: { [key: number]: number; } = {};
+  subscribersRenderNames: {id: number, name: string}[] = [];
+  allSubscriberIds: number[] = [];
+
+  editedSubscriber: SubscriberData;
 
   @ViewChild("subscriberPosterElement")
-  subscriberPosterElement: AdminEditableSubscriberComponent
-  @ViewChildren(AdminEditableSubscriberComponent)
-  subscriberElements: QueryList<AdminEditableSubscriberComponent>
+  subscriberPosterElement: AdminPropeditorSubscriberComponent
+  @ViewChildren(AdminPropeditorSubscriberComponent)
+  subscriberElements: QueryList<AdminPropeditorSubscriberComponent>
 
+  pageSel = 1;
+  pagePer = 2;
+  
   constructor(
       private subscriberService: SubscriberService,
       private groupService: GroupService) {
   }
 
   ngOnInit(): void {
-    this.subscriberService.getSubscribers().toPromise()
+    this.getSubscribers();
+    this.clearEditedSubscriber();
+  }
+
+  getSubscribers() {
+    this.subscriberService.getSubscriberIds().toPromise()
+    .then((data: number[]) => {
+      this.allSubscriberIds = data;
+    })
+    this.subscriberService.getSubscribers(this.pageSel, this.pagePer).toPromise()
     .then((data: SubscriberData[]) => {
       this.subscribers = data;
-    })
-    this.groupService.getGroups().toPromise()
-    .then((data: GroupData[]) => {
-      this.groups = data;
+      this.makeIndexMap();
+      this.makeRenderNames();
     })
   }
 
+  makeIndexMap() {
+    for (let i = 0; i < this.subscribers.length; i++) {
+      const s = this.subscribers[i];
+      this.subscribersIndexMap[s.id] = i;
+    }
+  }
+    
+  makeRenderNames() {
+    this.subscribersRenderNames.length = 0;
+    for (const d of this.subscribers) {
+      let s = d.email;
+      if (d.name.length > 0) {
+        s = d.name + " <" + s + ">";
+      }
+      this.subscribersRenderNames.push({id: d.id, name: s});
+    }
+  }
+  
+  clearEditedSubscriber() {
+    this.editedSubscriber = {
+      id: -1,
+      email: "",
+      name: "",
+      groups: []
+    }
+  }
+  
   preserveLocalChanges() {
     for (let i = 0; i < this.subscribers.length; i++) {
       let sElement = this.getSubscriberElementById(this.subscribers[i].id);
@@ -99,6 +140,21 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
 
   getSubscriberElementById(id: number) {
     return this.subscriberElements.find((item) => { return item.data.id == id });
+  }
+
+  onEditElement(value) {
+    console.log(this.allSubscriberIds);
+    this.editedSubscriber = this.subscribers[this.subscribersIndexMap[value]];
+  }
+
+  onPageSelChanged(sel) {
+    this.pageSel = sel;
+    this.getSubscribers();
+  }
+
+  onPagePerChanged(per) {
+    this.pagePer = per;
+    this.getSubscribers();
   }
   
 }

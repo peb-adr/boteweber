@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminSubsEditSubscribersComponent } from './edit-subscribers/edit-subscribers.component';
 import { AdminSubsComponent } from './subs.component';
 import { SubsRoutingModule } from './subs-routing.module';
-import { AdminEditableSubscriberComponent } from './editable-subscriber/editable-subscriber.component';
+import { AdminPropeditorSubscriberComponent } from './propeditor-subscriber/propeditor-subscriber.component';
 import { EditModule } from 'src/app/edit/edit.module';
 
 
@@ -11,7 +11,7 @@ import { EditModule } from 'src/app/edit/edit.module';
   declarations: [
     AdminSubsComponent,
     AdminSubsEditSubscribersComponent,
-    AdminEditableSubscriberComponent
+    AdminPropeditorSubscriberComponent
   ],
   imports: [
     CommonModule, 

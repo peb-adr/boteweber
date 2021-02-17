@@ -1,4 +1,26 @@
 
+
+.outer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-container {
+    display: flex;
+    flex-direction: row;
+}
+
+
 #new-subscriber-element-container {
     margin-bottom: 10px;
+}
+
+
+.propeditor-container {
+    margin-left: 100px;
+}
+
+
+.pageselect-container {
+    margin-top: 10px;
 }

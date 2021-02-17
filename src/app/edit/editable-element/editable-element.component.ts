@@ -8,9 +8,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class AdminEditableElementComponent implements OnInit {
 
   @Input()
+  value;
+  @Input()
   name: string = "";
   @Output()
-  clickEdit = new EventEmitter<void>();
+  clickEdit = new EventEmitter<any>();
   @Output()
   clickDelete = new EventEmitter<void>();
   
@@ -20,7 +22,7 @@ export class AdminEditableElementComponent implements OnInit {
   }
 
   onClickEdit() {
-    this.clickEdit.emit();
+    this.clickEdit.emit(this.value);
   }
 
   onClickDelete() {

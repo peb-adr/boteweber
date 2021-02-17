@@ -4,11 +4,13 @@ import { AdminEditableElementComponent } from './editable-element/editable-eleme
 import { AdminEditorComponent } from './editor/editor.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule } from '@angular/forms';
+import { PageSelectComponent } from './page-select/page-select.component';
 
 @NgModule({
   declarations: [
     AdminEditableElementComponent,
-    AdminEditorComponent
+    AdminEditorComponent,
+    PageSelectComponent
   ],
   imports: [
     CommonModule,
@@ -19,6 +21,7 @@ import { FormsModule } from '@angular/forms';
   [
     AdminEditableElementComponent,
     AdminEditorComponent,
+    PageSelectComponent
   ]
 })
 export class EditModule { }
