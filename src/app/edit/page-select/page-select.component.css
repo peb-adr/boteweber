@@ -1,0 +1,9 @@
+button {
+    margin: 2px;
+    background: none;
+    color: rgb(var(--text-color-light));
+}
+
+button.selected {
+    background-color: rgb(var(--color-secondary-dark));
+}
