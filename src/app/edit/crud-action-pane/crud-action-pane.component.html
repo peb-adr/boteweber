@@ -7,19 +7,19 @@
         <!-- (animationEnd)="debug($event)"> -->
 
     <div *ngIf="isPoster">
-        <button id="create-button" (click)="onCreate()">
+        <button id="create-button" (click)="onClickCreate()">
             CREATE
         </button>
     </div>
 
     <div *ngIf="!isPoster">
-        <button id="delete-button" (click)="onDelete()">
+        <button id="delete-button" (click)="onClickDelete()">
             DELETE
         </button>
-        <button id="reset-button" (click)="onReset()">
+        <button id="reset-button" (click)="onClickReset()">
             RESET
         </button>
-        <button id="update-button" (click)="onUpdate()">
+        <button id="update-button" (click)="onClickUpdate()">
             UPDATE
         </button>
     </div>

@@ -1,47 +1,81 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Synced } from '../synced.component';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+enum SyncState {
+  synced,
+  unsynced,
+  syncing
+}
 
 @Component({
   selector: 'app-crud-action-pane',
   templateUrl: './crud-action-pane.component.html',
-  styleUrls: [
-    './crud-action-pane.component.css',
-    "../synced.component.css"
-  ]
+  styleUrls: ['./crud-action-pane.component.css']
 })
-export class CrudActionPaneComponent extends Synced implements OnInit {
+export class CrudActionPaneComponent implements OnInit {
 
+  @Input()
+  dataId = -1;
+  @Input()
+  isPoster: boolean = false;
+  
+  @Output()
+  create = new EventEmitter<number>();
+  @Output()
+  update = new EventEmitter<number>();
+  @Output()
+  reset = new EventEmitter<number>();
+  @Output()
+  delete = new EventEmitter<number>();
 
-  @Output()
-  create = new EventEmitter<void>();
-  @Output()
-  update = new EventEmitter<void>();
-  @Output()
-  reset = new EventEmitter<void>();
-  @Output()
-  delete = new EventEmitter<void>();
+  syncState: SyncState = SyncState.synced;
 
   constructor() {
-    super();
   }
 
   ngOnInit(): void {
   }
 
-  onClickCreate(event) {
-    this.create.emit();
+  onClickCreate() {
+    this.setStateSyncing();
+    this.create.emit(this.dataId);
+  }
+  
+  onClickUpdate() {
+    this.setStateSyncing();
+    this.update.emit(this.dataId);
+  }
+  
+  onClickReset() {
+    this.setStateSyncing();
+    this.reset.emit(this.dataId);
+  }
+  
+  onClickDelete() {
+    this.setStateSyncing();
+    this.delete.emit(this.dataId);
   }
 
-  onClickUpdate(event) {
-    this.update.emit();
+  setStateSynced() {
+    this.syncState = SyncState.synced;
   }
 
-  onClickReset(event) {
-    this.reset.emit();
+  setStateUnsynced() {
+    this.syncState = SyncState.unsynced;
   }
 
-  onClickDelete(event) {
-    this.delete.emit();
+  setStateSyncing() {
+    this.syncState = SyncState.syncing;
   }
 
+  isStateSynced(): boolean {
+    return this.syncState == SyncState.synced;
+  }
+
+  isStateUnsynced(): boolean {
+    return this.syncState == SyncState.unsynced;
+  }
+
+  isStateSyncing(): boolean {
+    return this.syncState == SyncState.syncing;
+  }
 }

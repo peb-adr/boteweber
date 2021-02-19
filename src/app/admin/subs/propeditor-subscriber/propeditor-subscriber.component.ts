@@ -1,14 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SubscriberData } from 'src/app/subscriber/subscriber.service';
-import { Synced } from 'src/app/edit/synced.component';
 
 @Component({
   selector: 'app-admin-propeditor-subscriber',
   templateUrl: './propeditor-subscriber.component.html',
-  styleUrls: [
-    './propeditor-subscriber.component.css',
-    '../../../edit/synced.component.css'
-  ]
+  styleUrls: ['./propeditor-subscriber.component.css']
 })
 export class AdminPropeditorSubscriberComponent implements OnInit {
 

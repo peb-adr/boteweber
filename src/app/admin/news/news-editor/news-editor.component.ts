@@ -1,15 +1,11 @@
 import { Component, Input, OnInit, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { NewsData } from 'src/app/news/news.service';
-import { Synced } from 'src/app/edit/synced.component';
 
 
 @Component({
   selector: 'app-admin-news-editor',
   templateUrl: './news-editor.component.html',
-  styleUrls: [
-    './news-editor.component.css',
-    '../../../edit/synced.component.css'
-  ]
+  styleUrls: ['./news-editor.component.css']
 })
 export class AdminNewsEditorComponent extends Synced implements OnInit {
 
