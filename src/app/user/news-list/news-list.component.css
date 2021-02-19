@@ -24,6 +24,7 @@
     margin: 5px;
     padding: 5px;
     background-color: rgb(var(--color-secondary-dark));
+    color: rgb(var(--text-color-light));
 }
 
 .priority-spaced-news-editor {

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { UserComponent } from "./user/user.component";
 import { AdminComponent } from "./admin/admin.component";
+import { UserSubscribeComponent } from "./user/subscribe/subscribe.component";
 
 const routes: Routes = [
   {

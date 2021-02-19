@@ -10,6 +10,7 @@ import { UserNewsListComponent } from './news-list/news-list.component';
 import { UserNewsCardComponent } from './news-card/news-card.component';
 import { UserRoutingModule } from './user-routing.module';
 import { UserFrontpageComponent } from './frontpage/frontpage.component';
+import { UserSubscribeComponent } from './subscribe/subscribe.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UserFrontpageComponent } from './frontpage/frontpage.component';
     UserInfoComponent,
     UserNewsListComponent,
     UserNewsCardComponent,
-    UserFrontpageComponent
+    UserFrontpageComponent,
+    UserSubscribeComponent
   ],
   imports: [
     UserRoutingModule,
