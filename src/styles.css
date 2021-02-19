@@ -59,7 +59,7 @@ a {
     background-color: rgba(var(--color-primary-dark), 0.6);
  }
 
- .modal-open {
+.modal-open {
     display: flex;
 }
 

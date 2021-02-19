@@ -6,6 +6,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { FormsModule } from '@angular/forms';
 import { PageSelectComponent } from './page-select/page-select.component';
 import { CrudActionPaneComponent } from './crud-action-pane/crud-action-pane.component';
+import { MessageModalComponent } from './message-modal/message-modal.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { CrudActionPaneComponent } from './crud-action-pane/crud-action-pane.com
     AdminEditorComponent,
     PageSelectComponent,
     CrudActionPaneComponent,
+    MessageModalComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { CrudActionPaneComponent } from './crud-action-pane/crud-action-pane.com
     AdminEditorComponent,
     PageSelectComponent,
     CrudActionPaneComponent,
+    MessageModalComponent
   ]
 })
 export class EditModule { }
