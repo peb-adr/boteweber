@@ -4,7 +4,7 @@ import { AdminSubsEditSubscribersComponent } from './edit-subscribers/edit-subsc
 import { AdminSubsComponent } from './subs.component';
 import { SubsRoutingModule } from './subs-routing.module';
 import { AdminPropeditorSubscriberComponent } from './propeditor-subscriber/propeditor-subscriber.component';
-import { EditModule } from 'src/app/edit/edit.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import { EditModule } from 'src/app/edit/edit.module';
   imports: [
     CommonModule, 
     SubsRoutingModule,
-    EditModule
+    SharedModule
   ]
 })
 export class SubsModule { }

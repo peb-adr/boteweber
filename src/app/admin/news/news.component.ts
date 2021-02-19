@@ -1,5 +1,5 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { CrudActionPaneComponent } from 'src/app/edit/crud-action-pane/crud-action-pane.component';
+import { CrudActionPaneComponent } from 'src/app/shared/crud-action-pane/crud-action-pane.component';
 import { NewsData, NewsService } from 'src/app/news/news.service';
 import { AdminNewsEditorComponent } from './news-editor/news-editor.component';
 

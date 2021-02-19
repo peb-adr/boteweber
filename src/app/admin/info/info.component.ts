@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { InfoData, InfoService } from 'src/app/info/info.service';
-import { AdminEditorComponent } from 'src/app/edit/editor/editor.component';
+import { AdminEditorComponent } from 'src/app/shared/editor/editor.component';
 
 // import { ckConfig } from "src/app/globals";
 

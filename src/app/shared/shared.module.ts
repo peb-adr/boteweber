@@ -30,4 +30,4 @@ import { MessageModalComponent } from './message-modal/message-modal.component';
     MessageModalComponent
   ]
 })
-export class EditModule { }
+export class SharedModule { }

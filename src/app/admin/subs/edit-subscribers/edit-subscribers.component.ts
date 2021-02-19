@@ -1,5 +1,5 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { CrudActionPaneComponent } from 'src/app/edit/crud-action-pane/crud-action-pane.component';
+import { CrudActionPaneComponent } from 'src/app/shared/crud-action-pane/crud-action-pane.component';
 import { GroupData, GroupService } from 'src/app/group/group.service';
 import { SubscriberData, SubscriberService } from 'src/app/subscriber/subscriber.service';
 import { AdminPropeditorSubscriberComponent } from '../propeditor-subscriber/propeditor-subscriber.component';

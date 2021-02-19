@@ -8,7 +8,7 @@ import { AdminNewsEditorComponent } from './news/news-editor/news-editor.compone
 import { FormsModule } from '@angular/forms';
 import { AdminNewsComponent } from './news/news.component';
 import { AdminInfoComponent } from './info/info.component';
-import { EditModule } from '../edit/edit.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { EditModule } from '../edit/edit.module';
     AdminRoutingModule,
     CommonModule,
     FormsModule,
-    EditModule
+    SharedModule
   ]
 })
 export class AdminModule { }
