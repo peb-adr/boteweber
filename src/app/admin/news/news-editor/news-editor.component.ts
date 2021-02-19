@@ -7,7 +7,7 @@ import { NewsData } from 'src/app/news/news.service';
   templateUrl: './news-editor.component.html',
   styleUrls: ['./news-editor.component.css']
 })
-export class AdminNewsEditorComponent extends Synced implements OnInit {
+export class AdminNewsEditorComponent implements OnInit {
 
   placeholderTitle: string = "Neuer Titel"
   placeholderMessage: string = "Neue Nachricht"
@@ -16,54 +16,86 @@ export class AdminNewsEditorComponent extends Synced implements OnInit {
   // editorTitle: AdminEditorComponent
   // editorMessage = ClassicEditor
 
+  @Input()
+  data: NewsData;
+
+  @Output()
+  dataChanged = new EventEmitter<NewsData>();
+  @Output()
+  dataReverted = new EventEmitter<NewsData>();
+
+  initData: NewsData;
+  
+  // private titleClear = true;
+  // private messageClear = true;
+  // private priorityClear = true;
+  
   constructor() {
-    super();
-    this.data = {
-      id: -1,
-      title: "",
-      message: "",
-      timestamp: null,
-      priority: 1
-    };
+    // this.data = {
+    //   id: -1,
+    //   title: "",
+    //   message: "",
+    //   timestamp: null,
+    //   priority: 1
+    // };
   }
 
   ngOnInit(): void {
     // this.titleEditor.setData("hey you")
     // this.createEditors()
+    this.initData = Object.assign({}, this.data);
   }
 
   ngAfterViewInit(): void {
     // this.editorTitle.setData(this.data.message)
   }
 
+  isDataReverted() {
+    // for (let k of Object.keys(this.data)) {
+    //   if (this.data[k] !== this.initData[k]) {
+    //     return false;
+    //   }
+    // }
+    if (this.data.id != this.initData.id) {
+      return false;
+    }
+    if (this.data.title != this.initData.title) {
+      return false;
+    }
+    if (this.data.message != this.initData.message) {
+      return false;
+    }
+    return true;
+  }
+
   onNewDataTitle(newData: string) {
-    if (this.isPoster && newData.length == 0) {
-      this.setStateSynced();
+    this.data.title = newData;
+    if (this.isDataReverted()) {
+      this.dataReverted.emit(this.data);
     }
     else {
-      this.setStateUnsynced();
+      this.dataChanged.emit(this.data);
     }
-    this.data.title = newData;
   }
 
   onNewDataMessage(newData: string) {
-    if (this.isPoster && newData.length == 0) {
-      this.setStateSynced();
+    this.data.message = newData;
+    if (this.isDataReverted()) {
+      this.dataReverted.emit(this.data);
     }
     else {
-      this.setStateUnsynced();
+      this.dataChanged.emit(this.data);
     }
-    this.data.message = newData;
   }
   
   onChangePriority(change) {
-    if (this.isPoster && change.target.valueAsNumber == 1) {
-      this.setStateSynced();
+    this.data.priority = change.target.valueAsNumber;
+    if (this.isDataReverted()) {
+      this.dataReverted.emit(this.data);
     }
     else {
-      this.setStateUnsynced();
+      this.dataChanged.emit(this.data);
     }
-    this.data.priority = change.target.valueAsNumber;
   }
   
 }

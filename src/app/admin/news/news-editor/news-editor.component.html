@@ -5,7 +5,7 @@
         <p>Titel</p>
         <div class="editor-container">
             <app-admin-editor #editorTitle
-                    [placeholder]="isPoster? placeholderTitle : ''"
+                    [placeholder]="data.id < 0? placeholderTitle : ''"
                     [data]="data.title"
                     (newDataEvent)="onNewDataTitle($event)"
             >
@@ -15,7 +15,7 @@
         <p>Nachricht</p>
         <div class="editor-container">
             <app-admin-editor #editorMessage
-                    [placeholder]="isPoster? placeholderMessage : ''"
+                    [placeholder]="data.id < 0? placeholderMessage : ''"
                     [data]="data.message"
                     (newDataEvent)="onNewDataMessage($event)"
             >
@@ -23,9 +23,7 @@
         </div>
     </div>
 
-    <div id="side-pane"
-            [class.unsynced]="isStateUnsynced()"
-            [class.syncing]="isStateSyncing()">
+    <div id="side-pane">
 
         <div class="spacer-edge">
         </div>
@@ -39,31 +37,13 @@
                     (change)="onChangePriority($event)">
         </div>
         
-        <div class="spacer-middle">
-        </div>
-
-        <div id="action-pane">
-            <div *ngIf="isPoster">
-                <button id="create-button" class="side-pane-item" (click)="onCreate()">
-                    CREATE
-                </button>
-            </div>
-            <div *ngIf="!isPoster">
-                <button id="update-button" class="side-pane-item" (click)="onUpdate()">
-                    UPDATE
-                </button>
-                <button id="reset-button" class="side-pane-item" (click)="onReset()">
-                    RESET
-                </button>
-                <button id="delete-button" class="side-pane-item" (click)="onDelete()">
-                    DELETE
-                </button>
-            </div>
-        </div>
+        <!-- <div class="spacer-middle">
+        </div> -->
 
         <div class="spacer-edge">
         </div>
 
     </div>
 
+    
 </div>

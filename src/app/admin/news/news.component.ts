@@ -1,4 +1,5 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { CrudActionPaneComponent } from 'src/app/edit/crud-action-pane/crud-action-pane.component';
 import { NewsData, NewsService } from 'src/app/news/news.service';
 import { AdminNewsEditorComponent } from './news-editor/news-editor.component';
 
@@ -11,11 +12,22 @@ export class AdminNewsComponent implements OnInit {
 
   news: NewsData[];
   allNewsIds: number[] = [];
+  posterNews: NewsData = {
+    id: -1,
+    title: "",
+    message: "",
+    timestamp: null,
+    priority: 1
+  }
 
   @ViewChild("posterEditor")
   posterEditor: AdminNewsEditorComponent
+  @ViewChild("posterCrudPane")
+  posterCrudPane: CrudActionPaneComponent
   @ViewChildren(AdminNewsEditorComponent)
   editors: QueryList<AdminNewsEditorComponent>
+  @ViewChildren(CrudActionPaneComponent)
+  crudPanes: QueryList<CrudActionPaneComponent>
 
   pageSel = 1;
   pagePer = 2;
@@ -39,7 +51,7 @@ export class AdminNewsComponent implements OnInit {
   }
 
   preserveLocalChanges() {
-    if (this.posterEditor.isStateSyncing()) {
+    if (this.posterCrudPane.isStateSyncing()) {
       this.posterEditor.data = {
         id: -1,
         title: "",
@@ -47,50 +59,84 @@ export class AdminNewsComponent implements OnInit {
         timestamp: null,
         priority: 1
       };
-      this.posterEditor.setStateSynced();
+      this.posterCrudPane.setStateSynced();
     }
     
     for (let i = 0; i < this.news.length; i++) {
       let nEditor = this.getEditorById(this.news[i].id);
+      let nCrudPane = this.getCrudPaneById(this.news[i].id);
       if (nEditor) {
-        if (nEditor.isStateUnsynced()) {
+        if (nCrudPane.isStateUnsynced()) {
           this.news[i] = nEditor.data;
         }
-        if (nEditor.isStateSyncing()) {
-          nEditor.setStateSynced();
+        if (nCrudPane.isStateSyncing()) {
+          nCrudPane.setStateSynced();
         }
       }
     }
   }
-
-  create(data: NewsData) {
+ 
+  createNews(dataId: number) {
+    if (dataId != -1) {
+      return;
+    }
+    let data = this.getEditorById(dataId).data;
     data.timestamp = new Date();
     this.newsService.postNews(data).toPromise()
     .then((newData: NewsData) => {
-      this.ngOnInit();
+      this.getNews();
     });
   }
 
-  update(data: NewsData) {
-    this.newsService.putNewsId(data.id, data).toPromise()
+  updateNews(dataId: number) {
+    if (dataId < 0) {
+      return;
+    }
+    let editorData = this.getEditorById(dataId).data;
+    this.newsService.putNewsId(editorData.id, editorData).toPromise()
     .then((data: NewsData) => {
-      this.ngOnInit();
+      editorData = data;
+      this.getCrudPaneById(dataId).setStateSynced();
     });
   }
 
-  reset(data: NewsData) {
-    this.ngOnInit();
+  resetNews(dataId: number) {
+    if (dataId < 0) {
+      return;
+    }
+    // let editorData = this.getEditorById(dataId).data;
+    this.newsService.getNewsId(dataId).toPromise()
+      .then((data: NewsData) => {
+        this.getEditorById(dataId).data = data;
+        // this.getCrudPaneById(dataId).setStateSynced();
+      });
   }
 
-  delete(data: NewsData) {
+  deleteNews(dataId: number) {
+    if (dataId < 0) {
+      return;
+    }
+    let data = this.getEditorById(dataId).data;
     this.newsService.deleteNewsId(data.id).toPromise()
     .then((data: NewsData) => {
-      this.ngOnInit();
+      this.getNews();
     });
   }
-  
+
   getEditorById(id: number) {
     return this.editors.find((item) => { return item.data.id == id });
+  }
+
+  getCrudPaneById(id: number) {
+    return this.crudPanes.find((item) => { return item.dataId == id });
+  }
+
+  onDataChanged(data) {
+    this.getCrudPaneById(data.id).setStateUnsynced();
+  }
+
+  onDataReverted(data) {
+    this.getCrudPaneById(data.id).setStateSynced();
   }
 
   onPageSelChanged(sel) {

@@ -3,6 +3,10 @@
     width: var(--content-width);
 }
 
+.news-editor-container {
+    margin: 10px 0px;
+}
+
 .priority-spaced-news-editor {
     display: flex;
     flex-direction: column;
