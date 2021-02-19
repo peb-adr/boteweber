@@ -47,7 +47,13 @@ export class NewsService {
   }
 
   getNewsId(id) {
-
+    return this.http.get<NewsData>(backendUrl + "/news/" + id)
+    .pipe(
+      map( res => {
+        this.convertTimestamp(res);
+        return res
+      })
+    );
   }
 
 
