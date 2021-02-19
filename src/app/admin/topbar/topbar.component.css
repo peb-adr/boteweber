@@ -27,3 +27,7 @@
     /* border: 0.1em solid #555555; */
     background-color: rgb(var(--color-primary-light));
 }
+
+.navbutton.active {
+    background-color: rgb(var(--color-secondary-dark));
+}
