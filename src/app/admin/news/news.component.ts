@@ -10,16 +10,28 @@ import { AdminNewsEditorComponent } from './news-editor/news-editor.component';
 export class AdminNewsComponent implements OnInit {
 
   news: NewsData[];
+  allNewsIds: number[] = [];
 
   @ViewChild("posterEditor")
   posterEditor: AdminNewsEditorComponent
   @ViewChildren(AdminNewsEditorComponent)
   editors: QueryList<AdminNewsEditorComponent>
-  
+
+  pageSel = 1;
+  pagePer = 2;
+
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    this.newsService.getNews().toPromise()
+    this.getNews();
+  }
+
+  getNews() {
+    this.newsService.getNewsIds().toPromise()
+    .then((data: number[]) => {
+      this.allNewsIds = data;
+    })
+    this.newsService.getNews(this.pageSel, this.pagePer).toPromise()
     .then((data: NewsData[]) => {
       this.news = data;
       this.preserveLocalChanges();
@@ -76,13 +88,23 @@ export class AdminNewsComponent implements OnInit {
       this.ngOnInit();
     });
   }
-
-  onClickDebug() {
-    // this.testNewsData.message = this.testNewsData.message + ";lkjadsfl"
-  }
   
   getEditorById(id: number) {
     return this.editors.find((item) => { return item.data.id == id });
+  }
+
+  onPageSelChanged(sel) {
+    this.pageSel = sel;
+    this.getNews();
+  }
+
+  onPagePerChanged(per) {
+    this.pagePer = per;
+    this.getNews();
+  }
+
+  onClickDebug() {
+    // this.testNewsData.message = this.testNewsData.message + ";lkjadsfl"
   }
   
 }

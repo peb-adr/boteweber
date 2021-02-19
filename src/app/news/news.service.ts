@@ -19,18 +19,33 @@ export class NewsService {
 
   constructor(private http: HttpClient) { }
 
-  getNews() {
-    return this.http.get<NewsData[]>(backendUrl + "/news")
-      .pipe(
-        map( res => {
-          for (const n of res) {
-            this.convertTimestamp(n)
-          }
-          return res
-        })
-      );
+  getNews(page: number = 0, perpage: number = 0) {
+    let qParams = {};
+    if (page != 0) {
+      qParams['page'] = page;
+      if (perpage != 0) {
+        qParams['perpage'] = perpage;
+      }
+    }
+    return this.http.get<NewsData[]>(backendUrl + "/news",{
+      params: qParams
+    })
+    .pipe(
+      map( res => {
+        for (const n of res) {
+          this.convertTimestamp(n)
+        }
+        return res
+      })
+    );
   }
-  
+
+  getNewsIds() {
+    return this.http.get<number[]>(backendUrl + "/news", {
+      params: { idsonly: '' }
+    });
+  }
+
   getNewsId(id) {
 
   }
