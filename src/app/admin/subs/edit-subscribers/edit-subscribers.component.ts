@@ -113,7 +113,6 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
   }
 
   onEditElement(value) {
-    console.log(this.allSubscriberIds);
     if (value < 0) {
       this.clearEditedSubscriber();
       return;
