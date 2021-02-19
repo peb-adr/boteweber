@@ -1,3 +1,9 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
 button {
     margin: 2px;
     background: none;
@@ -6,4 +12,8 @@ button {
 
 button.selected {
     background-color: rgb(var(--color-secondary-dark));
+}
+
+.per-container {
+    margin-left: 20px;
 }
