@@ -62,7 +62,8 @@ img {
     max-width: 100%;
 }
 
-.logo {
+a.logo {
+    color: rgb(var(--text-color-light))
     /* margin: 0.5em; */
     /* margin: 8px; */
     /* margin-top: 0.5em;

@@ -8,6 +8,8 @@ import { UserInfoComponent } from './info/info.component';
 import { UserTopbarComponent } from './topbar/topbar.component';
 import { UserNewsListComponent } from './news-list/news-list.component';
 import { UserNewsCardComponent } from './news-card/news-card.component';
+import { UserRoutingModule } from './user-routing.module';
+import { UserFrontpageComponent } from './frontpage/frontpage.component';
 
 
 @NgModule({
@@ -16,9 +18,11 @@ import { UserNewsCardComponent } from './news-card/news-card.component';
     UserTopbarComponent,
     UserInfoComponent,
     UserNewsListComponent,
-    UserNewsCardComponent
+    UserNewsCardComponent,
+    UserFrontpageComponent
   ],
   imports: [
+    UserRoutingModule,
     CommonModule,
     NewsModule,
     InfoModule
