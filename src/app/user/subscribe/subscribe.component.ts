@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SubscriberData, SubscriberService } from 'src/app/subscriber/subscriber.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-subscribe',
@@ -7,9 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserSubscribeComponent implements OnInit {
 
-  constructor() { }
+  router: Router;
+
+  name: string = "";
+  email: string = "";
+
+  constructor(
+    private iRouter: Router,
+    private subscriberService: SubscriberService
+  ) {
+    this.router = iRouter;
+  }
 
   ngOnInit(): void {
+  }
+  
+  makeSubscriber(): SubscriberData {
+    return {
+      id: -1,
+      name: this.name,
+      email: this.email,
+      groups: []
+    }
+  }
+  
+  onSubmit() {
+    this.subscriberService.postSubscriber(this.makeSubscriber()).toPromise()
+    .then((data: SubscriberData) => {
+      this.router.navigate([""]);
+    })
   }
 
 }

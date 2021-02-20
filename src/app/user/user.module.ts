@@ -11,6 +11,7 @@ import { UserNewsCardComponent } from './news-card/news-card.component';
 import { UserRoutingModule } from './user-routing.module';
 import { UserFrontpageComponent } from './frontpage/frontpage.component';
 import { UserSubscribeComponent } from './subscribe/subscribe.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,8 +27,9 @@ import { UserSubscribeComponent } from './subscribe/subscribe.component';
   imports: [
     UserRoutingModule,
     CommonModule,
+    FormsModule,
     NewsModule,
-    InfoModule
+    InfoModule,
   ]
 })
 export class UserModule { }

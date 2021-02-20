@@ -1,1 +1,61 @@
-<p>subscribe works!</p>
+
+
+<div class="content-container">
+
+    <div class="register-container">
+        
+        <p>
+            Um &uuml;ber neue Meldungen per Email benachrichtigt zu werden, bitte nachfolgend mindestens die Email-Adresse eintragen.
+        </p>
+        
+        
+        <form
+            (ngSubmit)="onSubmit()"
+            #registerForm="ngForm"
+        >
+            <div class="input-container">
+                <input
+                    [(ngModel)]="name"
+                    name="name"
+                    type="text"
+                    placeholder="Name"
+                >
+                <div class="error-display">
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input
+                    required
+                    email
+                    pattern=""
+                    [(ngModel)]="email"
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    #emailInput="ngModel"
+                >
+                <div [hidden]="emailInput.pristine">
+                    <div class="error-display">
+                        <div [hidden]="emailInput.control.errors == null || !emailInput.control.errors.required">
+                            Email erforderlich
+                        </div>
+                        <div [hidden]="emailInput.control.errors == null || !emailInput.control.errors.email">
+                            Email ung&uuml;ltig
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button
+                type="submit"
+                [disabled]="registerForm.status != 'VALID'"
+            >
+                anmelden
+            </button>
+        </form>
+        
+    </div>
+    
+</div>
+
