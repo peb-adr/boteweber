@@ -10,6 +10,8 @@
     --color-secondary-dark: 107,136,204;
     --text-color-light: 255,255,255;
     --text-color-dark: 33,33,33;
+    --color-alert:245, 169, 169;
+    --color-warning:225, 245, 169;
 
     --content-width: 1000px;
 
