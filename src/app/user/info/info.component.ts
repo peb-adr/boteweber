@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { InfoService, InfoData } from 'src/app/info/info.service';
+import { InfoService, InfoData } from 'src/app/services/info/info.service';
 
 @Component({
   selector: 'app-user-info',

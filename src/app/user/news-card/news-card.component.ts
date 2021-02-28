@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { NewsData } from 'src/app/news/news.service';
+import { NewsData } from 'src/app/services/news/news.service';
 
 @Component({
   selector: 'app-user-news-card',

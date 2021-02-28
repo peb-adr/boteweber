@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SubscriberData, SubscriberService } from 'src/app/subscriber/subscriber.service';
+import { SubscriberData, SubscriberService } from 'src/app/services/subscriber/subscriber.service';
 import { Router } from "@angular/router";
 
 @Component({

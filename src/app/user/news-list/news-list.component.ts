@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsData, NewsService } from 'src/app/news/news.service';
+import { NewsData, NewsService } from 'src/app/services/news/news.service';
 
 @Component({
   selector: 'app-user-news-list',

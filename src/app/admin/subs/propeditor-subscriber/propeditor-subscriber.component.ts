@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SubscriberData } from 'src/app/subscriber/subscriber.service';
+import { SubscriberData } from 'src/app/services/subscriber/subscriber.service';
 
 @Component({
   selector: 'app-admin-propeditor-subscriber',

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { NewsData } from 'src/app/news/news.service';
+import { NewsData } from 'src/app/services/news/news.service';
 
 
 @Component({
