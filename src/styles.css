@@ -30,7 +30,7 @@ body {
     margin: 8px 30px;
 }
 
-a {
+.site-link {
     /* color: rgb(var(--color-secondary)); */
     color: white;
     /* color: #9db8ff; */
