@@ -1,0 +1,46 @@
+
+
+<div class="content-container">
+
+    <div class="form-container">
+        
+        <p>
+            Administrator Login
+        </p>
+        
+        
+        <form
+            (ngSubmit)="onSubmit()"
+            #loginForm="ngForm"
+        >
+            <div class="field-container">
+                <input
+                    required
+                    [(ngModel)]="password"
+                    name="password"
+                    type="password"
+                    placeholder="Passwort"
+                    #passwordInput="ngModel"
+                    (change)="log(passwordInput)"
+                >
+                <div [hidden]="passwordInput.pristine">
+                    <div class="error-display">
+                        <div [hidden]="password.length != 0 || !wrongPassword">
+                            Passwort falsch
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button
+                type="submit"
+                [disabled]="loginForm.status != 'VALID'"
+            >
+                login
+            </button>
+        </form>
+        
+    </div>
+    
+</div>
+

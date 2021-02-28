@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AdminNewsComponent } from './news/news.component';
 import { AdminInfoComponent } from './info/info.component';
 import { SharedModule } from '../shared/shared.module';
+import { AdminLoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     AdminInfoComponent,
     AdminNewsComponent,
     AdminNewsEditorComponent,
+    AdminLoginComponent,
   ],
   imports: [
     AdminRoutingModule,
