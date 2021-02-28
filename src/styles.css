@@ -17,8 +17,13 @@
 
     color: rgb(var(--text-color-light));
     background-color: rgb(var(--color-primary-light));
+    background-image: url(assets/wave_clean.svg);
 
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.background-waves {
+    stroke: rgb(var(--color-secondary));
 }
 
 hr {
