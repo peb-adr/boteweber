@@ -5,7 +5,10 @@ import { Router } from "@angular/router";
 @Component({
   selector: 'app-subscribe',
   templateUrl: './subscribe.component.html',
-  styleUrls: ['./subscribe.component.css']
+  styleUrls: [
+    './subscribe.component.css',
+    '/src/app/shared/form.css'
+  ]
 })
 export class UserSubscribeComponent implements OnInit {
 

@@ -2,7 +2,7 @@
 
 <div class="content-container">
 
-    <div class="register-container">
+    <div class="form-container">
         
         <p>
             Um &uuml;ber neue Meldungen per Email benachrichtigt zu werden, bitte nachfolgend mindestens die Email-Adresse eintragen.
@@ -13,7 +13,7 @@
             (ngSubmit)="onSubmit()"
             #registerForm="ngForm"
         >
-            <div class="input-container">
+            <div class="field-container">
                 <input
                     [(ngModel)]="name"
                     name="name"
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="input-container">
+            <div class="field-container">
                 <input
                     required
                     email
@@ -37,10 +37,10 @@
                 >
                 <div [hidden]="emailInput.pristine">
                     <div class="error-display">
-                        <div [hidden]="emailInput.control.errors == null || !emailInput.control.errors.required">
+                        <div [hidden]="emailInput.errors == null || !emailInput.errors.required">
                             Email erforderlich
                         </div>
-                        <div [hidden]="emailInput.control.errors == null || !emailInput.control.errors.email">
+                        <div [hidden]="emailInput.errors == null || !emailInput.errors.email">
                             Email ung&uuml;ltig
                         </div>
                     </div>
