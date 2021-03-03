@@ -25,7 +25,7 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
   pageSel = 1;
   pagePer = 10;
   pageButtonsMax = 10;
-  pageButtonsAdj = 3;
+  pageButtonsAdj = 5;
   
   constructor(
       private subscriberService: SubscriberService,
