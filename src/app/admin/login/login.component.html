@@ -16,19 +16,25 @@
             <div class="field-container">
                 <input
                     required
+                    [(ngModel)]="username"
+                    name="username"
+                    type="text"
+                    placeholder="Nutzername"
+                >
+            </div>
+            <div class="field-container">
+                <input
+                    required
                     [(ngModel)]="password"
                     name="password"
                     type="password"
                     placeholder="Passwort"
                     #passwordInput="ngModel"
-                    (change)="log(passwordInput)"
                 >
-                <div [hidden]="passwordInput.pristine">
-                    <div class="error-display">
-                        <div [hidden]="password.length != 0 || !wrongPassword">
-                            Passwort falsch
-                        </div>
-                    </div>
+            </div>
+            <div class="error-display">
+                <div [hidden]="password.length != 0 || !wrongCredentials">
+                    Nutzername oder Passwort falsch
                 </div>
             </div>
 

@@ -26,9 +26,9 @@ export class AdminAuthenticationService {
     return this._adminToken;
   }
   
-  adminlogin(password: string) {
+  adminlogin(username: string, password: string) {
     return this.http.post<AuthData>(backendUrl + "/adminlogin", null, {
-      headers: { 'Authorization': "Basic " + btoa("admin:" + password) }
+      headers: { 'Authorization': "Basic " + btoa(username + ":" + password) }
     })
     .pipe(
       map( res => {

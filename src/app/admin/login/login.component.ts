@@ -12,8 +12,9 @@ import { AdminAuthenticationService } from '../auth/authentication.service';
 })
 export class AdminLoginComponent implements OnInit {
 
+  username = "";
   password = "";
-  wrongPassword = false;
+  wrongCredentials = false;
   
   constructor(
       private router: Router,
@@ -24,22 +25,22 @@ export class AdminLoginComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.wrongPassword = !this.authenticationService.adminlogin(this.password);
+    // this.wrongCredentials = !this.authenticationService.adminlogin(this.password);
 
-    // if (this.wrongPassword) {
+    // if (this.wrongCredentials) {
     //   this.password = "";
     // }
     // else {
     //   this.router.navigate(['admin']);
     // }
 
-    this.authenticationService.adminlogin(this.password).toPromise()
+    this.authenticationService.adminlogin(this.username, this.password).toPromise()
     .then( () => {
-      this.wrongPassword = false;
+      this.wrongCredentials = false;
       this.router.navigate(['admin']);
     })
     .catch( () => {
-      this.wrongPassword = true;
+      this.wrongCredentials = true;
       this.password = "";
     })
   }
