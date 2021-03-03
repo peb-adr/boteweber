@@ -73,6 +73,7 @@
 
         <div class="page-select-container">
             <app-page-select
+                [buttonsAdj]="pageButtonsAdj"
                 [elementsMax]="allNewsIds.length"
                 [elementsPerPageDefault]="pagePer"
                 (pageSelectedChange)="onPageSelChanged($event)"

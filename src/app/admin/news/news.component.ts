@@ -30,7 +30,8 @@ export class AdminNewsComponent implements OnInit {
   crudPanes: QueryList<CrudActionPaneComponent>
 
   pageSel = 1;
-  pagePer = 2;
+  pagePer = 5;
+  pageButtonsAdj = 5;
 
   constructor(private newsService: NewsService) { }
 
