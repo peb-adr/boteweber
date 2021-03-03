@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
 import { backendUrl } from "src/app/globals";
+import { AdminAuthenticationService } from 'src/app/admin/auth/authentication.service';
 
 export interface NewsData{
   id: number;
@@ -17,7 +18,10 @@ export interface NewsData{
 })
 export class NewsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authenticationService: AdminAuthenticationService
+    ) { }
 
   getNews(page: number = 0, perpage: number = 0) {
     let qParams = {};
@@ -56,22 +60,36 @@ export class NewsService {
     );
   }
 
-
   postNews(news: NewsData) {
-    return this.http.post<NewsData>(backendUrl + "/news", news);
+    let reqHeaders = {};
+    let adminToken = this.authenticationService.adminToken;
+    if (adminToken) {
+      reqHeaders['x-access-token'] = adminToken;
+    }
+    
+    return this.http.post<NewsData>(backendUrl + "/news", news, {headers: reqHeaders});
   }
-
 
   putNewsId(id, news: NewsData) {
-    return this.http.put<NewsData>(backendUrl + "/news/" + id, news);
+    let reqHeaders = {};
+    let adminToken = this.authenticationService.adminToken;
+    if (adminToken) {
+      reqHeaders['x-access-token'] = adminToken;
+    }
+    
+    return this.http.put<NewsData>(backendUrl + "/news/" + id, news, {headers: reqHeaders});
   }
-
 
   deleteNewsId(id) {
-    return this.http.delete<NewsData>(backendUrl + "/news/" + id);
+    let reqHeaders = {};
+    let adminToken = this.authenticationService.adminToken;
+    if (adminToken) {
+      reqHeaders['x-access-token'] = adminToken;
+    }
+    
+    return this.http.delete<NewsData>(backendUrl + "/news/" + id, {headers: reqHeaders});
   }
 
-    
   private convertTimestamp(res: NewsData) {
     // timestamp is stored as string in json response, so convert to Date before returning
     res.timestamp = new Date(res.timestamp);
