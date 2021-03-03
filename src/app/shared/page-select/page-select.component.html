@@ -1,26 +1,41 @@
 <div class="container">
 
-    <button
+    <div
         *ngFor="let i of pageNumbers"
-        value="{{i}}"
-        [class.selected]="i == pageSelected"
-        (click)="onClicked($event)"
+        class="page-tile"
     >
-        {{i}}
-    </button>
+        <div
+            *ngIf="i >= 0"
+            class="page-tile page-button"
+            value="{{i}}"
+            [class.selected]="i == pageSelected"
+            (click)="onClicked($event)"
+        >
+            {{i}}
+        </div>
+        <div
+            *ngIf="i < 0"
+            class="page-tile page-dots"
+        >
+            ...
+        </div>
+    </div>
 
-    <div class="per-container">
-        pro Seite:
+    <div class="per-container"
+    >
+        <label for="perPage">
+            pro Seite:
+        </label>
         <select
+            id="perPage"
             name="perPage"
             [value]="elementsPerPageDefault"
             (change)="onChangePerPage($event)"
         >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
             <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
         </select>
     </div>
 

@@ -2,18 +2,60 @@
 .container {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-button {
+.container div {
+    height: 30px;
+}
+
+.page-tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 35px;
     margin: 2px;
-    background: none;
-    color: rgb(var(--text-color-light));
 }
 
-button.selected {
+.page-button {
+    background: rgb(var(--color-primary));
+    border: 1px solid rgb(var(--color-primary-dark));
+    border-radius: 2px;
+}
+
+.page-button:hover {
+    cursor: pointer;
+    user-select: none;
+}
+
+.page-button.selected {
     background-color: rgb(var(--color-secondary-dark));
 }
 
 .per-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     margin-left: 20px;
+    padding: 0px 5px;
+    background: rgb(var(--color-primary));
+
+    border: 1px solid rgb(var(--color-primary-dark));
+    border-radius: 2px;
+}
+
+select {
+    color: rgb(var(--text-color-light));
+    background: rgb(var(--color-primary));
+    border:none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -ms-appearance: none;
+}
+
+select:hover {
+    cursor: pointer;
 }

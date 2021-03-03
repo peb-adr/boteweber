@@ -7,10 +7,23 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class PageSelectComponent implements OnInit {
 
-  private _elementsMax: number;  
+  private _elementsMax: number;
+  private _buttonsMax: number;
+  private _buttonsAdj: number;
+  
   @Input()
   set elementsMax(elementsMax: number) {
     this._elementsMax = elementsMax;
+    this.calcPageNumbers();
+  }
+  @Input()
+  set buttonsMax(buttonsMax: number) {
+    this._buttonsMax = buttonsMax;
+    this.calcPageNumbers();
+  }
+  @Input()
+  set buttonsAdj(buttonsAdj: number) {
+    this._buttonsAdj = buttonsAdj;
     this.calcPageNumbers();
   }
   @Input()
@@ -32,24 +45,49 @@ export class PageSelectComponent implements OnInit {
     this.pageSelected = 1;
     this.elementsPerPage = this.elementsPerPageDefault;
 
-    this.calcPageNumbers();
+    // this.calcPageNumbers();
   }
 
   calcPageNumbers() {
-    let pages = (~~(this._elementsMax / this.elementsPerPage));
+    let pages = ~~(this._elementsMax / this.elementsPerPage);
     if (this._elementsMax % this.elementsPerPage != 0) {
       pages++;
     }
 
     this.pageNumbers.length = 0;
-    for (let i = 0; i < pages; i++) {
-      this.pageNumbers.push(i + 1);
+
+
+    let tempNumbers = []
+    tempNumbers.push(1)  
+    for (let i = this.pageSelected - this._buttonsAdj;
+        i <= this.pageSelected + this._buttonsAdj; i++) {
+      if (i < pages && i > 1) {
+        tempNumbers.push(i);
+      }
     }
+    if (pages > 1) {
+      tempNumbers.push(pages);
+    }
+    
+    let l = null;
+    for (let i of tempNumbers) {
+      if (l) {
+        if (i - l === 2) {
+          this.pageNumbers.push(l + 1);
+        } else if (i - l !== 1) {
+          this.pageNumbers.push(-1);
+        }
+      }
+      this.pageNumbers.push(i);
+      l = i;
+    }
+
   }
 
   onClicked(event) {
     this.pageSelected = parseInt(event.target.value);
     this.pageSelectedChange.emit(this.pageSelected);
+    this.calcPageNumbers();
   }
 
   onChangePerPage(event) {
