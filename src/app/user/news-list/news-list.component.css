@@ -8,16 +8,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin: 5px 0px; */
+    margin-bottom: 10px;
     border: 2px solid rgb(var(--color-primary-light));;
 }
 
 .headline > p {
     margin: 10px;
-}
-
-#spacer {
-    flex-basis: 10px;
 }
 
 #sub-button {
