@@ -24,14 +24,24 @@ export class AdminLoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.wrongPassword = !this.authenticationService.adminlogin(this.password);
+    // this.wrongPassword = !this.authenticationService.adminlogin(this.password);
 
-    if (this.wrongPassword) {
-      this.password = "";
-    }
-    else {
+    // if (this.wrongPassword) {
+    //   this.password = "";
+    // }
+    // else {
+    //   this.router.navigate(['admin']);
+    // }
+
+    this.authenticationService.adminlogin(this.password).toPromise()
+    .then( () => {
+      this.wrongPassword = false;
       this.router.navigate(['admin']);
-    }
+    })
+    .catch( () => {
+      this.wrongPassword = true;
+      this.password = "";
+    })
   }
 
   log(x) {

@@ -21,11 +21,11 @@ export class AdminAuthGuard implements CanActivate {
     // this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
     // return false;
     
-    console.log(this.authenticationService.adminLoggedIn);
-    
-    if (!this.authenticationService.adminLoggedIn) {
+    let loggedIn = this.authenticationService.adminToken != null;
+    if (!loggedIn) {
       this.router.navigate(['admin/login']);
     }
-    return this.authenticationService.adminLoggedIn;
+
+    return loggedIn;
   }
 }

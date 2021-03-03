@@ -1,5 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from "rxjs/operators";
+
+import { backendUrl } from "src/app/globals";
+
+export interface AuthData {
+  token: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -7,23 +14,32 @@ import { Injectable } from '@angular/core';
 export class AdminAuthenticationService {
 
   public adminLoggedIn = false;
+  private _adminToken = null;
   
   constructor(private http: HttpClient) { }
 
-  adminlogin(password: string) {
-    if (password === 'pass') {
-      this.adminLoggedIn = true;
-    }
-    else {
-      this.adminLoggedIn = false;
+  get adminToken() {
+    if (!this._adminToken) {
+      this._adminToken = JSON.parse(localStorage.getItem('adminToken'));
     }
 
-    return this.adminLoggedIn;
+    return this._adminToken;
+  }
+  
+  adminlogin(password: string) {
+    return this.http.post<AuthData>(backendUrl + "/adminlogin", null, {
+      headers: { 'Authorization': "Basic " + btoa("admin:" + password) }
+    })
+    .pipe(
+      map( res => {
+        localStorage.setItem('adminToken', JSON.stringify(res.token));
+        return res
+      })
+    );
   }
 
   adminlogout() {
     this.adminLoggedIn = false;
-
     return this.adminLoggedIn;
   }
   
