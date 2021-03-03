@@ -23,7 +23,9 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
   
 
   pageSel = 1;
-  pagePer = 3;
+  pagePer = 10;
+  pageButtonsMax = 10;
+  pageButtonsAdj = 3;
   
   constructor(
       private subscriberService: SubscriberService,
@@ -117,6 +119,9 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
       this.clearEditedSubscriber();
       return;
     }
+
+    // TODO: handle if editedSub unsynced
+    
     this.editedSubscriber = this.subscribers[this.subscribersIndexMap[value]];
   }
 
