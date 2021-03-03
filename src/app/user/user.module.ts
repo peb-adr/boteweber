@@ -12,6 +12,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserFrontpageComponent } from './frontpage/frontpage.component';
 import { UserSubscribeComponent } from './subscribe/subscribe.component';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     NewsModule,
     InfoModule,
+    SharedModule
   ]
 })
 export class UserModule { }

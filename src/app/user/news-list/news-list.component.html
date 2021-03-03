@@ -20,5 +20,16 @@
         </div>
     
     </div>
+
+    <div class="pageselect-container">
+        <app-page-select
+            [buttonsAdj]="pageButtonsAdj"
+            [elementsMax]="allNewsIds.length"
+            [elementsPerPageDefault]="pagePer"
+            (pageSelectedChange)="onPageSelChanged($event)"
+            (elementsPerPageChange)="onPagePerChanged($event)"
+            >
+        </app-page-select>
+    </div>
     
 </div>
