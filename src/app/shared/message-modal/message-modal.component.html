@@ -1,32 +1,32 @@
 <div class="modal-container modal"
     [class.modal-open]="show"
-    (click)="onClickVoid">
+    (click)="onClickVoid($event)">
 
     <div class="modal-content">
     
-    <p>
-        {{message}}
-    </p>
-    
-    <div class="button-container">
-
-        <button (click)="onClickCancel()">
-            Abbrechen
-        </button>
-        <!-- <button *ngIf="hasButtonYes"
-            (click)="onClickYes()">
-            Ja
-        </button>
-        <button *ngIf="hasButtonNo"
-            (click)="onClickNo()">
-            Nein
-        </button> -->
-        <button (click)="onClickOk()">
-            OK
-        </button>
+        <p>
+            {{message}}
+        </p>
         
-    </div>
+        <div class="button-container">
+
+            <button (click)="onClickCancel($event)">
+                Abbrechen
+            </button>
+            <!-- <button *ngIf="hasButtonYes"
+                (click)="onClickYes()">
+                Ja
+            </button>
+            <button *ngIf="hasButtonNo"
+                (click)="onClickNo()">
+                Nein
+            </button> -->
+            <button (click)="onClickOk($event)">
+                OK
+            </button>
+            
+        </div>
     
-</div>
+    </div>
 
 </div>

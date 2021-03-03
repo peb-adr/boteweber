@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { NewsModule } from './services/news/news.module';
 import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
+import { MessageModalService } from './shared/message-modal/message-modal.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,9 +17,10 @@ import { AdminModule } from './admin/admin.module';
     AppRoutingModule,
     BrowserModule,
     UserModule,
-    AdminModule
+    AdminModule,
+    SharedModule
   ],
-  providers: [],
+  providers: [MessageModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
