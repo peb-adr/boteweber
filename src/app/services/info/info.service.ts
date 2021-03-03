@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { of, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 import { AdminAuthenticationService } from 'src/app/admin/auth/authentication.service';
 
 import { backendUrl } from "src/app/globals";
+import { MessageModalService } from 'src/app/shared/message-modal/message-modal.service';
 
 export interface InfoData {
   text: string;
@@ -19,11 +22,34 @@ export class InfoService {
 
   constructor(
     private http: HttpClient,
-    private authenticationService: AdminAuthenticationService
+    private authenticationService: AdminAuthenticationService,
+    private messageModalService: MessageModalService
   ) { }
 
   getInfo() {
-    return this.http.get<InfoData>(backendUrl + "/info");
+    return this.http.get<InfoData>(backendUrl + "/info")
+      .pipe(
+        catchError((err) => {
+          let m = "Fehler beim Laden von Info\n"
+          if (err.error instanceof ErrorEvent) {
+            m += "bitte dem Administrator melden."
+          }
+          else {
+            m += `Code: ` + err.status + `\n`;
+            m += `Meldung: ` + err.error['error'];
+          }
+          this.messageModalService.message = m;
+          this.messageModalService.show();
+
+          return of({
+            text: "",
+            greet_ny_top: "",
+            greet_ny_bot: "",
+            greet_no_top: "",
+            greet_no_bot: ""
+          })
+        })
+      );
   }
 
   putInfo(info: InfoData) {
@@ -33,7 +59,29 @@ export class InfoService {
       reqHeaders['x-access-token'] = adminToken;
     }
     
-    return this.http.put<InfoData>(backendUrl + "/info", info, {headers: reqHeaders});
+    return this.http.put<InfoData>(backendUrl + "/info", info, {headers: reqHeaders})
+    .pipe(
+      catchError((err) => {
+        let m = "Fehler beim Speichern von Info\n"
+        if (err.error instanceof ErrorEvent) {
+          m += "bitte dem Administrator melden."
+        }
+        else {
+          m += `Code: ` + err.status + `\n`;
+          m += `Meldung: ` + err.error['error'];
+        }
+        this.messageModalService.message = m;
+        this.messageModalService.show();
+
+        return of({
+          text: "",
+          greet_ny_top: "",
+          greet_ny_bot: "",
+          greet_no_top: "",
+          greet_no_bot: ""
+        })
+      })
+    );
   }
   
 }
