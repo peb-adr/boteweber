@@ -65,6 +65,9 @@ export class AdminNewsEditorComponent implements OnInit {
     if (this.data.message != this.initData.message) {
       return false;
     }
+    if (this.data.priority != this.initData.priority) {
+      return false;
+    }
     return true;
   }
 

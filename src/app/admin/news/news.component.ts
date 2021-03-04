@@ -100,8 +100,7 @@ export class AdminNewsComponent implements OnInit {
     let editorData = this.getEditorById(dataId).data;
     this.newsService.putNewsId(editorData.id, editorData).toPromise()
     .then((data: NewsData) => {
-      editorData = data;
-      this.getCrudPaneById(dataId).setStateSynced();
+      this.getNews();
     });
   }
 
