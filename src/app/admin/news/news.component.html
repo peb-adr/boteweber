@@ -73,8 +73,10 @@
 
         <div class="page-select-container">
             <app-page-select
-                [buttonsAdj]="pageButtonsAdj"
                 [elementsMax]="allNewsIds.length"
+                [buttonsAdj]="pageButtonsAdj"
+                [pageSelected]="pageSel"
+                [elementsPerPage]="pagePer"
                 [elementsPerPageDefault]="pagePer"
                 (pageSelectedChange)="onPageSelChanged($event)"
                 (elementsPerPageChange)="onPagePerChanged($event)"
@@ -85,7 +87,3 @@
     </div>
 
 </div>
-
-<button (click)="onClickDebug()">
-    DEBUG
-</button>

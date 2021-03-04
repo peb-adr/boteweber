@@ -2,6 +2,7 @@ import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/
 import { CrudActionPaneComponent } from 'src/app/shared/crud-action-pane/crud-action-pane.component';
 import { NewsData, NewsService } from 'src/app/services/news/news.service';
 import { AdminNewsEditorComponent } from './news-editor/news-editor.component';
+import { ClickedButton, MessageModalService } from 'src/app/shared/message-modal/message-modal.service';
 
 @Component({
   selector: 'app-admin-news',
@@ -33,7 +34,10 @@ export class AdminNewsComponent implements OnInit {
   pagePer = 5;
   pageButtonsAdj = 5;
 
-  constructor(private newsService: NewsService) { }
+  constructor(
+    private newsService: NewsService,
+    private messageModalService: MessageModalService
+  ) { }
 
   ngOnInit(): void {
     this.getNews();
@@ -124,6 +128,16 @@ export class AdminNewsComponent implements OnInit {
     });
   }
 
+  changePage(sel) {
+    this.pageSel = sel;
+    this.getNews();
+  }
+
+  changePagePer(per) {
+    this.pagePer = per;
+    this.getNews();
+  }
+
   getEditorById(id: number) {
     return this.editors.find((item) => { return item.data.id == id });
   }
@@ -141,17 +155,33 @@ export class AdminNewsComponent implements OnInit {
   }
 
   onPageSelChanged(sel) {
-    this.pageSel = sel;
-    this.getNews();
+    if (this.crudPanes.some(e => e.isStateUnsynced())) {
+      this.messageModalService.message = `Es sind nicht gespeicherte Änderungen vorhanden\nFortfahren?`
+      this.messageModalService.show()
+      .subscribe(button => {
+        if (button === ClickedButton.CLICK_OK) {
+          this.changePage(sel);
+        }
+      })
+    }
+    else {
+      this.changePage(sel);
+    }
   }
 
   onPagePerChanged(per) {
-    this.pagePer = per;
-    this.getNews();
-  }
-
-  onClickDebug() {
-    // this.testNewsData.message = this.testNewsData.message + ";lkjadsfl"
+    if (this.crudPanes.some(e => e.isStateUnsynced())) {
+      this.messageModalService.message = `Es sind nicht gespeicherte Änderungen vorhanden\nFortfahren?`
+      this.messageModalService.show()
+      .subscribe(button => {
+        if (button === ClickedButton.CLICK_OK) {
+          this.changePagePer(per);
+        }
+      })
+    }
+    else {
+      this.changePagePer(per);
+    }
   }
   
 }

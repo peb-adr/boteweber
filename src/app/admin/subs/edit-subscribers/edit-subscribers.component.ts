@@ -3,6 +3,7 @@ import { CrudActionPaneComponent } from 'src/app/shared/crud-action-pane/crud-ac
 import { GroupData, GroupService } from 'src/app/services/group/group.service';
 import { SubscriberData, SubscriberService } from 'src/app/services/subscriber/subscriber.service';
 import { AdminPropeditorSubscriberComponent } from '../propeditor-subscriber/propeditor-subscriber.component';
+import { ClickedButton, MessageModalService } from 'src/app/shared/message-modal/message-modal.service';
 
 @Component({
   selector: 'app-admin-edit-subscribers',
@@ -28,9 +29,10 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
   pageButtonsAdj = 5;
   
   constructor(
-      private subscriberService: SubscriberService,
-      private groupService: GroupService) {
-  }
+    private subscriberService: SubscriberService,
+    private groupService: GroupService,
+    private messageModalService: MessageModalService
+  ) { }
 
   ngOnInit(): void {
     this.getSubscribers();
@@ -114,6 +116,16 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
     });
   }
 
+  changePage(sel) {
+    this.pageSel = sel;
+    this.getSubscribers();
+  }
+
+  changePagePer(per) {
+    this.pagePer = per;
+    this.getSubscribers();
+  }
+
   onEditElement(value) {
     if (value < 0) {
       this.clearEditedSubscriber();
@@ -130,13 +142,33 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
   }
 
   onPageSelChanged(sel) {
-    this.pageSel = sel;
-    this.getSubscribers();
+    if (this.crudPane.isStateUnsynced()) {
+      this.messageModalService.message = `Es sind nicht gespeicherte Änderungen vorhanden\nFortfahren?`
+      this.messageModalService.show()
+      .subscribe(button => {
+        if (button === ClickedButton.CLICK_OK) {
+          this.changePage(sel);
+        }
+      })
+    }
+    else {
+      this.changePage(sel);
+    }
   }
 
   onPagePerChanged(per) {
-    this.pagePer = per;
-    this.getSubscribers();
+    if (this.crudPane.isStateUnsynced()) {
+      this.messageModalService.message = `Es sind nicht gespeicherte Änderungen vorhanden\nFortfahren?`
+      this.messageModalService.show()
+      .subscribe(button => {
+        if (button === ClickedButton.CLICK_OK) {
+          this.changePagePer(per);
+        }
+      })
+    }
+    else {
+      this.changePagePer(per);
+    }
   }
   
 }

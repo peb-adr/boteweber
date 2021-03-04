@@ -51,9 +51,10 @@
 
     <div class="pageselect-container">
         <app-page-select
-            [buttonsMax]="pageButtonsMax"
-            [buttonsAdj]="pageButtonsAdj"
             [elementsMax]="allSubscriberIds.length"
+            [buttonsAdj]="pageButtonsAdj"
+            [pageSelected]="pageSel"
+            [elementsPerPage]="pagePer"
             [elementsPerPageDefault]="pagePer"
             (pageSelectedChange)="onPageSelChanged($event)"
             (elementsPerPageChange)="onPagePerChanged($event)"
