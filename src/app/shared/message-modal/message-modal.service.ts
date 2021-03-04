@@ -15,12 +15,13 @@ export class MessageModalService {
 
   public message = "";
   private events = new BehaviorSubject<boolean>(false);
-  private buttonEvents = new Subject<ClickedButton>();
+  private buttonEvents = new BehaviorSubject<ClickedButton>(null);
   
   constructor() { }
 
   public show() {
     this.events.next(true);
+    this.buttonEvents = new BehaviorSubject<ClickedButton>(null);
     return this.buttonEvents.asObservable();
   }
   
@@ -28,29 +29,11 @@ export class MessageModalService {
     return this.events.asObservable();
   }
 
-  public handleBackendError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      this.message = "Es ist ein Fehler aufgetreten, bitte dem Administrator melden."
-      this.show();
-    }
-    else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      this.message = `Fehler im Backend\n`
-      this.message += `Code: ` + error.status + `\n`;
-      this.message += `Meldung: ` + error.error['error'];
-      this.show();
-    }
-    // Return an observable with a user-facing error message.
-    // return Observable.;
-  }
-
-  onClickCancel() {
+  onClickOk() {
     this.buttonEvents.next(ClickedButton.CLICK_OK);
   }
 
-  onClickOk() {
+  onClickCancel() {
     this.buttonEvents.next(ClickedButton.CLICK_CANCEL);
   }
 
