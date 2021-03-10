@@ -1,15 +1,9 @@
 
-.modal-content {
-    background-color: rgb(var(--color-secondary-light));
-    color: black;
-
-    border-radius: 8px;
-    padding: 4px;
-}
-
 .prop-list {
     display: flex;
     flex-direction: column;
+
+    color: black;
 }
 
 .prop-element {

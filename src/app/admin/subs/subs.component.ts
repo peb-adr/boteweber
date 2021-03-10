@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subs',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminSubsComponent implements OnInit {
 
-  constructor() { }
-
+  router: Router;
+  
+  constructor(private iRouter: Router) {
+    this.router = iRouter;
+  }
+  
   ngOnInit(): void {
   }
 

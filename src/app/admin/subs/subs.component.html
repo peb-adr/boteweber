@@ -1,13 +1,15 @@
 
 <div id="nav">
-    <a class="site-link navbutton" routerLink="/admin/subs/subscribers">
+    <a class="site-link navbutton" routerLink="/admin/subs/subscribers"
+        [class.active]="router.url.includes('/admin/subs/subscribers')"
+    >
         Abonnenten
     </a>
-    <a class="site-link navbutton" routerLink="/admin/subs/groups">
+    <a class="site-link navbutton" routerLink="/admin/subs/groups"
+        [class.active]="router.url.includes('/admin/subs/groups')"
+    >
         Gruppen
     </a>
 </div>
-
-<hr>
 
 <router-outlet></router-outlet>

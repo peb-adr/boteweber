@@ -1,4 +1,7 @@
 
+:root {
+    width: 100%;
+}
 
 .outer-container {
     display: flex;
@@ -8,18 +11,25 @@
 .editor-container {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.list-container {
+    flex: 2 0;
+}
 
 #new-subscriber-element-container {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
-
 
 .propeditor-container {
-    margin-left: 100px;
-}
+    flex: 1 1;
+    margin-left: 20px;
 
+    background-color: rgb(var(--color-secondary-light));
+    border-radius: 6px;
+}
 
 .pageselect-container {
     margin-top: 10px;
