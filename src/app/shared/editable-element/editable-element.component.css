@@ -38,6 +38,7 @@
 
 .element-button:hover {
     background-color: rgb(var(--color-secondary-dark));
+    cursor: pointer;
 }
 
 .element-edit-button {
