@@ -1,6 +1,7 @@
 
 #outer-container {
-    width: var(--content-width);
+    /* width: var(--content-width); */
+    width: 100%;
 }
 
 .news-editor-container {
