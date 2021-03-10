@@ -1,8 +1,4 @@
 
-.edge-spacer {
-    flex: 1 1;
-}
-
 #topbar-container {
     
     position: absolute;
@@ -53,10 +49,6 @@
     background-color: rgb(var(--color-primary-light));
 }
 
-#image-container {
-    /* height: auto; */
-}
-
 img {
     height: 100%;
     max-width: 100%;
@@ -80,4 +72,26 @@ a.logo {
 .logofoot {
     font-size: 12px;
     margin: 0px;
+}
+
+.edge-spacer {
+    flex: 1 0 20px;
+}
+
+@media (max-width: 1040px) {
+    img {
+        display: none;
+    }
+
+    #inner-container {
+        justify-content: center;
+    }
+
+    #spacer1 {
+        display: none;
+    }
+
+    #spacer2 {
+        display: none;
+    }
 }
