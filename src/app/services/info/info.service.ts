@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { AdminAuthenticationService } from 'src/app/admin/auth/authentication.service';
 
@@ -13,6 +12,16 @@ export interface InfoData {
   greet_ny_bot: string;
   greet_no_top: string;
   greet_no_bot: string;
+}
+
+export function getDefaultInfoData(): InfoData {
+  return {
+    text: "",
+    greet_ny_top: "",
+    greet_ny_bot: "",
+    greet_no_top: "",
+    greet_no_bot: ""
+  };
 }
 
 @Injectable({
@@ -28,28 +37,11 @@ export class InfoService {
 
   getInfo() {
     return this.http.get<InfoData>(backendUrl + "/info")
-      .pipe(
-        catchError((err) => {
-          let m = "Fehler beim Laden von Info\n"
-          if (err.error instanceof ErrorEvent) {
-            m += "bitte dem Administrator melden."
-          }
-          else {
-            m += `Code: ` + err.status + `\n`;
-            m += `Meldung: ` + err.error['error'];
-          }
-          this.messageModalService.message = m;
-          this.messageModalService.show();
-
-          return of({
-            text: "",
-            greet_ny_top: "",
-            greet_ny_bot: "",
-            greet_no_top: "",
-            greet_no_bot: ""
-          })
-        })
-      );
+    .pipe(
+      catchError(this.messageModalService.handleBackendError.bind(
+        this.messageModalService, "Fehler beim Laden von Info", getDefaultInfoData
+      ))
+    );
   }
 
   putInfo(info: InfoData) {
@@ -61,26 +53,9 @@ export class InfoService {
     
     return this.http.put<InfoData>(backendUrl + "/info", info, {headers: reqHeaders})
     .pipe(
-      catchError((err) => {
-        let m = "Fehler beim Speichern von Info\n"
-        if (err.error instanceof ErrorEvent) {
-          m += "bitte dem Administrator melden."
-        }
-        else {
-          m += `Code: ` + err.status + `\n`;
-          m += `Meldung: ` + err.error['error'];
-        }
-        this.messageModalService.message = m;
-        this.messageModalService.show();
-
-        return of({
-          text: "",
-          greet_ny_top: "",
-          greet_ny_bot: "",
-          greet_no_top: "",
-          greet_no_bot: ""
-        })
-      })
+      catchError(this.messageModalService.handleBackendError.bind(
+        this.messageModalService, "Fehler beim Speichern von Info", getDefaultInfoData
+      ))
     );
   }
   

@@ -5,14 +5,23 @@ import { catchError, map } from "rxjs/operators";
 import { backendUrl } from "src/app/globals";
 import { AdminAuthenticationService } from 'src/app/admin/auth/authentication.service';
 import { MessageModalService } from 'src/app/shared/message-modal/message-modal.service';
-import { of } from 'rxjs';
 
-export interface NewsData{
+export interface NewsData {
   id: number;
   timestamp: Date;
   title: string;
   message: string;
   priority: number;
+}
+
+export function getDefaultNewsData(): NewsData {
+  return {
+    id: -1,
+    timestamp: new Date(),
+    title: "",
+    message: "",
+    priority: -1
+  };
 }
 
 @Injectable({
@@ -38,32 +47,14 @@ export class NewsService {
       params: qParams
     })
     .pipe(
+      catchError(this.messageModalService.handleBackendError.bind(
+        this.messageModalService, "Fehler beim Laden von News", () => []
+      )),
       map( res => {
         for (const n of res) {
           this.convertTimestamp(n)
         }
         return res
-      }),
-
-      catchError((err) => {
-        let m = "Fehler beim Laden von News\n"
-        if (err.error instanceof ErrorEvent) {
-          m += "bitte dem Administrator melden."
-        }
-        else {
-          m += `Code: ` + err.status + `\n`;
-          m += `Meldung: ` + err.error['error'];
-        }
-        this.messageModalService.message = m;
-        this.messageModalService.show();
-
-        return of({
-          id: -1,
-          timestamp: new Date(),
-          title: "",
-          message: "",
-          priority: -1
-        })
       })
     );
   }
@@ -73,55 +64,21 @@ export class NewsService {
       params: { idsonly: '' }
     })
     .pipe(
-      catchError((err) => {
-        let m = "Fehler beim Laden von News\n"
-        if (err.error instanceof ErrorEvent) {
-          m += "bitte dem Administrator melden."
-        }
-        else {
-          m += `Code: ` + err.status + `\n`;
-          m += `Meldung: ` + err.error['error'];
-        }
-        this.messageModalService.message = m;
-        this.messageModalService.show();
-
-        return of({
-          id: -1,
-          timestamp: new Date(),
-          title: "",
-          message: "",
-          priority: -1
-        })
-      })
+      catchError(this.messageModalService.handleBackendError.bind(
+        this.messageModalService, "Fehler beim Laden von News", () => []
+      ))
     );
   }
 
   getNewsId(id) {
     return this.http.get<NewsData>(backendUrl + "/news/" + id)
     .pipe(
+      catchError(this.messageModalService.handleBackendError.bind(
+        this.messageModalService, "Fehler beim Laden von News", getDefaultNewsData
+      )),
       map( res => {
         this.convertTimestamp(res);
         return res
-      }),
-      catchError((err) => {
-        let m = "Fehler beim Laden von News\n"
-        if (err.error instanceof ErrorEvent) {
-          m += "bitte dem Administrator melden."
-        }
-        else {
-          m += `Code: ` + err.status + `\n`;
-          m += `Meldung: ` + err.error['error'];
-        }
-        this.messageModalService.message = m;
-        this.messageModalService.show();
-
-        return of({
-          id: -1,
-          timestamp: new Date(),
-          title: "",
-          message: "",
-          priority: -1
-        })
       })
     );
   }
@@ -135,26 +92,9 @@ export class NewsService {
     
     return this.http.post<NewsData>(backendUrl + "/news", news, {headers: reqHeaders})
     .pipe(
-      catchError((err) => {
-        let m = "Fehler beim Erstellen von News\n"
-        if (err.error instanceof ErrorEvent) {
-          m += "bitte dem Administrator melden."
-        }
-        else {
-          m += `Code: ` + err.status + `\n`;
-          m += `Meldung: ` + err.error['error'];
-        }
-        this.messageModalService.message = m;
-        this.messageModalService.show();
-
-        return of({
-          id: -1,
-          timestamp: new Date(),
-          title: "",
-          message: "",
-          priority: -1
-        })
-      })
+      catchError(this.messageModalService.handleBackendError.bind(
+        this.messageModalService, "Fehler beim Erstellen von News", getDefaultNewsData
+      ))
     );
   }
 
@@ -167,26 +107,9 @@ export class NewsService {
     
     return this.http.put<NewsData>(backendUrl + "/news/" + id, news, {headers: reqHeaders})
     .pipe(
-      catchError((err) => {
-        let m = "Fehler beim Speichern von News\n"
-        if (err.error instanceof ErrorEvent) {
-          m += "bitte dem Administrator melden."
-        }
-        else {
-          m += `Code: ` + err.status + `\n`;
-          m += `Meldung: ` + err.error['error'];
-        }
-        this.messageModalService.message = m;
-        this.messageModalService.show();
-
-        return of({
-          id: -1,
-          timestamp: new Date(),
-          title: "",
-          message: "",
-          priority: -1
-        })
-      })
+      catchError(this.messageModalService.handleBackendError.bind(
+        this.messageModalService, "Fehler beim Speichern von News", getDefaultNewsData
+      ))
     );
   }
 
@@ -199,26 +122,9 @@ export class NewsService {
     
     return this.http.delete<NewsData>(backendUrl + "/news/" + id, {headers: reqHeaders})
     .pipe(
-      catchError((err) => {
-        let m = "Fehler beim Löschen von News\n"
-        if (err.error instanceof ErrorEvent) {
-          m += "bitte dem Administrator melden."
-        }
-        else {
-          m += `Code: ` + err.status + `\n`;
-          m += `Meldung: ` + err.error['error'];
-        }
-        this.messageModalService.message = m;
-        this.messageModalService.show();
-
-        return of({
-          id: -1,
-          timestamp: new Date(),
-          title: "",
-          message: "",
-          priority: -1
-        })
-      })
+      catchError(this.messageModalService.handleBackendError.bind(
+        this.messageModalService, "Fehler beim Löschen von News", getDefaultNewsData
+      ))
     );
   }
 

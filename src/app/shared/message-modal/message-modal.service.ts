@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
 
 export enum ClickedButton {
   CLICK_OK,
@@ -29,6 +29,21 @@ export class MessageModalService {
     return this.events.asObservable();
   }
 
+  public handleBackendError(messageHead: string, retCallback, err) {
+    let m = messageHead + "\n\n";
+    if (err.error instanceof ErrorEvent) {
+      m += "bitte dem Administrator melden."
+    }
+    else {
+      m += "Code: " + err.status + "\n";
+      m += "Meldung: " + err.error['error'];
+    }
+    this.message = m;
+    this.show();
+
+    return of(retCallback());
+  }
+  
   onClickOk() {
     this.buttonEvents.next(ClickedButton.CLICK_OK);
   }
