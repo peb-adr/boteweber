@@ -11,17 +11,17 @@
         
         <div class="list-container">
             
-            <div id="new-subscriber-element-container">
+            <div id="new-group-element-container">
                 <app-admin-editable-element
                     [value]="-1"
-                    [name]="'Neuer Abonnent'"
+                    [name]="'Neue Gruppe'"
                     (clickEdit)="onEditElement($event)">
-                    </app-admin-editable-element>
+                </app-admin-editable-element>
             </div>
     
-            <div id="existing-subscriber-element-container">
+            <div id="existing-group-element-container">
                 <app-admin-editable-element
-                    *ngFor="let s of subscribersRenderNames"
+                    *ngFor="let s of groupsRenderNames"
                     [value]="s.id"
                     [name]="s.name"
                     (clickEdit)="onEditElement($event)">
@@ -34,19 +34,18 @@
         </div>
     
         <div class="propeditor-container">
-            <app-admin-propeditor-subscriber
-                [data]="editedSubscriber"
-                [groups]="groups"
-                (dataChanged)="onEditedDataChanged()"
-            >
-            </app-admin-propeditor-subscriber>
+            <app-admin-propeditor-group
+                [data]="editedGroup"
+                (dataChanged)="onEditedDataChanged()">
+
+            </app-admin-propeditor-group>
             
             <app-crud-action-pane
-                [isPoster]="editedSubscriber.id < 0"
-                (create)="createSubscriber()"
-                (update)="updateSubscriber()"
-                (reset)="resetSubscriber()"
-                (delete)="deleteSubscriber()">
+                [isPoster]="editedGroup.id < 0"
+                (create)="createGroup()"
+                (update)="updateGroup()"
+                (reset)="resetGroup()"
+                (delete)="deleteGroup()">
     
             </app-crud-action-pane>
         </div>
@@ -55,14 +54,14 @@
 
     <div class="pageselect-container">
         <app-page-select
-            [elementsMax]="allSubscriberIds.length"
+            [elementsMax]="allGroupIds.length"
             [buttonsAdj]="pageButtonsAdj"
             [pageSelected]="pageSel"
             [elementsPerPage]="pagePer"
             [elementsPerPageDefault]="pagePer"
             (pageSelectedChange)="onPageSelChanged($event)"
             (elementsPerPageChange)="onPagePerChanged($event)"
-            >
+        >
         </app-page-select>
     </div>
 

@@ -17,6 +17,8 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
   subscribersRenderNames: {id: number, name: string}[] = [];
   allSubscriberIds: number[] = [];
 
+  groups: GroupData[] = [];
+  
   editedSubscriber: SubscriberData;
 
   @ViewChild(CrudActionPaneComponent)
@@ -35,6 +37,7 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSubscribers();
+    this.getGroups();
     this.clearEditedSubscriber();
   }
 
@@ -48,6 +51,13 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
       this.subscribers = data;
       this.makeIndexMap();
       this.makeRenderNames();
+    })
+  }
+  
+  getGroups() {
+    this.groupService.getGroups().toPromise()
+    .then((data: GroupData[]) => {
+      this.groups = data;
     })
   }
 

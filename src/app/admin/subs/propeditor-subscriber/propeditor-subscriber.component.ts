@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { GroupData } from 'src/app/services/group/group.service';
 import { SubscriberData } from 'src/app/services/subscriber/subscriber.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { SubscriberData } from 'src/app/services/subscriber/subscriber.service';
 export class AdminPropeditorSubscriberComponent implements OnInit {
 
   @Input()
-  readonly groupData;
+  groups: GroupData[];
   @Input()
   data: SubscriberData;
   

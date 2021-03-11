@@ -1,0 +1,45 @@
+
+:root {
+    width: 100%;
+}
+
+.outer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-container {
+    flex: 2 0;
+}
+
+#new-group-element-container {
+    margin-bottom: 20px;
+}
+
+.propeditor-container {
+    flex: 1 0;
+
+    background-color: rgb(var(--color-secondary-light));
+    border-radius: 6px;
+}
+
+.pageselect-container {
+    margin-top: 10px;
+}
+
+.spacer {
+    flex: 0 1 40px;
+}
+
+@media (max-width: 1040px) {
+    .editor-container {
+        flex-direction: column-reverse;
+    }
+}
