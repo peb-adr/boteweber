@@ -1,6 +1,6 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CrudActionPaneComponent } from 'src/app/shared/crud-action-pane/crud-action-pane.component';
-import { GroupData, GroupService } from 'src/app/services/group/group.service';
+import { getDefaultGroupData, GroupData, GroupService } from 'src/app/services/group/group.service';
 import { AdminPropeditorGroupComponent } from '../propeditor-group/propeditor-group.component';
 import { ClickedButton, MessageModalService } from 'src/app/shared/message-modal/message-modal.service';
 
@@ -64,11 +64,7 @@ export class AdminSubsEditGroupsComponent implements OnInit {
   }
   
   clearEditedGroup() {
-    this.editedGroup = {
-      id: -1,
-      name: "",
-      subscribers: []
-    }
+    this.editedGroup = getDefaultGroupData();
   }
   
   createGroup() {

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GroupData } from 'src/app/services/group/group.service';
-import { SubscriberData } from 'src/app/services/subscriber/subscriber.service';
+import { getDefaultSubscriberData, SubscriberData } from 'src/app/services/subscriber/subscriber.service';
 
 @Component({
   selector: 'app-admin-propeditor-subscriber',
@@ -22,12 +22,7 @@ export class AdminPropeditorSubscriberComponent implements OnInit {
   notSyncedHint = false;
   
   constructor() {
-    this.data = {
-      id: -1,
-      email: "",
-      name: "",
-      groups: []
-    };
+    this.data = getDefaultSubscriberData();
   }
   
   ngOnInit(): void {

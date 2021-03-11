@@ -1,6 +1,6 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CrudActionPaneComponent } from 'src/app/shared/crud-action-pane/crud-action-pane.component';
-import { NewsData, NewsService } from 'src/app/services/news/news.service';
+import { getDefaultNewsData, NewsData, NewsService } from 'src/app/services/news/news.service';
 import { AdminNewsEditorComponent } from './news-editor/news-editor.component';
 import { ClickedButton, MessageModalService } from 'src/app/shared/message-modal/message-modal.service';
 
@@ -13,13 +13,7 @@ export class AdminNewsComponent implements OnInit {
 
   news: NewsData[];
   allNewsIds: number[] = [];
-  posterNews: NewsData = {
-    id: -1,
-    title: "",
-    message: "",
-    timestamp: null,
-    priority: 1
-  }
+  posterNews: NewsData = getDefaultNewsData();
 
   @ViewChild("posterEditor")
   posterEditor: AdminNewsEditorComponent
@@ -57,13 +51,7 @@ export class AdminNewsComponent implements OnInit {
 
   preserveLocalChanges() {
     if (this.posterCrudPane.isStateSyncing()) {
-      this.posterEditor.data = {
-        id: -1,
-        title: "",
-        message: "",
-        timestamp: null,
-        priority: 1
-      };
+      this.posterEditor.data = getDefaultNewsData();
       this.posterCrudPane.setStateSynced();
     }
     

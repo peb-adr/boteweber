@@ -20,7 +20,7 @@ export function getDefaultNewsData(): NewsData {
     timestamp: new Date(),
     title: "",
     message: "",
-    priority: -1
+    priority: 1
   };
 }
 

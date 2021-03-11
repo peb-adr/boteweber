@@ -1,7 +1,7 @@
 import { Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CrudActionPaneComponent } from 'src/app/shared/crud-action-pane/crud-action-pane.component';
 import { GroupData, GroupService } from 'src/app/services/group/group.service';
-import { SubscriberData, SubscriberService } from 'src/app/services/subscriber/subscriber.service';
+import { getDefaultSubscriberData, SubscriberData, SubscriberService } from 'src/app/services/subscriber/subscriber.service';
 import { AdminPropeditorSubscriberComponent } from '../propeditor-subscriber/propeditor-subscriber.component';
 import { ClickedButton, MessageModalService } from 'src/app/shared/message-modal/message-modal.service';
 
@@ -80,12 +80,7 @@ export class AdminSubsEditSubscribersComponent implements OnInit {
   }
   
   clearEditedSubscriber() {
-    this.editedSubscriber = {
-      id: -1,
-      email: "",
-      name: "",
-      groups: []
-    }
+    this.editedSubscriber = getDefaultSubscriberData();
   }
   
   createSubscriber() {
