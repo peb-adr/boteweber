@@ -20,10 +20,7 @@ export class AdminAuthenticationService {
 
   get adminToken() {
     if (!this._adminToken) {
-      try {
-      this._adminToken = JSON.parse(localStorage.getItem('adminToken'));
-      } catch (e) {
-    }
+      this._adminToken = localStorage.getItem('adminToken');
     }
 
     return this._adminToken;
@@ -35,7 +32,7 @@ export class AdminAuthenticationService {
     })
     .pipe(
       map( res => {
-        localStorage.setItem('adminToken', JSON.stringify(res.token));
+        localStorage.setItem('adminToken', res.token);
         return res
       })
     );
