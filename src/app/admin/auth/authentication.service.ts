@@ -20,7 +20,10 @@ export class AdminAuthenticationService {
 
   get adminToken() {
     if (!this._adminToken) {
+      try {
       this._adminToken = JSON.parse(localStorage.getItem('adminToken'));
+      } catch (e) {
+    }
     }
 
     return this._adminToken;
