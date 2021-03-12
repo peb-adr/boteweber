@@ -1,0 +1,28 @@
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    
+    font-size: 12px;
+}
+
+.footer-item {
+    flex: 0 1 25%;
+
+    display: flex;
+}
+
+
+.footer-item-left {
+    justify-content: flex-start;
+}
+
+.footer-item-middle {
+    justify-content: center;
+}
+
+.footer-item-right {
+    justify-content: flex-end;
+}
+
+

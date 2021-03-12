@@ -13,6 +13,9 @@ import { UserFrontpageComponent } from './frontpage/frontpage.component';
 import { UserSubscribeComponent } from './subscribe/subscribe.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { UserBotbarComponent } from './botbar/botbar.component';
+import { UserContactComponent } from './contact/contact.component';
+import { UserPrivacyComponent } from './privacy/privacy.component';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { SharedModule } from '../shared/shared.module';
     UserNewsListComponent,
     UserNewsCardComponent,
     UserFrontpageComponent,
-    UserSubscribeComponent
+    UserSubscribeComponent,
+    UserBotbarComponent,
+    UserContactComponent,
+    UserPrivacyComponent
   ],
   imports: [
     UserRoutingModule,

@@ -3,6 +3,8 @@ import { Routes, RouterModule } from "@angular/router";
 import { UserComponent } from './user.component';
 import { UserFrontpageComponent } from './frontpage/frontpage.component';
 import { UserSubscribeComponent } from './subscribe/subscribe.component';
+import { UserPrivacyComponent } from './privacy/privacy.component';
+import { UserContactComponent } from './contact/contact.component';
 
 
 const routes: Routes = [
@@ -17,6 +19,14 @@ const routes: Routes = [
       {
         path: 'subscribe',
         component: UserSubscribeComponent
+      },
+      {
+        path: 'contact',
+        component: UserContactComponent
+      },
+      {
+        path: 'privacy',
+        component: UserPrivacyComponent
       }
     ]
   },
