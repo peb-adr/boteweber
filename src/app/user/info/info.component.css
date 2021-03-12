@@ -58,10 +58,6 @@
     bottom: 50px;
 }
 
-a {
-    color: rgb(var(--color-secondary));
-}
-
 @media (max-width: 1040px) {
     .info-container {
         width: 100%;
