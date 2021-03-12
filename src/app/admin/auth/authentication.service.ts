@@ -13,7 +13,6 @@ export interface AuthData {
 })
 export class AdminAuthenticationService {
 
-  public adminLoggedIn = false;
   private _adminToken = null;
   
   constructor(private http: HttpClient) { }
@@ -39,8 +38,8 @@ export class AdminAuthenticationService {
   }
 
   adminlogout() {
-    this.adminLoggedIn = false;
-    return this.adminLoggedIn;
+    this._adminToken = null;
+    localStorage.removeItem('adminToken');
   }
   
 }

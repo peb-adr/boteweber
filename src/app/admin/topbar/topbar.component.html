@@ -1,21 +1,34 @@
 <div class="topbar-container">
-    
-    <div id="nav">
-        <a class="site-link navbutton" routerLink="/admin/info"
-            [class.active]="router.url.includes('admin/info')"
-        >
-            Info
-        </a>
-        <a class="site-link navbutton" routerLink="/admin/news"
-            [class.active]="router.url.includes('admin/news')"
-        >
-            News
-        </a>
-        <a class="site-link navbutton" routerLink="/admin/subs"
-            [class.active]="router.url.includes('admin/subs')"
-        >
-            Abos
-        </a>
+        
+    <div class="edge-spacer">
     </div>
 
+    <div class="inner-container">
+
+        <nav id="nav">
+            <a class="site-link navbutton" routerLink="/admin/info"
+                [class.active]="router.url.includes('admin/info')"
+            >
+                Info
+            </a>
+            <a class="site-link navbutton" routerLink="/admin/news"
+                [class.active]="router.url.includes('admin/news')"
+            >
+                News
+            </a>
+            <a class="site-link navbutton" routerLink="/admin/subs"
+                [class.active]="router.url.includes('admin/subs')"
+            >
+                Abos
+            </a>
+        </nav>
+
+        <button class="logout-button"
+            (click)="onClickLogout()">
+        </button>
+    </div>
+
+    <div class="edge-spacer">
+    </div>
+    
 </div>
