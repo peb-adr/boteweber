@@ -74,10 +74,6 @@ a.logo {
     margin: 0px;
 }
 
-.edge-spacer {
-    flex: 1 0 20px;
-}
-
 @media (max-width: 1040px) {
     img {
         display: none;

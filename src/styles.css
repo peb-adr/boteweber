@@ -28,6 +28,10 @@
     stroke: rgb(var(--color-secondary));
 }
 
+.edge-spacer {
+    flex: 1 0 20px;
+}
+
 hr {
     color: rgb(var(--text-color-light));
     background-color: rgb(var(--text-color-light));
